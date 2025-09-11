@@ -14,8 +14,8 @@ class Contact {
 	public:
 		//constructors
 		Contact();
-		Contact(const std::string& first_name, const std::string& last_name, const std::string& nick_name, const std::string& darkest_secret, const std::string& phone_number);
-
+		/*Contact(const std::string& first_name, const std::string& last_name, const std::string& nick_name, const std::string& darkest_secret, const std::string& phone_number);*/
+		/**/
 		//setters
 		void setfirstname(const std::string first_name);
 		void setlastname(const std::string last_name);

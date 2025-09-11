@@ -5,6 +5,6 @@ int main()
 	PhoneBook phone;
 
 	start(phone);
-	std::cout << "last name: " << phone.contacts[1].getlastname();
+	std::cout << "last name: " << phone.contacts[0].getfirstname();
 	return (0);
 }
