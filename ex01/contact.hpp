@@ -12,8 +12,9 @@ class Contact {
 		std::string darkest_secret;
 		std::string phone_number;
 	public:
-		//constructor
-		Contact(const std::string& first_name, const std::string& last_name, const std::string& nick_name, const std::string& darkest_secret, const std::string phone_number);
+		//constructors
+		Contact();
+		Contact(const std::string& first_name, const std::string& last_name, const std::string& nick_name, const std::string& darkest_secret, const std::string& phone_number);
 
 		//setters
 		void setfirstname(const std::string first_name);
@@ -28,11 +29,6 @@ class Contact {
 		std::string getnickname() const;
 		std::string getdarkestsecret() const;
 		std::string getphonenumber() const;
-
-		//display functions
-		void add();
-		void search();
-		void exit_code();
-}
+};
 
 #endif
