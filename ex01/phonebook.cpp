@@ -115,7 +115,7 @@ void	start(PhoneBook &phone)
 {
 	int	i = 0;
 
-	while (i < 2)
+	while (true)
 	{
 		First_name(phone);
 		Last_name(phone);
@@ -125,7 +125,7 @@ void	start(PhoneBook &phone)
 		phone.counter++;
 		if (!choice_function())
 			break;
-		i++;
+		if (phone.counter == 8)
 	}
 }
 
