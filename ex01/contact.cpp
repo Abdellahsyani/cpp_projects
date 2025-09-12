@@ -56,11 +56,6 @@ void Contact::setdarkestsecret(const std::string darkest_secret) {
 }
 
 void Contact::setphonenumber(const std::string phone_number) {
-	for (char c: phone_number)
-	{
-		if (!std::isdigit(c))
-			std::cout << "enter just numbers";
-	}
 	this->phone_number = phone_number;
 }
 
