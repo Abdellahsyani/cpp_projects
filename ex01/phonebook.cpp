@@ -4,7 +4,8 @@ int	check_strings(std::string words)
 {
 	if (words.empty())
 	{
-		std::cout << "\033[31m" <<"Field cannot be empty, try again" << "\033[0m" << std::endl;
+		std::cout << "\033[31m" <<"Field cannot be empty, try again"
+			<< "\033[0m" << std::endl;
 		return 1;
 	}
 	return 0;
@@ -113,33 +114,37 @@ int	choice_function(std::string& in)
 void exit_phone(void)
 {
 	std::cout << "\033[32m" << R"(
-  	 ____                 _ _                
-  	/ ___| ___   ___   __| | |__  _   _  ___ 
- 	| |  _ / _ \ / _ \ / _` | '_ \| | | |/ _ \
-	 | |_| | (_) | (_) | (_| | |_) | |_| |  __/
-  	\____|\___/ \___/ \__,_|_.__/ \__, |\___|
-                                 |___/     
+		____                 _ _                
+		/ ___| ___   ___   __| | |__  _   _  ___ 
+		| |  _ / _ \ / _ \ / _` | '_ \| | | |/ _ \
+		| |_| | (_) | (_) | (_| | |_) | |_| |  __/
+		\____|\___/ \___/ \__,_|_.__/ \__, |\___|
+		|___/     
 	)" << "\033[0m" << std::endl;
 	std::exit(0);
 }
 
 void	contact_search(PhoneBook phone)
 {
-	std::cout << std::string(54, '-') << std::endl;
-	std::cout << std::left << std::setw(10) << "|" << std::setw(10) << "Index" << "|"
-		<< std::setw(10) << "first name" << "|"
-		<< std::setw(10) << "last name" << "|"
-		<< std::setw(10) << "nick name" << "|" << std::endl;
+	std::string line  = std::string(45, '-');
 
-	std::cout << std::string(54, '-') << std::endl;
+	std::cout << BLUE << line << RESET << std::endl;
+	std::cout << BLUE << "|" << RESET << std::setw(10) << "Index"
+		<< BLUE << "|" << RESET << std::setw(10) << "First Name"
+		<< BLUE << "|" << RESET << std::setw(10) << "Last Name"
+		<< BLUE << "|" << RESET << std::setw(10) << "Nick Name"
+		<< BLUE << "|" << RESET << std::endl;
+
+	std::cout << BLUE << line << RESET << std::endl;
 	for (int i = 0; i < phone.counter; i++)
 	{
-		std::cout << std::left << std::setw(10) << "|" << std::setw(10) << i << "|"
-			<< std::setw(10) << phone.contacts[i].getfirstname() << "|"
-			<< std::setw(10) << phone.contacts[i].getlastname() << "|"
-			<< std::setw(10) << phone.contacts[i].getnickname() << "|" << std::endl;
+		std::cout << BLUE << "|" << RESET << std::setw(10) << i
+			<< BLUE << "|" << RESET << std::setw(10) << phone.contacts[i].getfirstname()
+			<< BLUE << "|" << RESET << std::setw(10) << phone.contacts[i].getlastname()
+			<< BLUE << "|" << RESET << std::setw(10) << phone.contacts[i].getnickname()
+			<< BLUE << "|" << RESET << std::endl;
 	}
-	std::cout << std::string(54, '-') << std::endl;
+	std::cout << BLUE << line << RESET << std::endl;
 }
 
 void	start(PhoneBook &phone)
