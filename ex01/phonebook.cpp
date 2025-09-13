@@ -91,9 +91,8 @@ void Darkest_secret(PhoneBook &phone)
 }
 
 
-int	choice_function()
+int	choice_function(std::string& in)
 {
-	std::string in;
 
 	while (true)
 	{
@@ -111,9 +110,35 @@ int	choice_function()
 	return 0;
 }
 
+void exit_phone(void)
+{
+	std::cout << "👋👋👋👋" << std::endl;
+	std::exit(0);
+}
+
+void	contact_search(PhoneBook phone)
+{
+	std::cout << std::string(54, '-') << std::endl;
+	std::cout << std::left << std::setw(10) << "|" << std::setw(10) << "Index" << "|"
+		<< std::setw(10) << "first name" << "|"
+		<< std::setw(10) << "last name" << "|"
+		<< std::setw(10) << "nick name" << "|" << std::endl;
+
+	std::cout << std::string(54, '-') << std::endl;
+	for (int i = 0; i < phone.counter; i++)
+	{
+		std::cout << std::left << std::setw(10) << "|" << std::setw(10) << i << "|"
+			<< std::setw(10) << phone.contacts[i].getfirstname() << "|"
+			<< std::setw(10) << phone.contacts[i].getlastname() << "|"
+			<< std::setw(10) << phone.contacts[i].getnickname() << "|" << std::endl;
+	}
+	std::cout << std::string(54, '-') << std::endl;
+}
+
 void	start(PhoneBook &phone)
 {
 	int	i = 0;
+	std::string in;
 
 	while (true)
 	{
@@ -123,9 +148,13 @@ void	start(PhoneBook &phone)
 		Phone_number(phone);
 		Darkest_secret(phone);
 		phone.counter++;
-		if (!choice_function())
+		if (!choice_function(in))
 			break;
-		if (phone.counter == 8)
+		if (phone.counter == 8 && in == "y")
+		{
+			std::cout << "you can't add another one all full" << std::endl;
+			break;
+		}
 	}
 }
 

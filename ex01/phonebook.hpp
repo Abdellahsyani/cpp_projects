@@ -2,6 +2,7 @@
 #define PHONEBOOK_H
 
 #include <iostream>
+#include <iomanip>
 #include "contact.hpp"
 
 class PhoneBook {
@@ -12,11 +13,13 @@ class PhoneBook {
 		PhoneBook();
 
 		//display methods 
-		void	add_contact(Contact contact);
-		std::string	search_contact(int id);
-		void	exit_contact();
+		/*void	add_contact(Contact contact);*/
+		/*std::string	search_contact(int id);*/
+		/*void	exit_contact();*/
 };
 
 void	start(PhoneBook &phone);
+void	contact_search(PhoneBook phone);
+void	exit_phone(void);
 
 #endif
