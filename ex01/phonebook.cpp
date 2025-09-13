@@ -4,7 +4,7 @@ int	check_strings(std::string words)
 {
 	if (words.empty())
 	{
-		std::cout << "Field cannot be empty, try again" << std::endl;
+		std::cout << "\033[31m" <<"Field cannot be empty, try again" << "\033[0m" << std::endl;
 		return 1;
 	}
 	return 0;
@@ -57,7 +57,7 @@ int check_phone(std::string phone_number)
 	{
 		if (!std::isdigit(c))
 		{
-			std::cout << "Just number please" << std::endl;
+			std::cout << "\033[31m" << "Just number please" << "\033[0m" << std::endl;
 			return 1;
 		}
 	}
@@ -112,7 +112,14 @@ int	choice_function(std::string& in)
 
 void exit_phone(void)
 {
-	std::cout << "👋👋👋👋" << std::endl;
+	std::cout << "\033[32m" << R"(
+  	 ____                 _ _                
+  	/ ___| ___   ___   __| | |__  _   _  ___ 
+ 	| |  _ / _ \ / _ \ / _` | '_ \| | | |/ _ \
+	 | |_| | (_) | (_) | (_| | |_) | |_| |  __/
+  	\____|\___/ \___/ \__,_|_.__/ \__, |\___|
+                                 |___/     
+	)" << "\033[0m" << std::endl;
 	std::exit(0);
 }
 

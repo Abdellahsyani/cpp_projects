@@ -8,7 +8,7 @@ int main()
 
 	while (true)
 	{
-		std::cout << "what's on your mind(ADD/SEARCH/EXIT): ";
+		std::cout << "\033[32m" << "Enter Prompt: " << "\033[0m";
 		std::getline(std::cin, add);
 		if (add == "ADD")
 			start(phone);
@@ -16,12 +16,12 @@ int main()
 			contact_search(phone);
 		else if (add == "EXIT")
 			exit_phone();
+		else
+		{
+			std::cout << "\033[31m" << "Error: only (ADD | SEARCH | EXIT) allowed" << "\033[0m" << std::endl;
+			continue;
+		}
 	}
 
-	/*std::cout << "first name: " << phone.contacts[0].getfirstname() << std::endl;*/
-	/*std::cout << "last name: " << phone.contacts[0].getlastname() << std::endl;*/
-	/*std::cout << "nick name: " << phone.contacts[0].getnickname() << std::endl;*/
-	/*std::cout << "phone number: " << phone.contacts[0].getphonenumber() << std::endl;*/
-	/*std::cout << "darkest secret: " << phone.contacts[0].getdarkestsecret() << std::endl;*/
 	return (0);
 }

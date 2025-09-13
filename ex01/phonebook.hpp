@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include "contact.hpp"
+#include <limits>
 
 class PhoneBook {
 	public:
@@ -11,11 +12,6 @@ class PhoneBook {
 
 		Contact contacts[8];
 		PhoneBook();
-
-		//display methods 
-		/*void	add_contact(Contact contact);*/
-		/*std::string	search_contact(int id);*/
-		/*void	exit_contact();*/
 };
 
 void	start(PhoneBook &phone);
