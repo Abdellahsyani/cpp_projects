@@ -13,6 +13,8 @@
 class PhoneBook {
 	public:
 		static int counter;
+		int	flag = 0;
+		int static counter_2;
 
 		Contact contacts[8];
 		PhoneBook();
