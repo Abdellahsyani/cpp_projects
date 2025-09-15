@@ -5,6 +5,7 @@
 #include <iomanip>
 #include "contact.hpp"
 #include <limits>
+#include <fstream>
 
 class PhoneBook {
 	public:

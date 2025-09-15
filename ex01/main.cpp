@@ -9,7 +9,15 @@ int main()
 	while (true)
 	{
 		std::cout << "\033[32m" << "Enter Prompt: " << "\033[0m";
-		std::getline(std::cin, add);
+		if (!std::getline(std::cin, add))
+    		{
+        		if (std::cin.eof())
+        		{
+           			std::cout << "\n\033[31mEOF detected, exiting...\033[0m" << std::endl;
+				std::cin.clear();
+				continue;
+        		}
+		}
 		if (add == "ADD")
 			start(phone);
 		else if (add == "SEARCH")
