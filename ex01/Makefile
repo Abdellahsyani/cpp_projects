@@ -1,7 +1,7 @@
 NAME = phone
 
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 
 SRC = contact.cpp phonebook.cpp main.cpp
 

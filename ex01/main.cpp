@@ -25,6 +25,8 @@ int main()
 			exit_phone();
 		else
 		{
+			if (add.empty())
+				continue;
 			std::cout << "\033[31m" << "Error: only (ADD | SEARCH | EXIT) allowed" << "\033[0m" << std::endl;
 			continue;
 		}

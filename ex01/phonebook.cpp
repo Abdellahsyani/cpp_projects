@@ -2,9 +2,9 @@
 
 std::string format_column(const std::string &s)
 {
-    if (s.length() > 10)
-        return s.substr(0, 9) + ".";
-    return s;
+	if (s.length() > 10)
+		return s.substr(0, 9) + ".";
+	return s;
 }
 
 int is_valid_input(const std::string &s)
@@ -28,13 +28,11 @@ int is_valid_input(const std::string &s)
 
 void	read_line(std::string &str)
 {
-	if (!std::getline(std::cin, str))
+	std::getline(std::cin, str);
+	if (std::cin.eof())
 	{
-		if (std::cin.eof())
-		{
-			std::cout << "\n\033[31mEOF detected, exiting...\033[0m" << std::endl;
-			std::exit(0);
-		}
+		std::cout << "\n\033[31mEOF detected, exiting...\033[0m" << std::endl;
+		std::exit(0);
 	}
 }
 
@@ -48,13 +46,7 @@ void First_name(PhoneBook &phone)
 		if (!is_valid_input(first_name))
 			break;
 	}
-	if (phone.flag == 1)
-	{
-		phone.contacts[phone.counter_2].setfirstname(first_name);
-		phone.flag = 0;
-	}
-	else
-		phone.contacts[phone.counter].setfirstname(first_name);
+	phone.contacts[phone.counter].setfirstname(first_name);
 }
 
 void Last_name(PhoneBook &phone)
@@ -67,12 +59,6 @@ void Last_name(PhoneBook &phone)
 		if (!is_valid_input(last_name))
 			break;
 	}
-	if (phone.flag == 1)
-	{
-		phone.contacts[phone.counter_2].setfirstname(last_name);
-		phone.flag = 0;
-	}
-	else
 		phone.contacts[phone.counter].setlastname(last_name);
 }
 
@@ -87,12 +73,6 @@ void Nick_name(PhoneBook &phone)
 		if (!is_valid_input(nick_name))
 			break;
 	}
-	if (phone.flag == 1)
-	{
-		phone.contacts[phone.counter_2].setfirstname(nick_name);
-		phone.flag = 0;
-	}
-	else
 		phone.contacts[phone.counter].setnickname(nick_name);
 }
 
@@ -120,12 +100,6 @@ void Phone_number(PhoneBook &phone)
 		if (!is_valid_input(phone_number) && !check_phone(phone_number))
 			break;
 	}
-	if (phone.flag == 1)
-	{
-		phone.contacts[phone.counter_2].setfirstname(phone_number);
-		phone.flag = 0;
-	}
-	else
 		phone.contacts[phone.counter].setphonenumber(phone_number);
 }
 
@@ -139,12 +113,6 @@ void Darkest_secret(PhoneBook &phone)
 		if (!is_valid_input(darkest_secret))
 			break;
 	}
-	if (phone.flag == 1)
-	{
-		phone.contacts[phone.counter_2].setfirstname(darkest_secret);
-		phone.flag = 0;
-	}
-	else
 		phone.contacts[phone.counter].setdarkestsecret(darkest_secret);
 }
 
@@ -219,6 +187,7 @@ void	start(PhoneBook &phone)
 
 	while (true)
 	{
+		phone.counter = phone.counter % 8;
 		First_name(phone);
 		Last_name(phone);
 		Nick_name(phone);
@@ -228,19 +197,8 @@ void	start(PhoneBook &phone)
 		phone.counter++;
 		if (!choice_function(in))
 			break;
-		if (phone.counter == 7 && in == "y")
-		{
-			phone.flag = 1;
-			/*phone.counter = 0;*/
-		}
-		if (phone.counter_2 == 7 && in == "y")
-		{
-			phone.flag = 1;
-			/*phone.counter_2 = 0;*/
-		}
 	}
 }
 
 int PhoneBook::counter = 0;
-int PhoneBook::counter_2 = 0;
 PhoneBook::PhoneBook() {};
