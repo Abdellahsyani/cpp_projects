@@ -159,21 +159,25 @@ void exit_phone(void)
 
 void	contact_search(PhoneBook phone)
 {
-	std::cout << std::string(41, '-') << std::endl;
-	std::cout << "| " << std::setw(5) << std::left << "Index" << " | "
-		<< std::setw(12) << "first name" << " | "
-		<< std::setw(12) << "last name" << " | "
-		<< std::setw(12) << "nick name" << " |" << std::endl;
+	std::string line  = std::string(51, '-');
 
-	std::cout << std::string(41, '-') << std::endl;
+	std::cout << BLUE << line << RESET << std::endl;
+	std::cout << BLUE << "| " << RESET << std::setw(5) << std::left << "Index"
+		<< BLUE <<" | " << RESET << std::setw(12) << "first name"
+		<< BLUE << "| " << RESET << std::setw(12) << "last name"
+		<< BLUE <<"| " << RESET << std::setw(12) << "nick name"
+		<< BLUE << "|" << RESET << std::endl;
+
+	std::cout << BLUE << line << RESET << std::endl;
 	for (int i = 0; i < phone.counter; i++)
 	{
-		std::cout << "| " << std::setw(5) << std::left << i << " | "
-			<< std::setw(12) << format_column(phone.contacts[i].getfirstname()) << " | "
-			<< std::setw(12) << format_column(phone.contacts[i].getlastname()) << " | "
-			<< std::setw(12) << format_column(phone.contacts[i].getnickname()) << " |" << std::endl;
+		std::cout << BLUE << "| " << RESET << std::setw(5) << std::left << i
+			<< BLUE << " | " << RESET << std::setw(12) << format_column(phone.contacts[i].getfirstname())
+			<< BLUE << "| " << RESET << std::setw(12) << format_column(phone.contacts[i].getlastname())
+			<< BLUE << "| " << RESET << std::setw(12) << format_column(phone.contacts[i].getnickname())
+			<< BLUE << "|" << RESET << std::endl;
 	}
-	std::cout << std::string(41, '-') << std::endl;
+	std::cout << BLUE << line << RESET << std::endl;
 }
 
 void	start(PhoneBook &phone)

@@ -7,6 +7,9 @@
 #include <limits>
 #include <fstream>
 
+#define BLUE "\033[34m"
+#define RESET "\033[0m"
+
 class PhoneBook {
 	public:
 		static int counter;

@@ -14,8 +14,7 @@ int main()
         		if (std::cin.eof())
         		{
            			std::cout << "\n\033[31mEOF detected, exiting...\033[0m" << std::endl;
-				std::cin.clear();
-				continue;
+				std::exit(0);
         		}
 		}
 		if (add == "ADD")
