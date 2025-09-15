@@ -23,5 +23,9 @@ class PhoneBook {
 void	start(PhoneBook &phone);
 void	contact_search(PhoneBook phone);
 void	exit_phone(void);
+int	is_valid_input(const std::string &s);
+std::string	format_column(const std::string &s);
+int	choice_function(std::string& in);
+void	read_line(std::string &str);
 
 #endif

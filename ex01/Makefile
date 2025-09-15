@@ -3,7 +3,7 @@ NAME = phone
 CC = c++
 FLAGS = -g -Wall -Wextra -Werror
 
-SRC = contact.cpp phonebook.cpp main.cpp
+SRC = contact.cpp phonebook.cpp phone_helper.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
