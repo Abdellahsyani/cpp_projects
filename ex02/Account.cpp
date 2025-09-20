@@ -1,21 +1,35 @@
 #include "Account.hpp"
 
-t User;
 
-Account::Account(int deposit, int index, int amount, int nbDeposits, int nbWithrawals) 
-	makeDeposit(deposit);
-	_accountIndex = index;
-	_amount = amount;
-	_nbDeposits = nbDeposits;
-	_nbWithrawals = nbWithrawals;
-};
-
-t::makeDeposit(int deposit)
+Account::Account(int deposit)
 {
-	Account::_nbAccounts
+	makeDeposit(deposit);
 }
 
+void Account::makeDeposit(int deposit)
+{
+}
+
+bool Account::makeWithdrawal(int withraw)
+{
+	return false;
+}
+
+int Account::checkAmount()  const {
+	return 0;
+}
+
+void Account::displayStatus() const {
+
+}
+
+int Account::getNbAccounts() { return 0;};
+int Account::getTotalAmount() { return 0;};
+int Account::getNbDeposits() {return 0;};
+int Account::getNbWithdrawals() { return 0;};
+void Account::displayAccountsInfos() {};
+
 int Account::_nbAccounts = 0;
-int Account::_totAlAmount = 0;
-int Account::_totAlNbDeposits = 0;
-int Account::_totAlNbWithrAwAls = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
