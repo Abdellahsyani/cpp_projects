@@ -1,26 +1,43 @@
 #include "Account.hpp"
 
 
-Account::Account(int deposit)
+Account::Account(int deposit) :
+	_accountIndex(_nbAccounts),
+	_amount(0),
+	_nbDeposits(0),
+	_nbWithrawals(0) 
 {
-	makeDeposit(deposit);
+	_accountIndex++;
+	_nbAccounts += _accountIndex;
+//	makeDeposit(deposit);
 }
 
 void Account::makeDeposit(int deposit)
 {
+	_nbDeposits++;
+	_totalNbDeposits += _nbDeposits;
+	_amount += deposit;
+	_totalAmount += _amount;
 }
 
 bool Account::makeWithdrawal(int withraw)
 {
-	return false;
+	if (withraw >= _amount)
+	{
+		std::count << "Your balance is not enough try again" << std::endl;
+		return false;
+	}
+	_amount -= withraw;
+	return true;
 }
 
 int Account::checkAmount()  const {
+	std::cout << "Your balance: " << _amount << std::endl;
 	return 0;
 }
 
 void Account::displayStatus() const {
-
+	std::cout << "[]" << "Index: " << _accountIndex << "amount: " << _amount << "deposits: " << _nbDeposits << "withrawals: " << _nbWithrawals << std::endl;
 }
 
 int Account::getNbAccounts() { return 0;};
