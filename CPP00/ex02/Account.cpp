@@ -80,10 +80,10 @@ void Account::displayStatus() const {
 
 void Account::displayAccountsInfos() {
 	_displayTimestamp();
-	std::cout << "accounts:" << _nbAccounts << ";"
-		<< "total:" << _totalAmount << ";"
-		<< "deposits:" << _totalNbDeposits << ";"
-		<< "withdrawals:" << _totalNbWithdrawals << std::endl;
+	std::cout << "accounts:" << getNbAccounts() << ";"
+		<< "total:" << getTotalAmount() << ";"
+		<< "deposits:" << getNbDeposits() << ";"
+		<< "withdrawals:" << getNbWithdrawals() << std::endl;
 };
 
 Account::~Account() {
