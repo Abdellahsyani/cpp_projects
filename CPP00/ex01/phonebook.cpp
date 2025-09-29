@@ -2,13 +2,13 @@
 
 std::string remove_space(const std::string &s)
 {
-    size_t start = 0;
+	size_t start = 0;
 
-    while (start < s.size() && (std::isspace((unsigned char)s[start]) || s[start] == '\t')) {
-        start++;
-    }
+	while (start < s.size() && (std::isspace((unsigned char)s[start]) || s[start] == '\t')) {
+		start++;
+	}
 
-    return s.substr(start);
+	return s.substr(start);
 }
 
 void First_name(PhoneBook &phone)
@@ -36,7 +36,7 @@ void Last_name(PhoneBook &phone)
 		if (!is_valid_input(last_name))
 			break;
 	}
-		phone.contacts[phone.counter].setlastname(last_name);
+	phone.contacts[phone.counter].setlastname(last_name);
 }
 
 
@@ -51,7 +51,7 @@ void Nick_name(PhoneBook &phone)
 		if (!is_valid_input(nick_name))
 			break;
 	}
-		phone.contacts[phone.counter].setnickname(nick_name);
+	phone.contacts[phone.counter].setnickname(nick_name);
 }
 
 
@@ -79,7 +79,7 @@ void Phone_number(PhoneBook &phone)
 		if (!is_valid_input(phone_number) && !check_phone(phone_number))
 			break;
 	}
-		phone.contacts[phone.counter].setphonenumber(phone_number);
+	phone.contacts[phone.counter].setphonenumber(phone_number);
 }
 
 void Darkest_secret(PhoneBook &phone)
@@ -98,6 +98,16 @@ void Darkest_secret(PhoneBook &phone)
 
 void	contact_search(PhoneBook phone)
 {
+	std::string ids;
+	std::cout << "enter contact Id: ";
+	std::getline(std::cin, ids);
+
+	int id = std::stoi(ids);
+      	if (id > 8)
+	{
+		std::cout << "\033[31m" << "You  are out of range" << "\033[0m" << std::endl;
+		return ;
+	}
 	std::string line  = std::string(51, '-');
 
 	std::cout << BLUE << line << RESET << std::endl;
@@ -110,13 +120,16 @@ void	contact_search(PhoneBook phone)
 	std::cout << BLUE << line << RESET << std::endl;
 	for (int i = 0; i < 8; i++)
 	{
-		if (phone.contacts[i].getfirstname().empty())
-			continue;
-		std::cout << BLUE << "| " << RESET << std::setw(5) << std::left << i
-			<< BLUE << " | " << RESET << std::setw(12) << format_column(phone.contacts[i].getfirstname())
-			<< BLUE << "| " << RESET << std::setw(12) << format_column(phone.contacts[i].getlastname())
-			<< BLUE << "| " << RESET << std::setw(12) << format_column(phone.contacts[i].getnickname())
-			<< BLUE << "|" << RESET << std::endl;
+		if (i == id)
+		{
+			if (phone.contacts[i].getfirstname().empty())
+				continue;
+			std::cout << BLUE << "| " << RESET << std::setw(5) << std::left << i
+				<< BLUE << " | " << RESET << std::setw(12) << format_column(phone.contacts[i].getfirstname())
+				<< BLUE << "| " << RESET << std::setw(12) << format_column(phone.contacts[i].getlastname())
+				<< BLUE << "| " << RESET << std::setw(12) << format_column(phone.contacts[i].getnickname())
+				<< BLUE << "|" << RESET << std::endl;
+		}
 	}
 	std::cout << BLUE << line << RESET << std::endl;
 }
