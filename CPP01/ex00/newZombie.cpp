@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 09:15:28 by asyani            #+#    #+#             */
-/*   Updated: 2025/09/29 09:16:08 by asyani           ###   ########.fr       */
+/*   Created: 2025/09/29 09:17:20 by asyani            #+#    #+#             */
+/*   Updated: 2025/09/29 10:02:35 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name) : name(name) {};
-
-Zombie::~Zombie() {
-	std::cout << this->name << ": Zombie is destroyed" << std::endl;
-}
-
-void Zombie::announce(void) {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl; 
+Zombie* newzombie( std::string name ) {
+	Zombie* new_zombie = new Zombie(name);
+	return new_zombie;
 }
