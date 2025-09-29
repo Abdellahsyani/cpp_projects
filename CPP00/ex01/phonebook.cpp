@@ -95,19 +95,52 @@ void Darkest_secret(PhoneBook &phone)
 	}
 	phone.contacts[phone.counter].setdarkestsecret(darkest_secret);
 }
+int	valid_search(PhoneBook phone, int& id)
+{
+	int stop = 0;
+	while (true)
+	{
+		std::string ids;
+		std::cout << "enter contact Id: ";
+		std::getline(std::cin, ids);
+
+		if (check_phone(ids))
+			continue ;
+		id = std::stoi(ids);
+		if (id > 8)
+		{
+			std::cout << "\033[31m" << "You  are out of range" << "\033[0m" << std::endl;
+			while (true)
+			{
+				std::cout << "enter contact Id: ";
+				std::getline(std::cin, ids);
+				if (check_phone(ids))
+					continue ;
+				id = std::stoi(ids);
+				if (id <= 8)
+				{
+					stop = 1;
+					break;
+				}
+				std::cout << "\033[31m" << "You  are out of range" << "\033[0m" << std::endl;
+			}
+		}
+		if (phone.contacts[id].getlastname().empty())
+		{
+			std::cout << "\033[31m" << "There is no info in this contact" << "\033[0m" <<std::endl;
+			return 0;
+		}
+		if (stop == 1 || id <= 8)
+			break;
+	}
+	return 1;
+}
 
 void	contact_search(PhoneBook phone)
 {
-	std::string ids;
-	std::cout << "enter contact Id: ";
-	std::getline(std::cin, ids);
-
-	int id = std::stoi(ids);
-      	if (id > 8)
-	{
-		std::cout << "\033[31m" << "You  are out of range" << "\033[0m" << std::endl;
+	int id = 0;
+	if (!valid_search(phone, id))
 		return ;
-	}
 	std::string line  = std::string(51, '-');
 
 	std::cout << BLUE << line << RESET << std::endl;
