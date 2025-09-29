@@ -14,10 +14,9 @@
 
 int main()
 {
-	Zombie A("abdo"); 
-	Zombie *el = newZombie("allo");
+	Zombie *el = newZombie("");
 	randomChump("kaloc");
 	el->announce();
-
+	delete(el);
 	return 0;
 }

@@ -3,7 +3,7 @@ NAME = zombie
 CC = c++
 FLAG = -Wall -Wextra -Werror
 
-SRC = Zombie.cpp main.cpp
+SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp 
 
 OBJ = $(SRC:.c=.o)
 
