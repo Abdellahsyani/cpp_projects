@@ -14,10 +14,9 @@
 
 int main()
 {
-	/*Zombie *el = newZombie("");*/
-	/*randomChump("kaloc");*/
-	/*el->announce();*/
-	/*delete(el);*/
-	 zombieHorde(4, "bon");
+	int N = 4;
+	 Zombie *new_z = zombieHorde(N, "bon");
+	delete[] new_z;
+	new_z = nullptr;
 	return 0;
 }

@@ -3,7 +3,7 @@ NAME = horde
 CC = c++
 FLAG = -Wall -Wextra -Werror
 
-SRC = zombieHorde.cpp main.cpp
+SRC = main.cpp zombieHorde.cpp Zombie.cpp
 
 OBJ = $(SRC%.c=.o)
 
