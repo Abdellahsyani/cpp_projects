@@ -9,13 +9,6 @@ Contact::Contact() {
       darkest_secret = "";
 }
 
-/*Contact::Contact(std::string& first_name, std::string& last_name, std::string& nick_name, std::string& darkest_secret, std:string& phone_number) {*/
-/*	setfirstname(first_name);*/
-/*	setlastname(last_name);*/
-/*	setnickname(nick_name);*/
-/*	setdarkestsecret(darkest_secret);*/
-/*	setphonenumber(phone_number);*/
-/*}*/
 
 //getters
 std::string Contact::getfirstname() const {
