@@ -1,11 +1,12 @@
-NAME = horde
+NAME = account
 
-CC = c++
+CC = c++ -std=c++98
 FLAG = -Wall -Wextra -Werror
 
-SRC = main.cpp zombieHorde.cpp Zombie.cpp
+SRC = tests.cpp Account.cpp
 
-OBJ = $(SRC%.cpp=.o)
+OBJ = $(SRC:.cpp=.o)
+	
 
 all: $(NAME)
 

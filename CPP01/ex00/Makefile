@@ -5,14 +5,14 @@ FLAG = -Wall -Wextra -Werror
 
 SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp 
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAG) $(SRC) -o $(NAME)
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(FLAG) -c $< -o $@
 
 clean:

@@ -1,6 +1,7 @@
 #include "Account.hpp"
 #include <ctime>
 #include <iostream>
+#include <cstdlib>
 
 
 Account::Account(int deposit) :
@@ -32,7 +33,7 @@ void Account::makeDeposit(int deposit)
 }
 
 void Account::_displayTimestamp(void) {
-    std::time_t now = std::time(nullptr);
+    std::time_t now = std::time(NULL);
     std::tm* local = std::localtime(&now);
 
     char buffer[20];
