@@ -3,7 +3,7 @@ NAME = ref
 CC = c++
 FLAG = -Wall -Wextra -Werror
 
-SRC = ...
+SRC = main.cpp
 
 OBJ = $(SRC%.cpp=.o)
 
