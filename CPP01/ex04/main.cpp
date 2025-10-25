@@ -13,28 +13,22 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 
-
-void filter_line(std::string file, std::string line, std::string str1, std::string str2)
+std::string filter_line(std::string line, std::string str1, std::string str2)
 {
-	std::string filename = file + ".replace";
-	std::ofstream file(filename, std::ios::app);
-	if (!filename.is_open())
-	{
-		std::cout << "Error: can't open this file" << std::endl;
-		return;
-	}
 	size_t pos = 0;
 	size_t found;
 	std::string new_line;
+	line += "\n";
 	while ((found = line.find(str1, pos)) != std::string::npos)
 	{
 		new_line += line.substr(pos, found - pos);
 		new_line += str2;
-		found += str1.length();
+		pos += found + str1.length();
 	}
 	new_line += line.substr(pos);
-	std::cout << new_line << std::endl;
+	return new_line;
 }
 
 void get_values(std::vector<std::string> args)
@@ -55,8 +49,17 @@ void get_values(std::vector<std::string> args)
 		return;
 	}
 	
+	std::string filena = filename + ".replace";
+	std::ofstream file_rep(filena, std::ios::out | std::ios::trunc);
+	if (!file_rep.is_open())
+	{
+		std::cout << "Error: can't open this file" << std::endl;
+		return;
+	}
 	while (std::getline(file, line))
-		filter_line(filename, line, str1, str2);
+		file_rep << filter_line(line, str1, str2);
+	file_rep.close();
+	file.close();
 }
 
 int main(int ac, char **av)
