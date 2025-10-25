@@ -6,11 +6,11 @@
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 18:40:01 by asyani            #+#    #+#             */
-/*   Updated: 2025/10/25 18:41:31 by asyani           ###   ########.fr       */
+/*   Updated: 2025/10/25 18:45:15 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sed.h"
+#include "sed.hpp"
 
 std::string filter_line(std::string line, std::string str1, std::string str2)
 {

@@ -14,12 +14,12 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAG) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(FLAG) -cpp $< -o $@
+	$(CC) $(FLAG) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rn -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
