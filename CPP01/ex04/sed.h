@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   sed.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:15:28 by asyani            #+#    #+#             */
-/*   Updated: 2025/10/25 18:42:08 by asyani           ###   ########.fr       */
+/*   Created: 2025/10/25 18:40:42 by asyani            #+#    #+#             */
+/*   Updated: 2025/10/25 18:43:15 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sed.h"
+#ifndef SED_H
+#define SED_H
 
-int main(int ac, char **av)
-{
-	std::vector<std::string> args(av, av + ac);
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <string>
 
-	if (args.size() > 4 || args.size() <= 3)
-	{
-		std::cout << "Error" << std::endl;
-		return 0;
-	}
-	get_values(args);
-	return 0;
-}
+std::string filter_line(std::string line, std::string str1, std::string str2);
+void get_values(std::vector<std::string> args);
+
+
+#endif

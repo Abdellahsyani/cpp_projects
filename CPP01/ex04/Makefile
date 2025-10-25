@@ -4,7 +4,7 @@ CC = c++
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = main.cpp
+SRC = main.cpp sed.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
