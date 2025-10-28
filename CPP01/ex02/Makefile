@@ -1,7 +1,7 @@
 NAME = ref
 
 CC = c++
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp
 

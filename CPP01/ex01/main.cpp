@@ -17,6 +17,6 @@ int main()
 	int N = 4;
 	 Zombie *new_z = zombieHorde(N, "bon");
 	delete[] new_z;
-	new_z = nullptr;
+	new_z = NULL;
 	return 0;
 }

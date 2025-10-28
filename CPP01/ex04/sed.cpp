@@ -39,7 +39,7 @@ void get_values(std::vector<std::string> args)
 	filename = args[1];
 	str1 = args[2];
 	str2 = args[3];
-	file.open(filename);
+	file.open(filename.c_str());
 	if (!file.is_open())
 	{
 		std::cerr << "File failed to open" << std::endl;
@@ -47,7 +47,7 @@ void get_values(std::vector<std::string> args)
 	}
 	
 	std::string filena = filename + ".replace";
-	std::ofstream file_rep(filena, std::ios::out | std::ios::trunc);
+	std::ofstream file_rep(filena.c_str(), std::ios::out | std::ios::trunc);
 	if (!file_rep.is_open())
 	{
 		std::cout << "Error: can't open this file" << std::endl;

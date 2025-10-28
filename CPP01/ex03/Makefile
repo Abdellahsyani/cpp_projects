@@ -1,7 +1,7 @@
 NAME = weapon
 
 CC = c++
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -std=c++98
 
 SRC = HumanA.cpp HumanB.cpp Weapon.cpp main.cpp
 
