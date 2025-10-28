@@ -23,10 +23,7 @@ private:
 	void warning( void );
 	void error( void );
 public:
-	void complain( std::string level ) {
-		if (level == "0")
-
-	};
+	void complain( std::string level );
 };
 
 #endif

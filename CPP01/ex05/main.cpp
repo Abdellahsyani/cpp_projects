@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 10:10:26 by asyani            #+#    #+#             */
-/*   Updated: 2025/10/28 13:26:31 by asyani           ###   ########.fr       */
+/*   Created: 2025/10/28 19:01:57 by asyani            #+#    #+#             */
+/*   Updated: 2025/10/28 19:02:55 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 int main()
 {
-	Harl *harl;
-	std::string *refer[3];
-	complain(refer);
+	Harl harl;
+
+	harl.complain("INFO");
+	harl.complain("DEBUG");
+	harl.complain("IN");
 	return 0;
 }

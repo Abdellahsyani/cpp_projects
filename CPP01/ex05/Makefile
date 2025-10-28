@@ -1,10 +1,10 @@
 NAME = harl
 
 CC = c++
-CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror -std=c++98
 
-SRC = ...
-OBJ = $(SRC:.c=.o)
+SRC = main.cpp Harl.cpp
+OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 

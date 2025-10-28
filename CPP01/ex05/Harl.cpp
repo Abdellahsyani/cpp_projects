@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 09:52:52 by asyani            #+#    #+#             */
-/*   Updated: 2025/10/28 10:10:02 by asyani           ###   ########.fr       */
+/*   Created: 2025/10/28 19:03:06 by asyani            #+#    #+#             */
+/*   Updated: 2025/10/28 19:08:02 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,20 @@ years, whereas you started working here just last month." << std::endl;
 
 void Harl::error( void ) {
 		std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
+}
+
+void Harl::complain(std::string level ) {
+
+	void (Harl::*ptr[])() = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
+	std::string levels[] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (level == levels[i])
+		{
+			(this->*ptr[i])();
+			return;
+		}
+	}
+	std::cout << "Level " << level << " is not exists" << std::endl;
 }
