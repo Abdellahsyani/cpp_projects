@@ -57,9 +57,9 @@ void Nick_name(PhoneBook &phone)
 
 int check_phone(std::string phone_number)
 {
-	for (char c: phone_number)
+	for (size_t i = 0; i < phone_number.length(); i++)
 	{
-		if (!std::isdigit(c))
+		if (!std::isdigit(phone_number[i]))
 		{
 			std::cout << "\033[31m" << "Just number please" << "\033[0m" << std::endl;
 			return 1;
@@ -106,7 +106,7 @@ int	valid_search(PhoneBook phone, int& id)
 
 		if (check_phone(ids))
 			continue ;
-		id = std::stoi(ids);
+		id = simple_atoi(ids);
 		if (id > 8)
 		{
 			std::cout << "\033[31m" << "You  are out of range" << "\033[0m" << std::endl;
@@ -116,7 +116,7 @@ int	valid_search(PhoneBook phone, int& id)
 				std::getline(std::cin, ids);
 				if (check_phone(ids))
 					continue ;
-				id = std::stoi(ids);
+				id = simple_atoi(ids);
 				if (id <= 8)
 				{
 					stop = 1;
@@ -169,7 +169,6 @@ void	contact_search(PhoneBook phone)
 
 void	start(PhoneBook &phone)
 {
-	int	i = 0;
 	std::string in;
 
 	while (true)

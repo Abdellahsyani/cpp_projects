@@ -5,6 +5,7 @@
 #include <iomanip>
 #include "contact.hpp"
 #include <limits>
+#include <cstdlib>
 #include <fstream>
 
 #define BLUE "\033[34m"
@@ -13,9 +14,6 @@
 class PhoneBook {
 	public:
 		static int counter;
-		int	flag = 0;
-		int static counter_2;
-
 		Contact contacts[8];
 		PhoneBook();
 };
@@ -27,5 +25,6 @@ int	is_valid_input(const std::string &s);
 std::string	format_column(const std::string &s);
 int	choice_function(std::string& in);
 void	read_line(std::string &str);
+int	simple_atoi(std::string str);
 
 #endif

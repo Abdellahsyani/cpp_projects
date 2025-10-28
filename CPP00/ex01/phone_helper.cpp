@@ -65,9 +65,9 @@ int is_valid_input(const std::string &s)
 		return 1;
 	}
 
-	for (char c : s)
+	for (size_t i = 0; i < s.length(); i++)
 	{
-		if (c < 32 || c == 127)
+		if (s[i] < 32 || s[i] == 127)
 		{
 			std::cout << "\033[31m" <<"Invalid characters, try again" << "\033[0m" << std::endl;
 			return 1;
@@ -76,15 +76,30 @@ int is_valid_input(const std::string &s)
 	return 0;
 }
 
+int simple_atoi(std::string str) {
+    int result = 0;
+    int i = 0;
+    while (str[i] != '\0') {
+        if (str[i] >= '0' && str[i] <= '9') {
+            int digit = str[i] - '0';
+            result = (result * 10) + digit;
+        } else {
+            break;
+        }
+        i++;
+    }
+    return result;
+}
+
 void exit_phone(void)
 {
-	std::cout << "\033[32m" << R"(
-  	 ____                 _ _                
-  	/ ___| ___   ___   __| | |__  _   _  ___ 
- 	| |  _ / _ \ / _ \ / _` | '_ \| | | |/ _ \
-	 | |_| | (_) | (_) | (_| | |_) | |_| |  __/
-  	\____|\___/ \___/ \__,_|_.__/ \__, |\___|
-                                 |___/     
-	)" << "\033[0m" << std::endl;
+	std::cout << "\033[32m" 
+          << "       ____              _ _         \n"
+          << "      / ___| ___   ___  __| |__  _   _ ___ \n"
+          << "     | |  _ / _ \\ / _ \\ / _` | '_ \\| | | |/ _ \\\n"
+          << "     | |_| | (_) | (_) | (_| | |_) | |_| |  __/\n"
+          << "      \\____|\\___/ \\___/ \\__,_|_.__/ \\__, |\\___|\n"
+          << "                                   |___/    \n"
+          << "\033[0m" << std::endl;
 	std::exit(0);
 }

@@ -1,7 +1,7 @@
 NAME = phone
 
 CC = c++
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = contact.cpp phonebook.cpp phone_helper.cpp main.cpp
 
@@ -13,7 +13,7 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(FLAGS) -cpp $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
