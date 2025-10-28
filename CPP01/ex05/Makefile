@@ -1,5 +1,4 @@
 NAME = harl
-
 CC = c++
 CFLAG = -Wall -Wextra -Werror -std=c++98
 
@@ -11,7 +10,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAG) $(OBJ) -o $(NAME)
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(CFLAG) -c $< -o $@
 
 clean:
