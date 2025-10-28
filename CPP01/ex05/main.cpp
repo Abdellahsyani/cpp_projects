@@ -12,9 +12,6 @@
 
 #include "Harl.hpp"
 
-void complain( std::string level ) {
-	Harl *Actions;
-}
 
 int main()
 {
