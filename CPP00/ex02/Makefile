@@ -1,7 +1,7 @@
 NAME = account
 
 CC = c++ -std=c++98
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -std=c++98
 
 SRC = tests.cpp Account.cpp
 
