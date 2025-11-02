@@ -16,7 +16,10 @@
 int main(int ac, char **av)
 {
 	if (ac != 2)
+	{
+		std::cout << "Enter 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR'" << std::endl;
 		return 1;
+	}
 	std::string level = av[1];
 	Harl harl;
 
