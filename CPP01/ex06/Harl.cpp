@@ -31,21 +31,27 @@ void Harl::error( void ) {
 }
 
 void Harl::complain(std::string level ) {
-	int n = -1;
-	if (level == "DEBUG") n = 1;
-	else if (level == "INFO") n = 2;
-	else if (level == "WARNING") n = 3;
-	else if (level == "ERROR") n = 4;
 
+	int n = -1;
+		void (Harl::*ptr[])() = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
+	std::string levels[] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (level == levels[i])
+		{
+			n = i;
+		}
+	}
 	switch (n)
 	{
-		case 1:
+		case 0:
 			this->debug();
-		case 2:
+		case 1:
 			this->info();
-		case 3:
+		case 2:
 			this->warning();
-		case 4:
+		case 3:
 			this->error();
 		default:
 			std::cout << "Unknown command" << std::endl;
