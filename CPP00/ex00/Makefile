@@ -1,7 +1,7 @@
 NAME = megaphone
 
 CC = c++
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -std=c++98
 
 SRC = megaphone.cpp
 
@@ -13,7 +13,7 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAG) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(FLAG) -cpp $< -o $@
+	$(CC) $(FLAG) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
