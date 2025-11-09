@@ -5,15 +5,12 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp Fixed.cpp
 
-OBJ = $(SRC:.cpp=.o)
-
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(SRC)
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 
-clean:
-	rm -f $(OBJ)
-
-fclean: clean
+fclean:
 	rm -f $(NAME)
+
+re: fclean all
