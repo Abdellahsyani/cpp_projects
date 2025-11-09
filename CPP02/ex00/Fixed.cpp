@@ -6,7 +6,7 @@
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:02:08 by asyani            #+#    #+#             */
-/*   Updated: 2025/11/09 15:20:21 by asyani           ###   ########.fr       */
+/*   Updated: 2025/11/09 15:26:30 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ const int Fixed::frac_bit = 8;
 Fixed::Fixed() : Fixedpoint(0) { std::cout << "Default constructor called" << std::endl; };
 
 
-Fixed::Fixed(const Fixed& other) {std::cout << "Copy constructor called" << std::endl;};
+Fixed::Fixed(const Fixed& other) {
+	Fixedpoint = other.Fixedpoint;
+	std::cout << "Copy constructor called" << std::endl;
+}
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
