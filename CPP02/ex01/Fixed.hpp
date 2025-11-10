@@ -13,12 +13,10 @@
 #pragma once
 
 #include <iostream>
-#include <cstring>
 
 class Fixed {
 private:
 	int Fixedpoint;
-	char *data;
 	static const int frac_bit;
 public:
 	Fixed();
