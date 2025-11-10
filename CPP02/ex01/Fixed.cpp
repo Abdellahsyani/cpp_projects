@@ -14,18 +14,27 @@
 
 const int Fixed::frac_bit = 8;
 
-Fixed::Fixed() : Fixedpoint(0) { std::cout << "Default constructor called" << std::endl; };
+Fixed::Fixed() : Fixedpoint(0) {
+	std::cout << "Default constructor called" << std::endl;
+	data = new char[10];
+};
 
 
 Fixed::Fixed(const Fixed& other) {
-	Fixedpoint = other.Fixedpoint;
+	this->Fixedpoint = other.Fixedpoint;
 	std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->Fixedpoint = other.Fixedpoint;
+	if (this != &other)
+	{
+		delete[] data;
+		data = new char[strlen(other.data) + 1];
+		data = other.data;
+	}
+	Fixedpoint = other.Fixedpoint;
 	return (*this);
 }
 
@@ -41,4 +50,4 @@ void Fixed::setRawBits(const int raw)
 }
 
 
-Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
+Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; delete[] data; }
