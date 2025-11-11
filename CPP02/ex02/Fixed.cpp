@@ -6,7 +6,7 @@
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:02:08 by asyani            #+#    #+#             */
-/*   Updated: 2025/11/11 12:32:16 by asyani           ###   ########.fr       */
+/*   Updated: 2025/11/11 13:09:49 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void Fixed::setRawBits(const int raw)
  *   - return: the smallest one
  */
 Fixed& Fixed::min(Fixed& a, Fixed& b) {
-	if (a < b)
+	if (a.toFloat() < b.toFloat())
 		return a;
 	else
 		return b;
@@ -119,7 +119,7 @@ Fixed& Fixed::min(Fixed& a, Fixed& b) {
  *   - return: the smallest one
  */
 const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
-	if (a < b)
+	if (a.toFloat() < b.toFloat())
 		return a;
 	else
 		return b;
