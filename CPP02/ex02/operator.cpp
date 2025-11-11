@@ -6,7 +6,7 @@
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:15:41 by asyani            #+#    #+#             */
-/*   Updated: 2025/11/11 12:00:11 by asyani           ###   ########.fr       */
+/*   Updated: 2025/11/11 13:06:26 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  */
 bool Fixed::operator>(const Fixed& other) const 
 {
-	if (this->Fixedpoint > other.Fixedpoint)
+	if (this->toFloat() > other.toFloat())
 		return true;
 	return false;
 }
@@ -31,7 +31,7 @@ bool Fixed::operator>(const Fixed& other) const
  */
 bool Fixed::operator<(const Fixed& other) const 
 {
-	if (this->Fixedpoint < other.Fixedpoint)
+	if (this->toFloat() < other.toFloat())
 		return true;
 	return false;
 }
@@ -43,7 +43,7 @@ bool Fixed::operator<(const Fixed& other) const
  */
 bool Fixed::operator>=(const Fixed& other) const {
 
-	if (this->Fixedpoint >= other.Fixedpoint)
+	if (this->toFloat() >= other.toFloat())
 		return true;
 	return false;
 }
@@ -55,7 +55,7 @@ bool Fixed::operator>=(const Fixed& other) const {
  */
 bool Fixed::operator<=(const Fixed& other) const {
 
-	if (this->Fixedpoint <= other.Fixedpoint)
+	if (this->toFloat() <= other.toFloat())
 		return true;
 	return false;
 }
@@ -67,7 +67,7 @@ bool Fixed::operator<=(const Fixed& other) const {
  */
 bool Fixed::operator!=(const Fixed& other) const {
 
-	if (this->Fixedpoint != other.Fixedpoint)
+	if (this->toFloat() != other.toFloat())
 		return true;
 	return false;
 }
@@ -79,7 +79,7 @@ bool Fixed::operator!=(const Fixed& other) const {
  */
 bool Fixed::operator==(const Fixed& other) const {
 
-	if (this->Fixedpoint == other.Fixedpoint)
+	if (this->toFloat() == other.toFloat())
 		return true;
 	return false;
 }
@@ -90,7 +90,7 @@ bool Fixed::operator==(const Fixed& other) const {
  */
 Fixed Fixed::operator+(const Fixed& other) const {
 
-	return this->Fixedpoint + other.Fixedpoint;
+	return this->toFloat() + other.toFloat();
 }
 
 /**
@@ -99,7 +99,7 @@ Fixed Fixed::operator+(const Fixed& other) const {
  */
 Fixed Fixed::operator-(const Fixed& other) const {
 
-	return this->Fixedpoint - other.Fixedpoint;
+	return this->toFloat() - other.toFloat();
 }
 
 /**
@@ -108,7 +108,7 @@ Fixed Fixed::operator-(const Fixed& other) const {
  */
 Fixed Fixed::operator/(const Fixed& other) const {
 
-	return this->Fixedpoint / other.Fixedpoint;
+	return this->toFloat() / other.toFloat();
 }
 
 /**
@@ -117,7 +117,7 @@ Fixed Fixed::operator/(const Fixed& other) const {
  */
 Fixed Fixed::operator*(const Fixed& other) const {
 
-	return this->Fixedpoint * other.Fixedpoint;
+	return this->toFloat() * other.toFloat();
 }
 
 /**
@@ -125,7 +125,7 @@ Fixed Fixed::operator*(const Fixed& other) const {
  *   - return: The result
  */
 Fixed& Fixed::operator++() {
-	Fixedpoint += 256;
+	Fixedpoint += 1;
 	return *this;
 }
 
@@ -136,7 +136,7 @@ Fixed& Fixed::operator++() {
 Fixed Fixed::operator++(int) {
 
 	Fixed old = *this;
-	Fixedpoint += 256;
+	Fixedpoint += 1;
 	return old;
 }
 
@@ -145,7 +145,7 @@ Fixed Fixed::operator++(int) {
  *   - return: The result
  */
 Fixed& Fixed::operator--() {
-	Fixedpoint -= 256;
+	Fixedpoint -= 1;
 	return *this;
 }
 
@@ -156,6 +156,6 @@ Fixed& Fixed::operator--() {
 Fixed Fixed::operator--(int) {
 
 	Fixed old = *this;
-	Fixedpoint -= 256;
+	Fixedpoint -= 1;
 	return old;
 }

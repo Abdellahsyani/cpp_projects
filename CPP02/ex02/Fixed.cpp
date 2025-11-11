@@ -6,7 +6,7 @@
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:02:08 by asyani            #+#    #+#             */
-/*   Updated: 2025/11/09 15:26:30 by asyani           ###   ########.fr       */
+/*   Updated: 2025/11/11 12:32:16 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ const int Fixed::frac_bit = 8;
  * - Default constructor: called when an object created
  *   - used initializer list
  */
-Fixed::Fixed() : Fixedpoint(0) {
-	std::cout << "Default constructor called" << std::endl;
-};
+Fixed::Fixed() : Fixedpoint(0) {};
 
 /**
  * - Default constructor: This one take int parameter
@@ -28,7 +26,6 @@ Fixed::Fixed() : Fixedpoint(0) {
  *   - This constructor under overloading functions
  */
 Fixed::Fixed(const int num) {
-	std::cout << "Int constructor called" << std::endl;
 	Fixedpoint = num << frac_bit;
 };
 
@@ -38,7 +35,6 @@ Fixed::Fixed(const int num) {
  *   - This constructor under overloading functions
  */
 Fixed::Fixed(const float num) {
-	std::cout << "Float constructor called" << std::endl;
 	Fixedpoint = roundf(num * 256);
 };
 
@@ -48,7 +44,6 @@ Fixed::Fixed(const float num) {
  */
 Fixed::Fixed(const Fixed& other) {
 	Fixedpoint = other.Fixedpoint;
-	std::cout << "Copy constructor called" << std::endl;
 }
 
 /**
@@ -57,7 +52,6 @@ Fixed::Fixed(const Fixed& other) {
  */
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	this->Fixedpoint = other.Fixedpoint;
 	return (*this);
 }
@@ -98,7 +92,6 @@ int Fixed::toInt(void) const
  */
 int Fixed::getRawBits(void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return this->Fixedpoint;
 }
 
@@ -111,6 +104,50 @@ void Fixed::setRawBits(const int raw)
 }
 
 /**
+ * - min: method to compare between two objects
+ *   - return: the smallest one
+ */
+Fixed& Fixed::min(Fixed& a, Fixed& b) {
+	if (a < b)
+		return a;
+	else
+		return b;
+}
+
+/**
+ * - min: method to compare between two const objects
+ *   - return: the smallest one
+ */
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
+	if (a < b)
+		return a;
+	else
+		return b;
+}
+
+/**
+ * - max: method to compare between two objects
+ *   - return: the greatest one
+ */
+Fixed& Fixed::max(Fixed& a, Fixed& b) {
+	if (a.toFloat() > b.toFloat())
+		return a;
+	else
+		return b;
+}
+
+/**
+ * - max: method to compare between two const objects
+ *   - return: the greatest one
+ */
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b) {
+	if (a.toFloat() > b.toFloat())
+		return a;
+	else
+		return b;
+}
+
+/**
  * - Destructor: used to clean up after the other constructors
  */
-Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
+Fixed::~Fixed() {}

@@ -3,7 +3,7 @@ NAME = Fixed
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Fixed.cpp
+SRC = main.cpp Fixed.cpp operator.cpp
 
 all: $(NAME)
 
