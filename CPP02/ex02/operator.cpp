@@ -1,0 +1,112 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operator.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/11 11:15:41 by asyani            #+#    #+#             */
+/*   Updated: 2025/11/11 11:33:05 by asyani           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Fixed.hpp"
+
+/**
+ * - Operator >: check if the current object is greater the other
+ *   - if greater: return true
+ *   - return: false
+ */
+bool Fixed::operator>(const Fixed& other) const 
+{
+	if (this->Fixedpoint > other.Fixedpoint)
+		return true;
+	return false;
+}
+
+/**
+ * - Operator <: check if the current object is smaller the other
+ *   - if smaller: return true
+ *   - return: false
+ */
+bool Fixed::operator<(const Fixed& other) const 
+{
+	if (this->Fixedpoint < other.Fixedpoint)
+		return true;
+	return false;
+}
+
+/**
+ * - Operator >=: check if the left object >= from the right
+ *   - return: true
+ *   - return: false
+ */
+bool Fixed::operator>=(const Fixed& other) const {
+
+	if (this->Fixedpoint >= other.Fixedpoint)
+		return true;
+	return false;
+}
+
+/**
+ * - Operator <=: check if the left object <= from the right
+ *   - return: true
+ *   - return: false
+ */
+bool Fixed::operator<=(const Fixed& other) const {
+
+	if (this->Fixedpoint <= other.Fixedpoint)
+		return true;
+	return false;
+}
+
+/**
+ * - Operator !=: check if the left object != from the right
+ *   - return: true
+ *   - return: false
+ */
+bool Fixed::operator!=(const Fixed& other) const {
+
+	if (this->Fixedpoint != other.Fixedpoint)
+		return true;
+	return false;
+}
+
+/**
+ * - Operator ==: check if the left object == from the right
+ *   - return: true
+ *   - return: false
+ */
+bool Fixed::operator==(const Fixed& other) const {
+
+	if (this->Fixedpoint == other.Fixedpoint)
+		return true;
+	return false;
+}
+
+/**
+ * - Operator +: take the left object and add it to the right one
+ *   - return: The sum of two objects
+ */
+Fixed Fixed::operator+(const Fixed& other) const {
+
+	return this->Fixedpoint + other.Fixedpoint;
+}
+
+/**
+ * - Operator -: take the left object and subtract it from the right one
+ *   - return: The result
+ */
+Fixed Fixed::operator-(const Fixed& other) const {
+
+	return this->Fixedpoint - other.Fixedpoint;
+}
+
+/**
+ * - Operator /: take the left object and divide it on the right one
+ *   - return: The results
+ */
+Fixed Fixed::operator/(const Fixed& other) const {
+
+	return this->Fixedpoint / other.Fixedpoint;
+}
