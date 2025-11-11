@@ -45,10 +45,10 @@ public:
 	Fixed operator/(const Fixed& other) const;
 	Fixed operator*(const Fixed& other) const;
 
-	Fixed operator++();
-	Fixed& operator++(int);
-	Fixed operator--();
-	Fixed& operator--(int);
+	Fixed& operator++();
+	Fixed operator++(int);
+	Fixed& operator--();
+	Fixed operator--(int);
 
 	static Fixed& min(Fixed& a, Fixed& b);
 	static const Fixed& min(const Fixed& a, const Fixed& b);

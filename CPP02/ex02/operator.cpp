@@ -6,7 +6,7 @@
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:15:41 by asyani            #+#    #+#             */
-/*   Updated: 2025/11/11 11:33:05 by asyani           ###   ########.fr       */
+/*   Updated: 2025/11/11 12:00:11 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,53 @@ Fixed Fixed::operator-(const Fixed& other) const {
 Fixed Fixed::operator/(const Fixed& other) const {
 
 	return this->Fixedpoint / other.Fixedpoint;
+}
+
+/**
+ * - Operator *: take the left object and multiply it by the right one
+ *   - return: The results
+ */
+Fixed Fixed::operator*(const Fixed& other) const {
+
+	return this->Fixedpoint * other.Fixedpoint;
+}
+
+/**
+ * - Operator ++: Increase the fixed point
+ *   - return: The result
+ */
+Fixed& Fixed::operator++() {
+	Fixedpoint += 256;
+	return *this;
+}
+
+/**
+ * - Operator ++: Increase the fixed point
+ *   - return: The result
+ */
+Fixed Fixed::operator++(int) {
+
+	Fixed old = *this;
+	Fixedpoint += 256;
+	return old;
+}
+
+/**
+ * - Operator --: decrease the fixed point
+ *   - return: The result
+ */
+Fixed& Fixed::operator--() {
+	Fixedpoint -= 256;
+	return *this;
+}
+
+/**
+ * - Operator ++: decrease the fixed point
+ *   - return: The result
+ */
+Fixed Fixed::operator--(int) {
+
+	Fixed old = *this;
+	Fixedpoint -= 256;
+	return old;
 }
