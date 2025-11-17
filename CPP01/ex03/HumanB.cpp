@@ -20,6 +20,10 @@ void	HumanB::setWeapon(Weapon& H_weap) {
 }
 
 void HumanB::attack() {
-	std::cout << this->name << " attacks with their "
-		<< H_weap->getType() << std::endl;
+	if (H_weap) {
+		std::cout << this->name << " attacks with their "
+			<< H_weap->getType() << std::endl;
+	}
+	else
+		std::cout << "Error: " << this->name << " has no weapon to attack with" << std::endl;
 }

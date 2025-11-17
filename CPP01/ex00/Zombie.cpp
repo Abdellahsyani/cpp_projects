@@ -18,6 +18,10 @@ Zombie::~Zombie() {
 	std::cout << this->name << ": Zombie is destroyed" << std::endl;
 }
 
+
 void Zombie::announce(void) {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl; 
+	if (this->name == "Foo")
+		std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl; 
+	else
+		std::cout << "<" << this->name << ">" << ": BraiiiiiiinnnzzzZ..." << std::endl; 
 }

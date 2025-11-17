@@ -22,7 +22,7 @@ std::string filter_line(std::string line, std::string str1, std::string str2)
 	{
 		new_line += line.substr(pos, found - pos);
 		new_line += str2;
-		pos += found + str1.length();
+		pos = found + str1.length();
 	}
 	new_line += line.substr(pos);
 	return new_line;
@@ -39,6 +39,11 @@ void get_values(std::vector<std::string> args)
 	filename = args[1];
 	str1 = args[2];
 	str2 = args[3];
+	if (str1.empty())
+	{
+		std::cout << "Error: s1 cannot be empty" << std::endl;
+		return;
+	}
 	file.open(filename.c_str());
 	if (!file.is_open())
 	{
