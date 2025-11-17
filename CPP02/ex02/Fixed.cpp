@@ -35,7 +35,7 @@ Fixed::Fixed(const int num) {
  *   - This constructor under overloading functions
  */
 Fixed::Fixed(const float num) {
-	Fixedpoint = roundf(num * 256);
+	Fixedpoint = (int)roundf(num * (1 << frac_bit));
 };
 
 /**
@@ -74,7 +74,7 @@ std::ostream& operator<<(std::ostream& os, const Fixed& other)
  */
 float Fixed::toFloat(void) const
 {
-	return (float)Fixedpoint / 256; 
+	return (float)Fixedpoint / (1 << frac_bit); 
 }
 
 /**
