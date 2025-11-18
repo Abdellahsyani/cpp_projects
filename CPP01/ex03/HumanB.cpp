@@ -13,17 +13,13 @@
 #include "HumanB.hpp"
 
 HumanB::HumanB(std::string name) :
-	name(name), H_weap(NULL) {};
+	name(name) {};
 
 void	HumanB::setWeapon(Weapon& H_weap) {
 	this->H_weap = &H_weap;
 }
 
 void HumanB::attack() {
-	if (H_weap) {
-		std::cout << this->name << " attacks with their "
-			<< H_weap->getType() << std::endl;
-	}
-	else
-		std::cout << "Error: " << this->name << " has no weapon to attack with" << std::endl;
+	std::cout << this->name << " attacks with their "
+		<< H_weap->getType() << std::endl;
 }
