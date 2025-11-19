@@ -14,13 +14,19 @@
 
 int main(int ac, char **av)
 {
-	std::vector<std::string> args(av, av + ac);
-
-	if (args.size() > 4 || args.size() <= 3)
+	if (ac != 4)
 	{
 		std::cout << "Error" << std::endl;
 		return 0;
 	}
-	get_values(args);
+
+	std::string filename;
+	std::string str1;
+	std::string str2;
+	filename = av[1];
+	str1 = av[2];
+	str2 = av[3];
+
+	get_values(filename, str1, str2);
 	return 0;
 }

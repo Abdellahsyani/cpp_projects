@@ -28,17 +28,11 @@ std::string filter_line(std::string line, std::string str1, std::string str2)
 	return new_line;
 }
 
-void get_values(std::vector<std::string> args)
+void get_values(std::string filename, std::string str1, std::string str2)
 {
-	std::string filename;
-	std::string str1;
-	std::string str2;
 	std::ifstream file;
 	std::string line;
 
-	filename = args[1];
-	str1 = args[2];
-	str2 = args[3];
 	if (str1.empty())
 	{
 		std::cout << "Error: s1 cannot be empty" << std::endl;
@@ -58,6 +52,7 @@ void get_values(std::vector<std::string> args)
 		std::cout << "Error: can't open this file" << std::endl;
 		return;
 	}
+	std::string all_str;
 	while (std::getline(file, line))
 		file_rep << filter_line(line, str1, str2);
 	file_rep.close();

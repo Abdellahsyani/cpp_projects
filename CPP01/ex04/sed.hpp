@@ -14,10 +14,9 @@
 #define SED_HPP
 
 #include <iostream>
-#include <vector>
 #include <fstream>
 #include <string>
 
-void get_values(std::vector<std::string> args);
+void get_values(std::string filename, std::string str1, std::string str2);
 
 #endif
