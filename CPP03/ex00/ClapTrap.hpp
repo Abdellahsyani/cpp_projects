@@ -20,6 +20,7 @@ class ClapTrap {
 		int	AttackDamage;
 	public:
 		ClapTrap();
+		ClapTrap(std::string Name, int HitPoints ,int EnergyPoints, int AttackDamage);
 		ClapTrap(const ClapTrap& other);
 		~ClapTrap();
 		ClapTrap& operator=(const ClapTrap& other);
