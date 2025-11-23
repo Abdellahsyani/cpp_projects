@@ -24,6 +24,13 @@ class ClapTrap {
 		ClapTrap(const ClapTrap& other);
 		~ClapTrap();
 		ClapTrap& operator=(const ClapTrap& other);
+		
+		//setter
+		void	SetName(const std::string name);
+
+		//getter
+		std::string GetName() const;
+
 
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
