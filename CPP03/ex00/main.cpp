@@ -16,5 +16,9 @@
 int main()
 {
 	ClapTrap obj;
+
+	obj.SetName("abdo");
+	obj.attack("rays");
+	obj.takeDamage(2);
 	return 0;
 }

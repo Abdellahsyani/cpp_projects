@@ -12,6 +12,9 @@
 
 #pragma once
 
+#include <string>
+#include <iostream>
+
 class ClapTrap {
 	private:
 		std::string Name;
@@ -20,7 +23,7 @@ class ClapTrap {
 		int	AttackDamage;
 	public:
 		ClapTrap();
-		ClapTrap(std::string Name, int HitPoints ,int EnergyPoints, int AttackDamage);
+		ClapTrap(std::string Name);
 		ClapTrap(const ClapTrap& other);
 		~ClapTrap();
 		ClapTrap& operator=(const ClapTrap& other);
@@ -35,4 +38,4 @@ class ClapTrap {
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
-}
+};

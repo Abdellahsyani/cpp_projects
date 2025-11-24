@@ -24,8 +24,8 @@ ClapTrap::ClapTrap() { std::cout << "Default constructor called" << std::endl; }
  *  - initiliaze all class memeber by using list initializer
  *  	before the buddy constructor
  */
-ClapTrap::ClapTrap(std::string Name, int HitPoints, int	EnergyPoints, int AttackDamage) :
-	Name(name), HitPoints(10), EnergyPoints(10), AttackDamage(0) { std::cout << "Parametrize Constructor called" << std::endl; };
+ClapTrap::ClapTrap(std::string Name) :
+	Name(Name), HitPoints(10), EnergyPoints(10), AttackDamage(0) { std::cout << "Parametrize Constructor called" << std::endl; };
 
 /**
  * Copy Constructor: This one copy all members from an object to another one that created in the same time
@@ -33,6 +33,7 @@ ClapTrap::ClapTrap(std::string Name, int HitPoints, int	EnergyPoints, int Attack
  *  	- behavior: b,  a(b)
  */
 ClapTrap::ClapTrap(const ClapTrap& other) {
+	std::cout << "Copy constructor called" << std::endl;
 	this->Name = other.Name;
 	this->HitPoints = other.HitPoints;
 	this->EnergyPoints = other.EnergyPoints;
@@ -44,6 +45,7 @@ ClapTrap::ClapTrap(const ClapTrap& other) {
  *  - so it behaves like this: a, b, a = b
  */
 ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
+	std::cout << "Copy assignement constructor called" << std::endl;
 	this->Name = other.Name;
 	this->HitPoints = other.HitPoints;
 	this->EnergyPoints = other.EnergyPoints;
@@ -57,7 +59,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
  *  - name: The name to be setted
 */
 void ClapTrap::SetName(const std::string name) {
-	this->name = name;
+	this->Name = name;
 }
 
 /**
@@ -65,7 +67,7 @@ void ClapTrap::SetName(const std::string name) {
  * - name: the name to be getted from the class
  */
 std::string ClapTrap::GetName() const {
-	return this->name;
+	return this->Name;
 }
 
 /**
@@ -73,35 +75,48 @@ std::string ClapTrap::GetName() const {
  *  - target: the target that will be attecked
  */
 void ClapTrap::attack(const std::string& target) {
-	//start method
-	if (this->hitpoints == 0  || this->EnergyPoints == 0)
+	if (this->HitPoints == 0  || this->EnergyPoints == 0)
 	{
 		std::cout << "ClapTrap is dead" << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << this->GetName() << " attacks " << target << ", causing " << this->AttackDamage << "points of damage" << std::endl;
+	std::cout << "ClapTrap " << this->GetName() << " attacks " << target << ", causing " << this->AttackDamage << " points of damage" << std::endl;
 	this->EnergyPoints =- 1;
 }
 
+/**
+ * takedamage: The method that take damage when attack happen
+ *  - amount: the amount that will add
+ */
 void ClapTrap::takeDamage(unsigned int amount) {
-	// start method
 	if (this->EnergyPoints == 0)
 	{
 		std::cout << "ClapTrap is dead" << std::endl;
 		return;
 	}
 	std::cout << "ClapTrap " << this->GetName() << " takedamage" << std::endl; 
-	this->hitpoints =- amount;
+	this->HitPoints =- amount;
+	std::cout << this->HitPoints << std::endl;
 }
 
+/**
+ * beRepaired: method to be repair when the energey is low
+ *  - amount: the amount to be repair with
+ */
 void ClapTrap::beRepaired(unsigned int amount) {
 	// start method
-	if (this->hitpoints == 0 || this->EnergyPoints == 0)
+	if (this->HitPoints == 0 || this->EnergyPoints == 0)
 	{
 		std::cout << "ClapTrap cannot repair" << std::endl;
 		return;
 	}
 	std::cout << "ClapTrap " << this->GetName() << " beRepaired" << std::endl; 
-	this->hitpoints =+ amount;
+	this->HitPoints =+ amount;
 	this->EnergyPoints =- 1;
 }
+
+/**
+ * Destructor: THis one used when the program finish
+ * 	and calls to free all thing
+ */
+ClapTrap::~ClapTrap() { std::cout << "Destructor called" << std::endl; };
