@@ -16,16 +16,28 @@
  * Default Constructor: This called when an object created
  *  - does not take any parameter
  */
-ClapTrap::ClapTrap() { std::cout << "Default constructor called" << std::endl; };
+ClapTrap::ClapTrap() :
+    Name(""),
+    HitPoints(10),
+    EnergyPoints(10),
+    AttackDamage(0) 
+{
+    std::cout << "ClapTrap Default Constructor called" << std::endl; 
+}
 
 
 /**
- * Parametrize Constructor: This one called when the object is created
- *  - initiliaze all class memeber by using list initializer
- *  	before the buddy constructor
+ * Parametrize Constructor: This called when an object created and init all member
+ *  before the buddy constructor
  */
-ClapTrap::ClapTrap(std::string Name) :
-	Name(Name), HitPoints(10), EnergyPoints(10), AttackDamage(0) { std::cout << "Parametrize Constructor called" << std::endl; };
+ClapTrap::ClapTrap(std::string name) : 
+    Name(name), 
+    HitPoints(10), 
+    EnergyPoints(10), 
+    AttackDamage(0) 
+{
+    std::cout << "ClapTrap Parameterized Constructor called for " << Name << std::endl;
+}
 
 /**
  * Copy Constructor: This one copy all members from an object to another one that created in the same time
@@ -81,7 +93,7 @@ void ClapTrap::attack(const std::string& target) {
 		return ;
 	}
 	std::cout << "ClapTrap " << this->GetName() << " attacks " << target << ", causing " << this->AttackDamage << " points of damage" << std::endl;
-	this->EnergyPoints =- 1;
+	this->EnergyPoints -= 1;
 }
 
 /**
@@ -95,7 +107,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 		return;
 	}
 	std::cout << "ClapTrap " << this->GetName() << " takedamage" << std::endl; 
-	this->HitPoints =- amount;
+	this->HitPoints -= amount;
 	std::cout << this->HitPoints << std::endl;
 }
 
@@ -111,8 +123,8 @@ void ClapTrap::beRepaired(unsigned int amount) {
 		return;
 	}
 	std::cout << "ClapTrap " << this->GetName() << " beRepaired" << std::endl; 
-	this->HitPoints =+ amount;
-	this->EnergyPoints =- 1;
+	this->HitPoints += amount;
+	this->EnergyPoints -= 1;
 }
 
 /**

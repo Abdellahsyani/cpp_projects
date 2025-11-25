@@ -20,5 +20,10 @@ int main()
 	obj.SetName("abdo");
 	obj.attack("rays");
 	obj.takeDamage(2);
+	obj.takeDamage(2);
+	obj.takeDamage(2);
+	obj.takeDamage(2);
+	obj.takeDamage(2);
+	obj.takeDamage(2);
 	return 0;
 }
