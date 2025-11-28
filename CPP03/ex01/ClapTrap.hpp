@@ -6,7 +6,7 @@
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 12:19:13 by asyani            #+#    #+#             */
-/*   Updated: 2025/11/20 12:28:49 by asyani           ###   ########.fr       */
+/*   Updated: 2025/11/28 18:13:26 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 
 class ClapTrap {
-	private:
+	protected:
 		std::string Name;
 		int	HitPoints;
 		int	EnergyPoints;
