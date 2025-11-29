@@ -17,7 +17,7 @@ ScavTrap::ScavTrap() : ClapTrap("")
 	this->HitPoints = 100;
 	this->EnergyPoints = 50;
 	this->AttackDamage = 20;
-	std::cout << "Default Constructor called" << std::endl;
+	std::cout << "ScaveTrap Default Constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
@@ -26,4 +26,21 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->EnergyPoints = 50;
 	this->AttackDamage = 20;
 	std::cout << "ScavTrap Parametrize Constructor called" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap &other) {
+	if (this != other)
+		ClapTrap::
+
+}
+
+/**
+ * Copy assignment Constructor: This type of constructor create an object from an existing one
+ *  - so it behaves like this: a, b, a = b
+ */
+ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
+	std::cout << "Copy assignement constructor called" << std::endl;
+	if (this != other)
+		ClapTrap::operator(this);
+	return (*this);
 }
