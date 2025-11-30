@@ -22,7 +22,7 @@ ScavTrap::ScavTrap() : ClapTrap("")
 	this->HitPoints = 100;
 	this->EnergyPoints = 50;
 	this->AttackDamage = 20;
-	std::cout << "ScaveTrap Default Constructor called" << std::endl;
+	std::cout << "ScavTrap Default Constructor called" << std::endl;
 }
 
 /**
@@ -58,6 +58,31 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
 	return (*this);
 }
 
+/**
+ * attack: a method to attack with
+ *  - target: the target that will be attecked
+ */
+void ScavTrap::attack(const std::string& target) {
+	if (this->HitPoints == 0  || this->EnergyPoints == 0)
+	{
+		std::cout << "ScavTrap is dead" << std::endl;
+		return ;
+	}
+	std::cout << "ScavTrap " << this->GetName() << " attacks " << target << ", causing " << this->AttackDamage << " points of damage" << std::endl;
+	std::cout << "attck: " << this->HitPoints << std::endl;
+	std::cout << "attck: " << this->EnergyPoints << std::endl;
+	this->EnergyPoints -= 1;
+}
+
+int	ScavTrap::geten()
+{
+	return this->EnergyPoints;
+}
+
+int	ScavTrap::getp()
+{
+	return this->HitPoints;
+}
 /**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing

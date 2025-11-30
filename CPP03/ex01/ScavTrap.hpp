@@ -28,4 +28,8 @@ class ScavTrap : public ClapTrap {
 		ScavTrap(const ScavTrap& other);
 		~ScavTrap();
 		ScavTrap& operator=(const ScavTrap& other);
+
+		int	geten();
+		int	getp();
+		void attack(const std::string& target);
 };

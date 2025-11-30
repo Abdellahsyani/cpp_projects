@@ -57,7 +57,7 @@ ClapTrap::ClapTrap(const ClapTrap& other) {
  *  - so it behaves like this: a, b, a = b
  */
 ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
-	std::cout << "Copy assignement constructor called" << std::endl;
+	std::cout << "ClapTrap Copy assignement constructor called" << std::endl;
 	if (this != &other)
 	{
 		this->Name = other.Name;
