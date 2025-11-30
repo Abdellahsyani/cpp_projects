@@ -28,8 +28,5 @@ std::string Zombie::getName() {
 }
 
 void Zombie::announce(void) {
-	if (this->name == "Foo")
-		std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl; 
-	else
-		std::cout << "<" << this->name << ">" << ": BraiiiiiiinnnzzzZ..." << std::endl; 
+	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl; 
 }

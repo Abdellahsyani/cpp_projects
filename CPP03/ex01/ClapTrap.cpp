@@ -36,7 +36,7 @@ ClapTrap::ClapTrap(std::string name) :
     EnergyPoints(10), 
     AttackDamage(0) 
 {
-    std::cout << "ClapTrap Parameterized Constructor called for " << Name << std::endl;
+    std::cout << "ClapTrap Parameterized Constructor called" << std::endl;
 }
 
 /**
@@ -45,7 +45,7 @@ ClapTrap::ClapTrap(std::string name) :
  *  	- behavior: b,  a(b)
  */
 ClapTrap::ClapTrap(const ClapTrap& other) {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "ClapTrap Copy constructor called" << std::endl;
 	this->Name = other.Name;
 	this->HitPoints = other.HitPoints;
 	this->EnergyPoints = other.EnergyPoints;
@@ -58,7 +58,7 @@ ClapTrap::ClapTrap(const ClapTrap& other) {
  */
 ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
 	std::cout << "Copy assignement constructor called" << std::endl;
-	if (this != other)
+	if (this != &other)
 	{
 		this->Name = other.Name;
 		this->HitPoints = other.HitPoints;
@@ -139,4 +139,4 @@ void ClapTrap::beRepaired(unsigned int amount) {
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-ClapTrap::~ClapTrap() { std::cout << "Destructor called" << std::endl; };
+ClapTrap::~ClapTrap() { std::cout << "ClapTrap Destructor called" << std::endl; };
