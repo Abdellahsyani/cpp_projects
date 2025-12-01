@@ -32,10 +32,10 @@ ScavTrap::ScavTrap() : ClapTrap("")
  */
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "ScavTrap Parametrize Constructor called" << std::endl;
 	this->HitPoints = 100;
 	this->EnergyPoints = 50;
 	this->AttackDamage = 20;
+	std::cout << "ScavTrap Parametrize Constructor called" << std::endl;
 }
 
 /**
@@ -52,9 +52,9 @@ ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other) {
  *  - so it behaves like this: a, b, a = b
  */
 ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
-	std::cout << "ScavTrap Copy assignement constructor called" << std::endl;
 	if (this != &other)
 		ClapTrap::operator=(other);
+	std::cout << "ScavTrap Copy assignement constructor called" << std::endl;
 	return (*this);
 }
 
@@ -63,26 +63,27 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
  *  - target: the target that will be attecked
  */
 void ScavTrap::attack(const std::string& target) {
-	if (this->HitPoints == 0  || this->EnergyPoints == 0)
+	if (this->HitPoints == 0)
 	{
-		std::cout << "ScavTrap is dead" << std::endl;
+		std::cout << "ScavTrap " << this->Name << " is dead" << std::endl;
+		return ;
+	}
+	if (this->EnergyPoints == 0)
+	{
+		std::cout << "ScavTrap " << this->Name << " is out of energy and cannot attack!" << std::endl;
 		return ;
 	}
 	std::cout << "ScavTrap " << this->GetName() << " attacks " << target << ", causing " << this->AttackDamage << " points of damage" << std::endl;
-	std::cout << "attck: " << this->HitPoints << std::endl;
-	std::cout << "attck: " << this->EnergyPoints << std::endl;
 	this->EnergyPoints -= 1;
 }
 
-int	ScavTrap::geten()
-{
-	return this->EnergyPoints;
+/**
+ * gaurdGate: The method that only inform that the scavTrap is in gate keeper mode
+ */
+void ScavTrap::guardGate() {
+	std::cout << "ScavTrap " << this->Name << " is now in Gate keeper mode!" << std::endl;
 }
 
-int	ScavTrap::getp()
-{
-	return this->HitPoints;
-}
 /**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
