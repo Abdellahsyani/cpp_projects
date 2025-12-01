@@ -41,7 +41,7 @@ void get_values(std::string filename, std::string str1, std::string str2)
 	file.open(filename.c_str());
 	if (!file.is_open())
 	{
-		std::cerr << "File failed to open" << std::endl;
+		std::cout << "File failed to open" << std::endl;
 		return;
 	}
 	
@@ -50,6 +50,7 @@ void get_values(std::string filename, std::string str1, std::string str2)
 	if (!file_rep.is_open())
 	{
 		std::cout << "Error: can't open this file" << std::endl;
+		file.close();
 		return;
 	}
 	std::string all_str;
