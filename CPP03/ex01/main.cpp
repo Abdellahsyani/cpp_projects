@@ -16,12 +16,10 @@
 
 int main()
 {
-	ClapTrap clap;
-	ScavTrap scav;
+	ClapTrap clap("abdo");
+	ScavTrap scav("bob");
 
-	clap.SetName("abdo");
-	scav.SetName("smail");
-	clap.attack("smail");
+	clap.attack("bob");
 	scav.attack("abdo");
 	scav.takeDamage(10);
 	scav.beRepaired(2);
