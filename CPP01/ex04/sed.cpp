@@ -46,7 +46,7 @@ void get_values(std::string filename, std::string str1, std::string str2)
 	}
 	
 	std::string filena = filename + ".replace";
-	std::ofstream file_rep(filena.c_str(), std::ios::out | std::ios::trunc);
+	std::ofstream file_rep(filena.c_str());
 	if (!file_rep.is_open())
 	{
 		std::cout << "Error: can't open this file" << std::endl;
