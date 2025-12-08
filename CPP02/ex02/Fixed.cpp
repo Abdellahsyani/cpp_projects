@@ -52,7 +52,8 @@ Fixed::Fixed(const Fixed& other) {
  */
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	this->Fixedpoint = other.Fixedpoint;
+	if (this != &other)
+		this->Fixedpoint = other.Fixedpoint;
 	return (*this);
 }
 
@@ -74,7 +75,7 @@ std::ostream& operator<<(std::ostream& os, const Fixed& other)
  */
 float Fixed::toFloat(void) const
 {
-	return (float)Fixedpoint / (1 << frac_bit); 
+	return ((float)Fixedpoint / (1 << frac_bit));
 }
 
 /**
@@ -108,7 +109,7 @@ void Fixed::setRawBits(const int raw)
  *   - return: the smallest one
  */
 Fixed& Fixed::min(Fixed& a, Fixed& b) {
-	if (a< b)
+	if (a < b)
 		return a;
 	else
 		return b;
