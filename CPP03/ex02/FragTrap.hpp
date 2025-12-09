@@ -6,14 +6,14 @@
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 17:08:52 by asyani            #+#    #+#             */
-/*   Updated: 2025/12/06 17:23:34 by asyani           ###   ########.fr       */
+/*   Updated: 2025/12/09 22:21:07 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include <ClapTrap.hpp>
+#include "ClapTrap.hpp"
 
 
 class FragTrap : public ClapTrap {
@@ -26,4 +26,5 @@ class FragTrap : public ClapTrap {
 
 		void attack(const std::string& target);
 		void guardGate();
-}
+		void highFivesGuys(void);
+};
