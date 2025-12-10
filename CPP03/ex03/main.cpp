@@ -5,24 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/09 14:58:39 by asyani            #+#    #+#             */
-/*   Updated: 2025/11/09 15:29:51 by asyani           ###   ########.fr       */
+/*   Created: 2025/11/21 20:21:08 by asyani            #+#    #+#             */
+/*   Updated: 2025/11/21 20:21:58 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-int main( void ) {
-	Fixed a;
-	Fixed const b( 5 );
-	Fixed const c( 5.5f );
-	Fixed const d( b );
-	a = Fixed( 1234.4321f );
-	std::cout << "a is " << a << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toFloat() << " as float" << std::endl;
-	std::cout << "------------------------------------" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toFloat() << " as float" << std::endl;
+
+int main()
+{
+	ClapTrap clap("abdo");
+	ScavTrap scav("bob");
+
+	clap.attack("bob");
+	scav.attack("abdo");
+	scav.takeDamage(10);
+	scav.beRepaired(2);
+	std::cout << "-------------------------------------" << std::endl;
+
+	ClapTrap clap1;
+	ScavTrap scav1;
+	clap1 = clap;
+	scav1 = scav;
+	scav1.guardGate();
+	std::cout << "-------------------------------------" << std::endl;
+
 	return 0;
 }

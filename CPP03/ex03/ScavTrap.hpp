@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/06 17:08:52 by asyani            #+#    #+#             */
-/*   Updated: 2025/12/09 22:21:07 by asyani           ###   ########.fr       */
+/*   Created: 2025/11/28 17:33:14 by asyani            #+#    #+#             */
+/*   Updated: 2025/12/10 18:52:55 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
 #include "ClapTrap.hpp"
+#include <iostream>
 
 
-class FragTrap : public ClapTrap {
+/**
+ * calss ScavTrap: This is a drived class or child class that inherits from the claptrap class
+ * 	this class will has access to all member of the base class
+ * - public: this one is the access specifier, to let the base member class visible
+ */
+class ScavTrap : public ClapTrap {
 	public:
-		FragTrap();
-		FragTrap(std::string name);
-		FragTrap(const FragTrap& other);
-		~FragTrap();
-		FragTrap& operator=(const FragTrap& other);
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap& other);
+		~ScavTrap();
+		ScavTrap& operator=(const ScavTrap& other);
 
 		void attack(const std::string& target);
-		void highFivesGuys(void);
+		void guardGate();
 };

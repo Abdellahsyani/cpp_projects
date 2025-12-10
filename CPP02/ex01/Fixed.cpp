@@ -23,7 +23,7 @@ Fixed::Fixed() : Fixedpoint(0) {
 };
 
 /**
- * - Default constructor: This one take int parameter
+ * - Paramitrize constructor: This one take int parameter
  *   - num: The number converted to fixed point
  *   - This constructor under overloading functions
  */
@@ -33,13 +33,13 @@ Fixed::Fixed(const int num) {
 };
 
 /**
- * - Default constructor: Take a float parameter
+ * - Paramitrize constructor: Take a float parameter
  *   - num: The float number that will converted to fixed point
  *   - This constructor under overloading functions
  */
 Fixed::Fixed(const float num) {
 	std::cout << "Float constructor called" << std::endl;
-	Fixedpoint = roundf(num * 256);
+	Fixedpoint = roundf(num * (1 << frac_bit));
 };
 
 /**
@@ -81,7 +81,7 @@ std::ostream& operator<<(std::ostream& os, const Fixed& other)
  */
 float Fixed::toFloat(void) const
 {
-	return (float)Fixedpoint / 256; 
+	return ((float)Fixedpoint / (1 << frac_bit));
 }
 
 /**
@@ -108,6 +108,7 @@ int Fixed::getRawBits(void ) const
  */
 void Fixed::setRawBits(const int raw)
 {
+	std::cout << "setRawBits member function called" << std::endl;
 	this->Fixedpoint = raw;
 }
 
