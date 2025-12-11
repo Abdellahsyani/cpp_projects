@@ -35,7 +35,7 @@ Fixed::Fixed(const int num) {
  *   - This constructor under overloading functions
  */
 Fixed::Fixed(const float num) {
-	Fixedpoint = (int)roundf(num * (1 << frac_bit));
+	Fixedpoint = roundf(num * (1 << frac_bit));
 };
 
 /**
