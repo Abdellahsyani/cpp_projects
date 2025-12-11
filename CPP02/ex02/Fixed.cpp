@@ -106,6 +106,7 @@ void Fixed::setRawBits(const int raw)
 
 /**
  * - min: method to compare between two objects
+ *   		this can modify the parameter and the return value
  *   - return: the smallest one
  */
 Fixed& Fixed::min(Fixed& a, Fixed& b) {
@@ -117,6 +118,7 @@ Fixed& Fixed::min(Fixed& a, Fixed& b) {
 
 /**
  * - min: method to compare between two const objects
+ *   		this can't modify the objects and return value
  *   - return: the smallest one
  */
 const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
@@ -128,6 +130,7 @@ const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
 
 /**
  * - max: method to compare between two objects
+ *   		this can modify the objects and return value
  *   - return: the greatest one
  */
 Fixed& Fixed::max(Fixed& a, Fixed& b) {
@@ -139,6 +142,7 @@ Fixed& Fixed::max(Fixed& a, Fixed& b) {
 
 /**
  * - max: method to compare between two const objects
+ *   		this can't modify the parameter the return value
  *   - return: the greatest one
  */
 const Fixed& Fixed::max(const Fixed& a, const Fixed& b) {

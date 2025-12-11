@@ -13,7 +13,7 @@
 #include "Fixed.hpp"
 
 /**
- * - Operator >: check if the current object is greater the other
+ * - Operator >: check if the current object is greater than the other object
  *   - if greater: return true
  *   - return: false
  */
@@ -61,9 +61,9 @@ bool Fixed::operator<=(const Fixed& other) const {
 }
 
 /**
- * - Operator !=: check if the left object != from the right
- *   - return: true
- *   - return: false
+ * - Operator !=: check if the left object != the right object
+ *   - if yes => return: true
+ *   - else => return: false
  */
 bool Fixed::operator!=(const Fixed& other) const {
 
