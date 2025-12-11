@@ -18,7 +18,7 @@ const int Fixed::frac_bit = 8;
  * - Default constructor: called when an object created
  *   - used initializer list
  */
-Fixed::Fixed() : Fixedpoint(0) {};
+Fixed::Fixed() : Fixedpoint(0) { std::cout << "Default constructor called" << std::endl; };
 
 /**
  * - Default constructor: This one take int parameter
@@ -26,6 +26,7 @@ Fixed::Fixed() : Fixedpoint(0) {};
  *   - This constructor under overloading functions
  */
 Fixed::Fixed(const int num) {
+	std::cout << "Int constructor called" << std::endl;
 	Fixedpoint = num << frac_bit;
 };
 
@@ -35,6 +36,7 @@ Fixed::Fixed(const int num) {
  *   - This constructor under overloading functions
  */
 Fixed::Fixed(const float num) {
+	std::cout << "Float constructor called" << std::endl;
 	Fixedpoint = roundf(num * (1 << frac_bit));
 };
 
@@ -43,6 +45,7 @@ Fixed::Fixed(const float num) {
  *   - other: The object that will copied
  */
 Fixed::Fixed(const Fixed& other) {
+	std::cout << "Copy constructor called" << std::endl;
 	Fixedpoint = other.Fixedpoint;
 }
 
@@ -52,6 +55,7 @@ Fixed::Fixed(const Fixed& other) {
  */
 Fixed& Fixed::operator=(const Fixed& other)
 {
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 		this->Fixedpoint = other.Fixedpoint;
 	return (*this);
@@ -155,4 +159,4 @@ const Fixed& Fixed::max(const Fixed& a, const Fixed& b) {
 /**
  * - Destructor: used to clean up after the other constructors
  */
-Fixed::~Fixed() {}
+Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
