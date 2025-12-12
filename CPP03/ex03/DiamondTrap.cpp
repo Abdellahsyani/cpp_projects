@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
 
@@ -21,7 +18,7 @@
  *  - does not take any parameter
  *  - call ClapTrap constructor to init it before the scavtrap constructor
  */
-DiamondTrap::DiamondTrap() : ScavTrap(""), FragTrap("")
+DiamondTrap::DiamondTrap() : ClapTrap(""), ScavTrap(""), FragTrap("")
 {
 	this->HitPoints = 100;
 	this->EnergyPoints = 100;
@@ -34,11 +31,11 @@ DiamondTrap::DiamondTrap() : ScavTrap(""), FragTrap("")
  *  before the buddy constructor
  *  - call ClapTrap parametirze constructor to init it before the scavtrap constructor
  */
-DiamondTrap::DiamondTrap(std::string name) : ScavTrap(name), FragTrap(name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), name(name)
 {
-	this->HitPoints = 100;
-	this->EnergyPoints = 50;
-	this->AttackDamage = 30;
+	this->HitPoints = FragTrap::HitPoints;
+	this->EnergyPoints = ScavTrap::EnergyPoints;
+	this->AttackDamage = FragTrap::AttackDamage;
 	std::cout << "DiamondTrap Parametrize Constructor called" << std::endl;
 }
 
@@ -63,6 +60,22 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
 	}
 	std::cout << "DiamondTrap Copy assignement constructor called" << std::endl;
 	return (*this);
+}
+
+/**
+ * attack: the attack function that call the ScavTrap attack
+ *  - target: the target to attack
+ */
+void DiamondTrap::attack(const std::string target) {
+	ScavTrap::attack(target);
+}
+
+/**
+ * whoAmI: This method just write the diamond name and claptrap name
+ */
+void DiamondTrap::whoAmI() {
+	std::cout << "DiamondTrap name: " << this->name << std::endl;
+	std::cout << "ClapTrap name: " << ClapTrap::Name << std::endl;
 }
 
 /**

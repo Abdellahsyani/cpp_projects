@@ -12,25 +12,18 @@
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 
 int main()
 {
-	ClapTrap clap("abdo");
-	ScavTrap scav("bob");
+	DiamondTrap diamond("alex");
 
-	clap.attack("bob");
-	scav.attack("abdo");
-	scav.takeDamage(10);
-	scav.beRepaired(2);
+	diamond.attack("abdo");
+	diamond.whoAmI();
 	std::cout << "-------------------------------------" << std::endl;
 
-	ClapTrap clap1;
-	ScavTrap scav1;
-	clap1 = clap;
-	scav1 = scav;
-	scav1.guardGate();
-	std::cout << "-------------------------------------" << std::endl;
 
 	return 0;
 }
