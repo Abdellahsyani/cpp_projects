@@ -63,40 +63,6 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
 }
 
 /**
- * attack: a method to attack with
- *  - target: the target that will be attecked
- */
-void DiamondTrap::attack(const std::string& target) {
-	if (this->HitPoints == 0)
-	{
-		std::cout << "DiamondTrap " << this->Name << " is dead" << std::endl;
-		return ;
-	}
-	if (this->EnergyPoints == 0)
-	{
-		std::cout << "DiamondTrap " << this->Name << " is out of energy and cannot attack!" << std::endl;
-		return ;
-	}
-	std::cout << "DiamondTrap " << this->GetName() << " attacks " << target << ", causing " << this->AttackDamage << " points of damage" << std::endl;
-	this->EnergyPoints -= 1;
-}
-
-/**
- * gaurdGate: The method that only inform that the scavTrap is in gate keeper mode
- */
-void DiamondTrap::guardGate() {
-	std::cout << "DiamondTrap " << this->Name << " is now in Gate keeper mode!" << std::endl;
-}
-
-
-/**
- * gaurdGate: The method that only inform that the scavTrap is in gate keeper mode
- */
-void DiamondTrap::highFivesGuys() {
-	std::cout << "DiamondTrap " << this->Name << " is requesting a high five" << std::endl;
-}
-
-/**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
