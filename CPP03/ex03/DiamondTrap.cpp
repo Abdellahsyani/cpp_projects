@@ -18,11 +18,12 @@
  *  - does not take any parameter
  *  - call ClapTrap constructor to init it before the scavtrap constructor
  */
-DiamondTrap::DiamondTrap() : ClapTrap(""), ScavTrap(""), FragTrap("")
+DiamondTrap::DiamondTrap() : ScavTrap(""), FragTrap("")
 {
-	this->HitPoints = 100;
-	this->EnergyPoints = 100;
-	this->AttackDamage = 30;
+	this->name = "";
+	this->HitPoints = FragTrap::HitPoints;
+	this->EnergyPoints = ScavTrap::EnergyPoints;
+	this->AttackDamage = FragTrap::AttackDamage;
 	std::cout << "DiamondTrap Default Constructor called" << std::endl;
 }
 
@@ -31,8 +32,9 @@ DiamondTrap::DiamondTrap() : ClapTrap(""), ScavTrap(""), FragTrap("")
  *  before the buddy constructor
  *  - call ClapTrap parametirze constructor to init it before the scavtrap constructor
  */
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), name(name)
+DiamondTrap::DiamondTrap(std::string name) : ScavTrap(name), FragTrap(name), name(name)
 {
+	ClapTrap::Name = name + "_clap_name";
 	this->HitPoints = FragTrap::HitPoints;
 	this->EnergyPoints = ScavTrap::EnergyPoints;
 	this->AttackDamage = FragTrap::AttackDamage;
@@ -45,6 +47,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Scav
  *  	- behavior: b,  a(b)
  */
 DiamondTrap::DiamondTrap(const DiamondTrap &other) : ScavTrap(other), FragTrap(other) {
+	this->name = other.name;
 	std::cout << "DiamondTrap Copy constructor called" << std::endl;
 }
 
@@ -57,6 +60,7 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
 	{
 		ScavTrap::operator=(other);
 		FragTrap::operator=(other);
+		this->name = other.name;
 	}
 	std::cout << "DiamondTrap Copy assignement constructor called" << std::endl;
 	return (*this);
