@@ -1,0 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/15 19:34:40 by asyani            #+#    #+#             */
+/*   Updated: 2025/12/15 19:47:57 by asyani           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Dog.hpp"
+
+/**
+ * Default Constructor: This called when an object created
+ *  - does not take any parameter
+ */
+Dog::Dog() : Animal("Dog") {
+    std::cout << "Dog Default Constructor called" << std::endl;
+}
+
+
+/**
+ * Parametrize Constructor: This called when an object created and init all member
+ *  before the buddy constructor
+ */
+Dog::Dog(std::string type) : Animal(type) 
+{
+    std::cout << "Dog Parameterized Constructor called" << std::endl;
+}
+
+/**
+ * Copy Constructor: This one copy all members from an object to another one that created in the same time
+ *  - Happens only when the object is being created
+ *  	- behavior: b,a(b)
+ */
+Dog::Dog(const Dog& other) : Animal(other) {
+	std::cout << "Dog Copy constructor called" << std::endl;
+}
+
+/**
+ * Copy assignment Constructor: This type of constructor create an object from an existing one
+ *  - so it behaves like this: a, b, a = b
+ */
+Dog& Dog::operator=(const Dog& other) {
+	std::cout << "Dog Copy assignement constructor called" << std::endl;
+	if (this != &other)
+		Animal::operator=(other);
+	return (*this);
+}
+
+/**
+ * Destructor: THis one used when the program finish
+ * 	and calls to free all thing
+ */
+Dog::~Dog() { std::cout << "Dog Destructor called" << std::endl; };
