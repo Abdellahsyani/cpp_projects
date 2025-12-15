@@ -21,16 +21,14 @@ int main()
 
 	clap.attack("bob");
 	scav.attack("abdo");
-	scav.takeDamage(10);
+	scav.takeDamage(4);
 	scav.beRepaired(2);
-	std::cout << "-------------------------------------" << std::endl;
 
 	ClapTrap clap1;
 	ScavTrap scav1;
 	clap1 = clap;
 	scav1 = scav;
 	scav1.guardGate();
-	std::cout << "-------------------------------------" << std::endl;
 
 	return 0;
 }

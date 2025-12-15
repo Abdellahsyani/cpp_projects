@@ -113,15 +113,14 @@ void ClapTrap::takeDamage(unsigned int amount) {
 		std::cout << "ClapTrap " << this->Name << " is out of energy and cannot attack!" << std::endl;
 		return;
 	}
+	this->HitPoints -= amount;
 	std::cout << "ClapTrap " << this->GetName() << " takedamage" << std::endl; 
-	if (this->HitPoints == 0)
+	if (this->HitPoints <= 0)
 	{
 		this->HitPoints = 0;
 		std::cout << "ClapTrap " << this->Name << " is already dead" << std::endl;
 		return;
 	}
-	else
-		this->HitPoints -= amount;
 }
 
 /**

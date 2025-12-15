@@ -41,7 +41,7 @@ ClapTrap::ClapTrap(std::string name) :
 
 /**
  * Copy Constructor: This one copy all members from an object to another one that created in the same time
- *  - Heppens only when the object is bieng created
+ *  - Happens only when the object is being created
  *  	- behavior: b,  a(b)
  */
 ClapTrap::ClapTrap(const ClapTrap& other) {
@@ -113,15 +113,14 @@ void ClapTrap::takeDamage(unsigned int amount) {
 		std::cout << "ClapTrap " << this->Name << " is out of energy and cannot attack!" << std::endl;
 		return;
 	}
+	this->HitPoints -= amount;
 	std::cout << "ClapTrap " << this->GetName() << " takedamage" << std::endl; 
-	if (this->HitPoints == 0)
+	if (this->HitPoints <= 0)
 	{
 		this->HitPoints = 0;
 		std::cout << "ClapTrap " << this->Name << " is already dead" << std::endl;
 		return;
 	}
-	else
-		this->HitPoints -= amount;
 }
 
 /**

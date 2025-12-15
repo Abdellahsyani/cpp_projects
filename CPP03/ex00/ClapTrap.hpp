@@ -30,7 +30,6 @@ class ClapTrap {
 		
 		//setter
 		void	SetName(const std::string name);
-
 		//getter
 		std::string GetName() const;
 

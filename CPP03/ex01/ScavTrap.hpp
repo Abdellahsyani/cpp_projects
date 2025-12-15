@@ -17,7 +17,8 @@
 
 
 /**
- * calss ScavTrap: This is a drived class or child class that inherits from the claptrap class
+ * class ScavTrap: This is a drived class or child class
+ * 	that inherits from the claptrap class
  * 	this class will has access to all member of the base class
  * - public: this one is the access specifier, to let the base member class visible
  */
