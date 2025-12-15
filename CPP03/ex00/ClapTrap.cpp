@@ -107,11 +107,6 @@ void ClapTrap::attack(const std::string& target) {
  *  - amount: the amount that will add
  */
 void ClapTrap::takeDamage(unsigned int amount) {
-	if (this->EnergyPoints <= 0)
-	{
-		std::cout << "ClapTrap " << this->Name << " is out of energy and cannot attack!" << std::endl;
-		return;
-	}
 	std::cout << "ClapTrap " << this->GetName() << " takedamage" << std::endl; 
 	this->HitPoints -= amount;
 	if (this->HitPoints <= 0)
