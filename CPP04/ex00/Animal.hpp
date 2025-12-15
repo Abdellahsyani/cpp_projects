@@ -15,7 +15,7 @@
 #include <iostream>
 
 class Animal {
-private:
+protected:
 	std::string type;
 public:
 	Animal();
@@ -24,5 +24,6 @@ public:
 	Animal& operator=(const Animal& other);
 	~Animal();
 
-	 void makeSound();
+	void makeSound();
+	std::string getType() const;
 };
