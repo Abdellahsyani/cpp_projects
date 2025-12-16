@@ -21,7 +21,7 @@
  * 	this class will has access to all member of the base class
  * - public: this one is the access specifier, to let the base member class visible
  */
-class ScavTrap : virtual public ClapTrap {
+class ScavTrap : public ClapTrap {
 	public:
 		ScavTrap();
 		ScavTrap(std::string name);
