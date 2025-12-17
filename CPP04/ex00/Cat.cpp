@@ -51,6 +51,14 @@ Cat& Cat::operator=(const Cat& other) {
 }
 
 /**
+ * makeSound: the method that make a sound depends on the object
+ */
+void Cat::makeSound() const
+{
+	std::cout << "cat's don't bark" << std::endl;
+}
+
+/**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */

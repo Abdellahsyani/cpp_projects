@@ -50,6 +50,15 @@ Dog& Dog::operator=(const Dog& other) {
 	return (*this);
 }
 
+
+/**
+ * makeSound: the method that make a sound depends on the object
+ */
+void Dog::makeSound() const
+{
+	std::cout << "dog bark" << std::endl;
+}
+
 /**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing

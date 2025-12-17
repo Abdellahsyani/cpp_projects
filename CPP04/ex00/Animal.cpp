@@ -52,14 +52,20 @@ Animal& Animal::operator=(const Animal& other) {
 	return (*this);
 }
 
-/***/
+/**
+ * getType: This method is the getter of the Animal class
+ * it return the type;;
+ */
 std::string Animal::getType() const {
 	return this->type;
 }
 
-/***/
-void Animal::makeSound()
+/**
+ * makeSound: the method that make a sound depends on the object
+ */
+void Animal::makeSound() const
 {
+	std::cout << "Generic Animal Sound" << std::endl;
 }
 
 /**

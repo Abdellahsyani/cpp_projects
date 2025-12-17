@@ -1,13 +1,14 @@
-NAME = clap 
+NAME = animal
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp ClapTrap.cpp
+HDR = Animal.hpp Dog.hpp Cat.hpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
 
 all: $(NAME)
 
-$(NAME): $(SRC)
+$(NAME): $(SRC) $(HDR)
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 
 fclean:
