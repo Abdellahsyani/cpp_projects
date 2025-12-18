@@ -17,6 +17,7 @@ int main()
 {
 	ClapTrap obj;
 	ClapTrap obj1;
+	ClapTrap obj3("lion");
 
 	obj.SetName("abdo");
 	obj1 = obj;
@@ -26,6 +27,7 @@ int main()
 	obj.attack("rays");
 	obj1.attack("abdo");
 	obj2.attack("izm");
+	obj3.attack(obj2.GetName());
 
 	obj.takeDamage(2);
 	obj1.takeDamage(2);
