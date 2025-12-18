@@ -18,7 +18,7 @@
  *  - does not take any parameter
  *  - call ClapTrap constructor to init it before the scavtrap constructor
  */
-FragTrap::FragTrap() : ClapTrap("")
+FragTrap::FragTrap() : ClapTrap()
 {
 	this->HitPoints = 100;
 	this->EnergyPoints = 100;
@@ -34,8 +34,8 @@ FragTrap::FragTrap() : ClapTrap("")
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	this->HitPoints = 100;
-	this->EnergyPoints = 50;
-	this->AttackDamage = 20;
+	this->EnergyPoints = 100;
+	this->AttackDamage = 30;
 	std::cout << "FragTrap Parametrize Constructor called" << std::endl;
 }
 
@@ -69,7 +69,7 @@ void FragTrap::attack(const std::string& target) {
 		std::cout << "FragTrap " << this->Name << " is dead" << std::endl;
 		return ;
 	}
-	if (this->EnergyPoints == 0)
+	if (this->EnergyPoints <= 0)
 	{
 		std::cout << "FragTrap " << this->Name << " is out of energy and cannot attack!" << std::endl;
 		return ;

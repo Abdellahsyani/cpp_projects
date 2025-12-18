@@ -12,24 +12,29 @@
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 
 int main()
 {
 	ClapTrap clap("abdo");
 	ScavTrap scav("bob");
+	FragTrap frag("lion");
 
-	clap.attack("bob");
-	scav.attack("abdo");
+	clap.attack(scav.GetName());
+	scav.attack(clap.GetName());
+	frag.attack(scav.GetName());
 	scav.takeDamage(10);
+	frag.takeDamage(5);
 	scav.beRepaired(2);
+	frag.beRepaired(2);
 	std::cout << "-------------------------------------" << std::endl;
 
-	ClapTrap clap1;
+	FragTrap frag1;
 	ScavTrap scav1;
-	clap1 = clap;
+	frag1 = frag;
 	scav1 = scav;
-	scav1.guardGate();
+	frag1.highFivesGuys();
 	std::cout << "-------------------------------------" << std::endl;
 
 	return 0;

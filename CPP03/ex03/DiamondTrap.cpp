@@ -18,7 +18,7 @@
  *  - does not take any parameter
  *  - call ClapTrap constructor to init it before the scavtrap constructor
  */
-DiamondTrap::DiamondTrap() : ScavTrap(""), FragTrap("")
+DiamondTrap::DiamondTrap() : ScavTrap(), FragTrap()
 {
 	this->name = "";
 	this->HitPoints = FragTrap::HitPoints;

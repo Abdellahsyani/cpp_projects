@@ -1,13 +1,14 @@
-NAME = clap 
+NAME = Frag 
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+HDR = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 all: $(NAME)
 
-$(NAME): $(SRC)
+$(NAME): $(SRC) $(HDR)
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 
 fclean:

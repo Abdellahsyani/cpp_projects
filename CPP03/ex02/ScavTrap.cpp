@@ -17,7 +17,7 @@
  *  - does not take any parameter
  *  - call ClapTrap constructor to init it before the scavtrap constructor
  */
-ScavTrap::ScavTrap() : ClapTrap("")
+ScavTrap::ScavTrap() : ClapTrap()
 {
 	this->HitPoints = 100;
 	this->EnergyPoints = 50;
@@ -40,7 +40,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 
 /**
  * Copy Constructor: This one copy all members from an object to another one that created in the same time
- *  - Heppens only when the object is bieng created
+ *  - Happens only when the object is being created
  *  	- behavior: b,  a(b)
  */
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other) {
@@ -68,7 +68,7 @@ void ScavTrap::attack(const std::string& target) {
 		std::cout << "ScavTrap " << this->Name << " is dead" << std::endl;
 		return ;
 	}
-	if (this->EnergyPoints == 0)
+	if (this->EnergyPoints <= 0)
 	{
 		std::cout << "ScavTrap " << this->Name << " is out of energy and cannot attack!" << std::endl;
 		return ;
