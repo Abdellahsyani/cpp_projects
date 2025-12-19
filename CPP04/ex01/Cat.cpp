@@ -17,7 +17,7 @@
  *  - does not take any parameter
  */
 Cat::Cat() : Animal("Cat") {
-	brain = new Brain;
+	brain = new Brain();
 	std::cout << "Cat Default Constructor called" << std::endl;
 }
 
@@ -37,6 +37,8 @@ Cat::Cat(std::string type) : Animal(type)
  *  	- behavior: b,a(b)
  */
 Cat::Cat(const Cat& other) : Animal(other) {
+  this->brain = new Brain();
+  *this->brain = *other.brain;
 	std::cout << "Cat Copy constructor called" << std::endl;
 }
 
@@ -47,7 +49,13 @@ Cat::Cat(const Cat& other) : Animal(other) {
 Cat& Cat::operator=(const Cat& other) {
 	std::cout << "Cat Copy assignement constructor called" << std::endl;
 	if (this != &other)
+  {
 		Animal::operator=(other);
+    delete this->brain;
+
+    this->brain = new Brain();
+    *this->brain = *other.brain;
+  }
 	return (*this);
 }
 

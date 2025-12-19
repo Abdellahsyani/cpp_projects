@@ -17,8 +17,11 @@
  *  - does not take any parameter
  */
 Brain::Brain() {
-    std::cout << "Brain Default Constructor called" << std::endl;
-    type = "Brain";
+  std::cout << "Brain Default Constructor called" << std::endl;
+  for (int i = 0; i < 100; i++)
+  {
+    this->ideas[i] = "I have no idea yet...";
+  }
 }
 
 /**
@@ -27,8 +30,11 @@ Brain::Brain() {
  *  	- behavior: b,a(b)
  */
 Brain::Brain(const Brain& other) {
-	std::cout << "Brain Copy constructor called" << std::endl;
-	this->type = other.type;
+  std::cout << "Brain Copy constructor called" << std::endl;
+  for (int i = 0; i < 100; i++)
+  {
+    this->ideas[i] = other.ideas[i];
+  }
 }
 
 /**
@@ -36,10 +42,15 @@ Brain::Brain(const Brain& other) {
  *  - so it behaves like this: a, b, a = b
  */
 Brain& Brain::operator=(const Brain& other) {
-	std::cout << "Brain Copy assignement constructor called" << std::endl;
-	if (this != &other)
-		this->type = other.type;
-	return (*this);
+  std::cout << "Brain Copy assignement constructor called" << std::endl;
+  if (this != &other)
+  {
+    for (int i = 0; i < 100; i++)
+    {
+      this->ideas[i] = other.ideas[i];
+    }
+  }
+  return (*this);
 }
 
 /**
