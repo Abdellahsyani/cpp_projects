@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/15 19:29:23 by asyani            #+#    #+#             */
-/*   Updated: 2025/12/19 16:21:22 by asyani           ###   ########.fr       */
+/*   Created: 2025/12/19 16:17:18 by asyani            #+#    #+#             */
+/*   Updated: 2025/12/19 16:18:56 by asyani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Brain.hpp"
 
 /**
  * Default Constructor: This called when an object created
  *  - does not take any parameter
  */
-Cat::Cat() : Animal("Cat") {
-	brain = new Brain;
-	std::cout << "Cat Default Constructor called" << std::endl;
-}
-
-
-/**
- * Parametrize Constructor: This called when an object created and init all member
- *  before the buddy constructor
- */
-Cat::Cat(std::string type) : Animal(type) 
-{
-	std::cout << "Cat Parameterized Constructor called" << std::endl;
+Brain::Brain() {
+    std::cout << "Brain Default Constructor called" << std::endl;
+    type = "Brain";
 }
 
 /**
@@ -36,31 +26,24 @@ Cat::Cat(std::string type) : Animal(type)
  *  - Happens only when the object is being created
  *  	- behavior: b,a(b)
  */
-Cat::Cat(const Cat& other) : Animal(other) {
-	std::cout << "Cat Copy constructor called" << std::endl;
+Brain::Brain(const Brain& other) {
+	std::cout << "Brain Copy constructor called" << std::endl;
+	this->type = other.type;
 }
 
 /**
  * Copy assignment Constructor: This type of constructor create an object from an existing one
  *  - so it behaves like this: a, b, a = b
  */
-Cat& Cat::operator=(const Cat& other) {
-	std::cout << "Cat Copy assignement constructor called" << std::endl;
+Brain& Brain::operator=(const Brain& other) {
+	std::cout << "Brain Copy assignement constructor called" << std::endl;
 	if (this != &other)
-		Animal::operator=(other);
+		this->type = other.type;
 	return (*this);
-}
-
-/**
- * makeSound: the method that make a sound depends on the object
- */
-void Cat::makeSound() const
-{
-	std::cout << "cat's don't bark" << std::endl;
 }
 
 /**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-Cat::~Cat() { std::cout << "Cat Destructor called" << std::endl; };
+Brain::~Brain() { std::cout << "Brain Destructor called" << std::endl; };
