@@ -71,4 +71,4 @@ void Cat::makeSound() const
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-Cat::~Cat() { std::cout << "Cat Destructor called" << std::endl; };
+Cat::~Cat() { delete this->brain; std::cout << "Cat Destructor called" << std::endl; };

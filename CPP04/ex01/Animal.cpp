@@ -60,6 +60,10 @@ std::string Animal::getType() const {
 	return this->type;
 }
 
+void Animal::setType(std::string type) {
+  this->type = type;
+}
+
 /**
  * makeSound: the method that make a sound depends on the object
  */

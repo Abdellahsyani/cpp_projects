@@ -74,4 +74,4 @@ void Dog::makeSound() const
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-Dog::~Dog() { std::cout << "Dog Destructor called" << std::endl; };
+Dog::~Dog() { delete this->brain; std::cout << "Dog Destructor called" << std::endl; };

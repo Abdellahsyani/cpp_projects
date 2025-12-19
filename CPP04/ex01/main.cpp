@@ -16,14 +16,24 @@
 
 int main()
 {
-	const Animal* animals[100];
+	Animal* animals[100];
   for (int i = 0; i < 100; i++)
   {
     if (i < 50)
+    {
       animals[i] = new Dog();
+      animals[i]->setType("Dog");
+    }
     else
+    {
       animals[i] = new Cat();
+      animals[i]->setType("Cat");
+    }
   }
 
+  for (int i = 0; i < 100; i++)
+  {
+    delete animals[i];
+  }
 	return 0;
 }
