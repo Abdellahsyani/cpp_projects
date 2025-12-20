@@ -17,8 +17,8 @@
  *  - does not take any parameter
  */
 Cat::Cat() : Animal("Cat") {
-	brain = new Brain();
 	std::cout << "Cat Default Constructor called" << std::endl;
+	brain = new Brain();
 }
 
 
@@ -29,6 +29,7 @@ Cat::Cat() : Animal("Cat") {
 Cat::Cat(std::string type) : Animal(type) 
 {
 	std::cout << "Cat Parameterized Constructor called" << std::endl;
+	brain = new Brain();
 }
 
 /**

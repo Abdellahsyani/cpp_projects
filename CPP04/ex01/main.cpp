@@ -35,5 +35,11 @@ int main()
   {
     delete animals[i];
   }
+  Cat obj("abdellah");
+  Cat obj2("alll");
+  obj2 = obj;
+
+  Dog ob("abdellah");
+  Dog ob2(ob);
 	return 0;
 }

@@ -29,6 +29,7 @@ Dog::Dog() : Animal("Dog") {
 Dog::Dog(std::string type) : Animal(type) 
 {
     std::cout << "Dog Parameterized Constructor called" << std::endl;
+    brain = new Brain();
 }
 
 /**
