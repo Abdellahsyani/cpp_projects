@@ -1,0 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asyani <asyani@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/21 16:53:06 by asyani            #+#    #+#             */
+/*   Updated: 2025/12/21 16:58:41 by asyani           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "AMateria.hpp"
+
+
+/**
+ * Default Constructor: This called when an object created
+ *  - does not take any parameter
+ */
+AMateria::AMateria() {
+    std::cout << "AMateria Default Constructor called" << std::endl;
+    type = "AMateria";
+}
+
+/**
+ * Copy Constructor: This one copy all members from an object to another one that created in the same time
+ *  - Happens only when the object is being created
+ *  	- behavior: b,a(b)
+ */
+AMateria::AMateria(const AMateria& other) {
+	std::cout << "AMateria Copy constructor called" << std::endl;
+	this->type = other.type;
+}
+
+/**
+ * Copy assignment Constructor: This type of constructor create an object from an existing one
+ *  - so it behaves like this: a, b, a = b
+ */
+AMateria& AMateria::operator=(const AMateria& other) {
+	std::cout << "AMateria Copy assignement constructor called" << std::endl;
+	if (this != &other)
+		this->type = other.type;
+	return (*this);
+}
+
+/**
+ * Destructor: THis one used when the program finish
+ * 	and calls to free all thing
+ */
+AMateria::~AMateria() { std::cout << "AMateria Destructor called" << std::endl; };
