@@ -10,4 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Ice.hpp"
 
+/**
+ * Default Constructor: This called when an object created
+ *  - does not take any parameter
+ */
+Ice::Ice() : AMateria() {
+    std::cout << "Ice Default Constructor called" << std::endl;
+    type = "Ice";
+}
+
+/**
+ * Copy Constructor: This one copy all members from an object to another one that created in the same time
+ *  - Happens only when the object is being created
+ *  	- behavior: b,a(b)
+ */
+Ice::Ice(const Ice& other) : AMateria(other) {
+	std::cout << "Ice Copy constructor called" << std::endl;
+	this->type = other.type;
+}
+
+/**
+ * Copy assignment Constructor: This type of constructor create an object from an existing one
+ *  - so it behaves like this: a, b, a = b
+ */
+Ice Ice::operator=(const Ice& other) {
+	std::cout << "Ice Copy assignement constructor called" << std::endl;
+	if (this != &other)
+		AMateria::operator=(other);
+	return (*this);
+}
+
+/**
+ * Destructor: THis one used when the program finish
+ * 	and calls to free all thing
+ */
+Ice::~Ice() { std::cout << "Ice Destructor called" << std::endl; };

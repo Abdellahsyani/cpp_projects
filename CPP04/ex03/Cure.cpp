@@ -10,3 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Cure.hpp"
+
+/**
+ * Default Constructor: This called when an object created
+ *  - does not take any parameter
+ */
+Cure::Cure() : AMateria() {
+    std::cout << "Cure Default Constructor called" << std::endl;
+    type = "Cure";
+}
+
+/**
+ * Copy Constructor: This one copy all members from an object to another one that created in the same time
+ *  - Happens only when the object is being created
+ *  	- behavior: b,a(b)
+ */
+Cure::Cure(const Cure& other) : AMateria(other) {
+	std::cout << "Cure Copy constructor called" << std::endl;
+	this->type = other.type;
+}
+
+/**
+ * Copy assignment Constructor: This type of constructor create an object from an existing one
+ *  - so it behaves like this: a, b, a = b
+ */
+Cure Cure::operator=(const Cure& other) {
+	std::cout << "Cure Copy assignement constructor called" << std::endl;
+	if (this != &other)
+		AMateria::operator=(other);
+	return (*this);
+}
+
+/**
+ * Destructor: THis one used when the program finish
+ * 	and calls to free all thing
+ */
+Cure::~Cure() { std::cout << "Cure Destructor called" << std::endl; };
