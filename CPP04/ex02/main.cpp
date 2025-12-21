@@ -16,30 +16,16 @@
 
 int main()
 {
-	Animal* animals[100];
-  for (int i = 0; i < 100; i++)
-  {
-    if (i < 50)
-    {
-      animals[i] = new Dog();
-      animals[i]->setType("Dog");
-    }
-    else
-    {
-      animals[i] = new Cat();
-      animals[i]->setType("Cat");
-    }
-  }
+	Dog dog("how");
+	Cat cat("Meo");
+	Dog dog1(dog);
+	Cat cat1;
+	cat1 = cat;
 
-  for (int i = 0; i < 100; i++)
-  {
-    delete animals[i];
-  }
-  Cat obj("abdellah");
-  Cat obj2("alll");
-  obj2 = obj;
+	/*dog.setType("Hooo");*/
+	/*cat.setType("Meo");*/
 
-  Dog ob("abdellah");
-  Dog ob2(ob);
+	std::cout << dog1.getType() << std::endl;
+	std::cout << cat1.getType() << std::endl;
 	return 0;
 }

@@ -16,7 +16,7 @@
  * Default Constructor: This called when an object created
  *  - does not take any parameter
  */
-Dog::Dog() : Animal("Dog") {
+Dog::Dog() : Animal() {
     std::cout << "Dog Default Constructor called" << std::endl;
     brain = new Brain();
 }
@@ -62,9 +62,10 @@ Dog& Dog::operator=(const Dog& other) {
 	return (*this);
 }
 
-
 /**
  * makeSound: the method that make a sound depends on the object
+ *  and this is a pure virtual function it create a vptr in v-table for each obj
+ *   if I didn't implement it here this class will be abstract to
  */
 void Dog::makeSound() const
 {
