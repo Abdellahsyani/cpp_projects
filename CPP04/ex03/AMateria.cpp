@@ -43,6 +43,13 @@ AMateria& AMateria::operator=(const AMateria& other) {
 	return (*this);
 }
 
+/***/
+std::string const& AMateria::getType() const
+{
+	return this->type;
+}
+
+
 /**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
