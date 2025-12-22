@@ -43,7 +43,9 @@ AMateria& AMateria::operator=(const AMateria& other) {
 	return (*this);
 }
 
-/***/
+/**
+ * getType: this is the getter of the amateria class
+ */
 std::string const& AMateria::getType() const
 {
 	return this->type;
