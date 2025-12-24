@@ -6,11 +6,10 @@
  * Default Constructor: This called when an object created
  *  - does not take any parameter
  */
-Character::Character() {
+Character::Character() : name("Character") {
   std::cout << "Character Default Constructor called" << std::endl;
   for (int i = 0; i < 4; i++)
     _inventory[i] = NULL;
-  name = "Character";
 }
 
 /**
@@ -92,13 +91,22 @@ void Character::unequip(int idx) {
       if (this->_inventory[i] != NULL)
         delete this->_inventory[i];
     }
+    else {
+      std::cout << "Index doesn't found" << std::endl;
+    }
   }
 }
 
-/***/
+/**
+ * use: This method take an index and target
+ *      if the index is in _inventory array send the target to AMateria use() method
+ */
 void Character::use(int idx, ICharacter& target)
 {
-
+  if (idx > 0 && idx < 4 && this->_inventory[idx] != NULL)
+    this->_inventory[idx]->use(target);
+  else
+   std::cout << "Index Or target is not valid" << std::endl;
 }
 
 /**
