@@ -43,6 +43,17 @@ Ice Ice::operator=(const Ice& other) {
 }
 
 /**
+ * clone: this function take return a new Cure
+ */
+AMateria* Ice::clone() const {
+  return new Ice;
+}
+
+void Ice::use(ICharacter& target) {
+  std::cout << "* shoots an ice bolt at " << ICharacter::getName() << " *" << std::endl;
+} 
+
+/**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */

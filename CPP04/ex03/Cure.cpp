@@ -18,7 +18,7 @@
  */
 Cure::Cure() : AMateria() {
     std::cout << "Cure Default Constructor called" << std::endl;
-    type = "Cure";
+    type = "cure";
 }
 
 /**
@@ -40,6 +40,11 @@ Cure Cure::operator=(const Cure& other) {
 	if (this != &other)
 		AMateria::operator=(other);
 	return (*this);
+}
+
+/***/
+AMateria* Cure::clone() const {
+  return new Cure;
 }
 
 /**
