@@ -5,7 +5,6 @@
  *  - does not take any parameter
  */
 MateriaSource::MateriaSource() {
-  std::cout << "MateriaSource Default Constructor called" << std::endl;
   for (int i = 0; i < 4; i++)
     _blueprint[i] = NULL;
 }
@@ -18,7 +17,6 @@ MateriaSource::MateriaSource() {
  *  	  if we don't use deep copy we will occure memory leak.
  */
 MateriaSource::MateriaSource(const MateriaSource& other) {
-  std::cout << "MateriaSource Copy constructor called" << std::endl;
   for (int i = 0; i < 4; i++)
   {
     if (other._blueprint[i] == NULL)
@@ -35,7 +33,6 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
  *    because shallow copy let leaks
  */
 MateriaSource MateriaSource::operator=(const MateriaSource& other) {
-  std::cout << "MateriaSource Copy assignement constructor called" << std::endl;
   if (this != &other)
   {
     for (int i = 0; i < 4; i++)
@@ -69,9 +66,10 @@ void MateriaSource::learnMateria(AMateria* m) {
   for (int i = 0; i < 4; i++)
   {
     if (this->_blueprint[i] == NULL)
+    {
       this->_blueprint[i] = m;
-    else
-     continue;
+      break;
+    }
   }
 }
 
@@ -80,9 +78,9 @@ void MateriaSource::learnMateria(AMateria* m) {
  *        if not return 0
  */
 AMateria* MateriaSource::createMateria(std::string const &type) {
-  if (type == "Ice")
+  if (type == "ice")
     return new Ice; 
-  if (type == "Cure")
+  if (type == "cure")
     return new Cure; 
   return 0;
 }
@@ -91,4 +89,7 @@ AMateria* MateriaSource::createMateria(std::string const &type) {
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-MateriaSource::~MateriaSource() { std::cout << "MateriaSource Destructor called" << std::endl; };
+MateriaSource::~MateriaSource() {
+  for (int i = 0; i < 4; i++)
+    delete _blueprint[i];
+};

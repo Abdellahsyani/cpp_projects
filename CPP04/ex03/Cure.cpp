@@ -17,7 +17,6 @@
  *  - does not take any parameter
  */
 Cure::Cure() : AMateria() {
-    std::cout << "Cure Default Constructor called" << std::endl;
     type = "cure";
 }
 
@@ -27,7 +26,6 @@ Cure::Cure() : AMateria() {
  *  	- behavior: b,a(b)
  */
 Cure::Cure(const Cure& other) : AMateria(other) {
-	std::cout << "Cure Copy constructor called" << std::endl;
 	this->type = other.type;
 }
 
@@ -36,7 +34,6 @@ Cure::Cure(const Cure& other) : AMateria(other) {
  *  - so it behaves like this: a, b, a = b
  */
 Cure Cure::operator=(const Cure& other) {
-	std::cout << "Cure Copy assignement constructor called" << std::endl;
 	if (this != &other)
 		AMateria::operator=(other);
 	return (*this);
@@ -60,4 +57,4 @@ AMateria* Cure::clone() const {
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-Cure::~Cure() { std::cout << "Cure Destructor called" << std::endl; };
+Cure::~Cure() {};

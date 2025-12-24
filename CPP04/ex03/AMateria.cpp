@@ -18,7 +18,6 @@
  *  - does not take any parameter
  */
 AMateria::AMateria() {
-    std::cout << "AMateria Default Constructor called" << std::endl;
     type = "AMateria";
 }
 
@@ -28,7 +27,6 @@ AMateria::AMateria() {
  *  	- behavior: b,a(b)
  */
 AMateria::AMateria(const AMateria& other) {
-	std::cout << "AMateria Copy constructor called" << std::endl;
 	this->type = other.type;
 }
 
@@ -37,7 +35,6 @@ AMateria::AMateria(const AMateria& other) {
  *  - so it behaves like this: a, b, a = b
  */
 AMateria& AMateria::operator=(const AMateria& other) {
-	std::cout << "AMateria Copy assignement constructor called" << std::endl;
 	if (this != &other)
 		this->type = other.type;
 	return (*this);
@@ -65,4 +62,4 @@ std::string const& AMateria::getType() const
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-AMateria::~AMateria() { std::cout << "AMateria Destructor called" << std::endl; };
+AMateria::~AMateria() {};

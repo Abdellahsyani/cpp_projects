@@ -7,7 +7,6 @@
  *  - does not take any parameter
  */
 Character::Character() : name("Character") {
-  std::cout << "Character Default Constructor called" << std::endl;
   for (int i = 0; i < 4; i++)
     _inventory[i] = NULL;
 }
@@ -16,7 +15,8 @@ Character::Character() : name("Character") {
  * Parametrize Constructor: This one take a parameter name to init the object
  */
 Character::Character(std::string name) : name(name) {
-  std::cout << "Character Parametrize Constructor called" << std::endl;
+  for (int i = 0; i < 4; i++)
+    _inventory[i] = NULL;
 }
 
 /**
@@ -27,7 +27,6 @@ Character::Character(std::string name) : name(name) {
  *  	  if we don't use deep copy we will occure memory leak.
  */
 Character::Character(const Character& other) {
-  std::cout << "Character Copy constructor called" << std::endl;
   for (int i = 0; i < 4; i++)
   {
     if (other._inventory[i] == NULL)
@@ -45,7 +44,6 @@ Character::Character(const Character& other) {
  *    because shallow copy let leaks
  */
 Character Character::operator=(const Character& other) {
-  std::cout << "Character Copy assignement constructor called" << std::endl;
   if (this != &other)
   {
     for (int i = 0; i < 4; i++)
@@ -72,7 +70,7 @@ Character Character::operator=(const Character& other) {
 
 /**
  * getName: This is a getter of the Character name
-*/
+ */
 std::string const& Character::getName() const {
   return this->name;
 }
@@ -87,9 +85,10 @@ void Character::equip(AMateria* m) {
   for (int i = 0; i < 4; i++)
   {
     if (this->_inventory[i] == NULL)
+    {
       this->_inventory[i] = m;
-    else
-     continue;
+      break;
+    }
   }
 }
 
@@ -117,14 +116,17 @@ void Character::unequip(int idx) {
  */
 void Character::use(int idx, ICharacter& target)
 {
-  if (idx > 0 && idx < 4 && this->_inventory[idx] != NULL)
+  if (idx >= 0 && idx < 4 && this->_inventory[idx] != NULL)
     this->_inventory[idx]->use(target);
   else
-   std::cout << "Index Or target is not valid" << std::endl;
+    std::cout << "Index Or target is not valid" << std::endl;
 }
 
 /**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-Character::~Character() { std::cout << "Character Destructor called" << std::endl; };
+Character::~Character() {
+  for (int i = 0; i < 4; i++)
+    delete _inventory[i];
+};
