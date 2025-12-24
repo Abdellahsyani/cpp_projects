@@ -42,7 +42,9 @@ Cure Cure::operator=(const Cure& other) {
 	return (*this);
 }
 
-/***/
+/**
+ * clone: this function take return a new Cure
+ */
 AMateria* Cure::clone() const {
   return new Cure;
 }
