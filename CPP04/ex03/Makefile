@@ -3,8 +3,8 @@ NAME = interface
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = Animal.hpp Dog.hpp Cat.hpp Brain.hpp
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+HDR = AMateria.hpp Character.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp
+SRC = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 
 all: $(NAME)
 

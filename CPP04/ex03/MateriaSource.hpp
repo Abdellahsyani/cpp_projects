@@ -2,10 +2,15 @@
 
 #include <iostream>
 #include "IMateriaSource.hpp"
+#include "AMateria.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
 class AMateria;
 
 class MateriaSource : public IMateriaSource {
+  private:
+    AMateria* _blueprint[4];
   public:
     MateriaSource();
     MateriaSource(const MateriaSource& other);

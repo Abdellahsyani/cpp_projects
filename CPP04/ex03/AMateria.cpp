@@ -44,6 +44,15 @@ AMateria& AMateria::operator=(const AMateria& other) {
 }
 
 /**
+ * use: we just init this here to avoid linker error
+ *      but can't do anything here
+ */
+void AMateria::use(ICharacter& target)
+{
+  (void)target;
+}
+
+/**
  * getType: this is the getter of the amateria class
  */
 std::string const& AMateria::getType() const

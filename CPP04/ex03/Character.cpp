@@ -13,6 +13,13 @@ Character::Character() : name("Character") {
 }
 
 /**
+ * Parametrize Constructor: This one take a parameter name to init the object
+ */
+Character::Character(std::string name) : name(name) {
+  std::cout << "Character Parametrize Constructor called" << std::endl;
+}
+
+/**
  * Copy Constructor: This one copy all members from an object to another one that created in the same time
  *  - Happens only when the object is being created
  *  	- behavior: b,a(b)
@@ -61,6 +68,13 @@ Character Character::operator=(const Character& other) {
     this->name = other.name;
   }
   return (*this);
+}
+
+/**
+ * getName: This is a getter of the Character name
+*/
+std::string const& Character::getName() const {
+  return this->name;
 }
 
 /**

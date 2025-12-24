@@ -43,7 +43,14 @@ Cure Cure::operator=(const Cure& other) {
 }
 
 /**
- * clone: this function take return a new Cure
+ * use: This function print a message when the spell used to perform an action
+ */
+void Cure::use(ICharacter& target) {
+  std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+} 
+
+/**
+ * clone: this function return a new Cure
  */
 AMateria* Cure::clone() const {
   return new Cure;

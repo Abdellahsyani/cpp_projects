@@ -49,6 +49,9 @@ AMateria* Ice::clone() const {
   return new Ice;
 }
 
+/**
+ * use: This function print a message when the spell used to perform an action
+ */
 void Ice::use(ICharacter& target) {
   std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 } 
