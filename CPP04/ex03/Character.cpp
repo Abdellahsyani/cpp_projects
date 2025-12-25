@@ -97,17 +97,10 @@ void Character::equip(AMateria* m) {
  *          is not equal NULL delete it 
  */
 void Character::unequip(int idx) {
-  for (int i = 0; i < 4; i++)
-  {
-    if (i == idx)
-    {
-      if (this->_inventory[i] != NULL)
-        delete this->_inventory[i];
+    if (idx < 0 || idx >= 4) {
+        return;
     }
-    else {
-      std::cout << "Index doesn't found" << std::endl;
-    }
-  }
+    this->_inventory[idx] = NULL;
 }
 
 /**
