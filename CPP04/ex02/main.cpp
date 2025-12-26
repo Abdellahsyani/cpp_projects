@@ -16,6 +16,7 @@
 
 int main()
 {
+  Animal *meta = new Dog();
 	Dog dog("how");
 	Cat cat("Meo");
 	Dog dog1(dog);

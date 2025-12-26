@@ -65,14 +65,6 @@ void Animal::setType(std::string type) {
 }
 
 /**
- * makeSound: the method that make a sound depends on the object
- */
-void Animal::makeSound() const
-{
-	std::cout << "Generic Animal Sound" << std::endl;
-}
-
-/**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
