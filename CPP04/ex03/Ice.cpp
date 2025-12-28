@@ -17,7 +17,6 @@
  *  - does not take any parameter
  */
 Ice::Ice() : AMateria() {
-    std::cout << "Ice Default Constructor called" << std::endl;
     type = "Ice";
 }
 
@@ -27,7 +26,6 @@ Ice::Ice() : AMateria() {
  *  	- behavior: b,a(b)
  */
 Ice::Ice(const Ice& other) : AMateria(other) {
-	std::cout << "Ice Copy constructor called" << std::endl;
 	this->type = other.type;
 }
 
@@ -36,14 +34,27 @@ Ice::Ice(const Ice& other) : AMateria(other) {
  *  - so it behaves like this: a, b, a = b
  */
 Ice Ice::operator=(const Ice& other) {
-	std::cout << "Ice Copy assignement constructor called" << std::endl;
 	if (this != &other)
 		AMateria::operator=(other);
 	return (*this);
 }
 
 /**
+ * clone: this function take return a new Cure
+ */
+AMateria* Ice::clone() const {
+  return new Ice;
+}
+
+/**
+ * use: This function print a message when the spell used to perform an action
+ */
+void Ice::use(ICharacter& target) {
+  std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+} 
+
+/**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-Ice::~Ice() { std::cout << "Ice Destructor called" << std::endl; };
+Ice::~Ice() {};

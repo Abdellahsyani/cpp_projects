@@ -17,8 +17,7 @@
  *  - does not take any parameter
  */
 Cure::Cure() : AMateria() {
-    std::cout << "Cure Default Constructor called" << std::endl;
-    type = "Cure";
+    type = "cure";
 }
 
 /**
@@ -27,7 +26,6 @@ Cure::Cure() : AMateria() {
  *  	- behavior: b,a(b)
  */
 Cure::Cure(const Cure& other) : AMateria(other) {
-	std::cout << "Cure Copy constructor called" << std::endl;
 	this->type = other.type;
 }
 
@@ -36,14 +34,27 @@ Cure::Cure(const Cure& other) : AMateria(other) {
  *  - so it behaves like this: a, b, a = b
  */
 Cure Cure::operator=(const Cure& other) {
-	std::cout << "Cure Copy assignement constructor called" << std::endl;
 	if (this != &other)
 		AMateria::operator=(other);
 	return (*this);
 }
 
 /**
+ * use: This function print a message when the spell used to perform an action
+ */
+void Cure::use(ICharacter& target) {
+  std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+} 
+
+/**
+ * clone: this function return a new Cure
+ */
+AMateria* Cure::clone() const {
+  return new Cure;
+}
+
+/**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */
-Cure::~Cure() { std::cout << "Cure Destructor called" << std::endl; };
+Cure::~Cure() {};

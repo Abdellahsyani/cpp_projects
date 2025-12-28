@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Ice : public AMateria {
 public:
@@ -23,5 +24,6 @@ public:
 	~Ice();
 
 	void ice(const std::string);
+	void use(ICharacter& target);
 	AMateria* clone() const;
 };
