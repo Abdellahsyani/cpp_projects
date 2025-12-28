@@ -27,11 +27,13 @@ int main()
 	j->makeSound();
 	meta->makeSound();
 
-	/*const WrongAnimal* met = new WrongAnimal();*/
-	/*const WrongAnimal* b = new WrongCat();*/
-	/*std::cout << b->getType() << " " << std::endl;*/
-	/*b->makeSound();*/
-	/*met->makeSound();*/
+	const WrongAnimal* met = new WrongAnimal();
+	const WrongAnimal* b = new WrongCat();
+	std::cout << b->getType() << " " << std::endl;
+	b->makeSound();
+	met->makeSound();
+  delete(b);
+  delete(met);
 	
 	delete(meta);
 	delete(j);

@@ -17,15 +17,15 @@
 int main()
 {
   Animal *meta = new Dog();
+  Animal *meta1 = new Cat();
 	Dog dog("how");
 	Cat cat("Meo");
 	Dog dog1(dog);
 	Cat cat1;
 	cat1 = cat;
 
-	/*dog.setType("Hooo");*/
-	/*cat.setType("Meo");*/
-
+  meta->makeSound();
+  meta1->makeSound();
 	std::cout << dog1.getType() << std::endl;
 	std::cout << cat1.getType() << std::endl;
 	return 0;

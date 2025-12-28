@@ -30,11 +30,14 @@ int main()
       animals[i]->setType("Cat");
     }
   }
+  animals[4]->makeSound();
+  animals[60]->makeSound();
 
   for (int i = 0; i < 100; i++)
   {
     delete animals[i];
   }
+  Animal animal("ANIMAL");
   Cat obj("abdellah");
   Cat obj2("alll");
   obj2 = obj;
