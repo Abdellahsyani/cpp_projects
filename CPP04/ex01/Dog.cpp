@@ -72,6 +72,13 @@ void Dog::makeSound() const
 }
 
 /**
+ * getBrain: This function for test the deep copy
+ */
+Brain* Cat::getBrain() const {
+    return this->brain;
+}
+
+/**
  * Destructor: THis one used when the program finish
  * 	and calls to free all thing
  */

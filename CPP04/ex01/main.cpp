@@ -17,32 +17,34 @@
 
 int main()
 {
-	Animal* animals[100];
-  for (int i = 0; i < 100; i++)
+  Animal* animals[10];
+  for (int i = 0; i < 10; i++)
   {
-    if (i < 50)
+    if (i < 5)
       animals[i] = new Dog();
     else
       animals[i] = new Cat();
   }
-  animals[4]->makeSound();
-  animals[60]->makeSound();
-
-  for (int i = 0; i < 100; i++)
+  animals[1]->makeSound();
+  animals[6]->makeSound();
+  for (int i = 0; i < 10; i++)
   {
     delete animals[i];
   }
-  Animal animal("ANIMAL");
-  Cat obj("abdellah");
-  Cat obj2("alll");
-  // Brain brain;
-  // for (int i = 0; i < 100; i++)
-  // {
-  //   brain.ideas[i] = "new Idea";
-  // }
-  obj2 = obj;
 
-  Dog ob("abdellah");
-  Dog ob2(ob);
-	return 0;
+  std::cout << "------------- test deep copy ------------------" << std::endl;
+
+  Cat cat1;
+  cat1.getBrain()->ideas[0] = "I love fish";
+
+  Cat cat2 = cat1;
+  cat2.getBrain()->ideas[0] = "I love birds";
+
+  std::cout << "Cat 1 idea: " << cat1.getBrain()->ideas[0] << std::endl;
+  std::cout << "Cat 2 idea: " << cat2.getBrain()->ideas[0] << std::endl;
+  cat1 = cat2;
+  std::cout << "Cat 1 idea: " << cat1.getBrain()->ideas[0] << std::endl;
+  std::cout << "Cat 2 idea: " << cat2.getBrain()->ideas[0] << std::endl;
+
+  return 0;
 }
