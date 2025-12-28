@@ -13,6 +13,7 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "Brain.hpp"
 
 int main()
 {
@@ -20,15 +21,9 @@ int main()
   for (int i = 0; i < 100; i++)
   {
     if (i < 50)
-    {
       animals[i] = new Dog();
-      animals[i]->setType("Dog");
-    }
     else
-    {
       animals[i] = new Cat();
-      animals[i]->setType("Cat");
-    }
   }
   animals[4]->makeSound();
   animals[60]->makeSound();
@@ -40,6 +35,11 @@ int main()
   Animal animal("ANIMAL");
   Cat obj("abdellah");
   Cat obj2("alll");
+  // Brain brain;
+  // for (int i = 0; i < 100; i++)
+  // {
+  //   brain.ideas[i] = "new Idea";
+  // }
   obj2 = obj;
 
   Dog ob("abdellah");
