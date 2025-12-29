@@ -13,8 +13,17 @@
 #pragma once
 
 #include <iostream>
+
+// forward declaration
 class AMateria;
 
+/**
+ * ICharacter: This is an interface (all functions are pure virtual)
+ *            we implemment this interface as contract if you want to be a Character you need
+ *            to do these roles.
+ *            In this situation the ICharacter create players to use spells that will created by using
+ *            IMateriaSource interface
+ **/
 class ICharacter
 {
 public:

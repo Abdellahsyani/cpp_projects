@@ -19,7 +19,9 @@ class ICharacter;
 
 /**
  * AMateria: This is an abstarct class that implemment all role about the project
- *            setting*/
+ *            it is called abstraction in (independny inversion) it is depend on ICharacter interface
+ *            and ICharacter interface depend on it to serve the ( Open close pattern ) in OOP
+ **/
 class AMateria
 {
 protected:
