@@ -93,8 +93,9 @@ void Character::equip(AMateria* m) {
 }
 
 /**
- * unequip: This function loop through the _inventory array and check if the idx
- *          is not equal NULL delete it 
+ * unequip: This function loop through the _inventory array
+ *          and start setting it to NULL without deleting the address
+ *        (This will case a memory leak but we should free it in main.cpp)
  */
 void Character::unequip(int idx) {
     if (idx < 0 || idx >= 4) {

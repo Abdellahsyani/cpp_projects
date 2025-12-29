@@ -13,8 +13,13 @@
 #pragma once
 
 #include <iostream>
+
+// forward declaration
 class ICharacter;
 
+/**
+ * AMateria: This is an abstarct class that implemment all role about the project
+ *            setting */
 class AMateria
 {
 protected:

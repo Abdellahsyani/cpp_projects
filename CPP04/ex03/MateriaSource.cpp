@@ -58,9 +58,7 @@ MateriaSource MateriaSource::operator=(const MateriaSource& other) {
 
 /**
  * learnMateria; This function check if there some empty slot in _blueprint array
- *  fill it with m pointer
- *  if all slots are full dont do anything
- *  I set continue to avoid an unexpected bugs
+ *              fill it or (teach MateriaSource the spell) and save on it's brain
  */
 void MateriaSource::learnMateria(AMateria* m) {
   for (int i = 0; i < 4; i++)
@@ -74,19 +72,23 @@ void MateriaSource::learnMateria(AMateria* m) {
 }
 
 /**
- * createMateria: This function check the type if it is cure or ice allocate and return it
+ * createMateria: This function loop through _blueprint array and check for
+ *              type on it if that array type == type clone() it and return,
+ *              by using This method we insure that we don't care about the type of Materia
+ *              we just using it mean's (create new spell's)
  *        if not return 0
  */
 AMateria* MateriaSource::createMateria(std::string const &type) {
-  if (type == "ice")
-    return new Ice; 
-  if (type == "cure")
-    return new Cure; 
+  for (int i = 0; i < 4; i++)
+  {
+    if (this->_blueprint[i] && this->_blueprint[i]->getType() == type)
+      return this->_blueprint[i]->clone();
+  }
   return 0;
 }
 
 /**
- * Destructor: THis one used when the program finish
+ * Destructor: This one used when the program finish
  * 	and calls to free all thing
  */
 MateriaSource::~MateriaSource() {
