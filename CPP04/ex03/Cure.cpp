@@ -16,9 +16,7 @@
  * Default Constructor: This called when an object created
  *  - does not take any parameter
  */
-Cure::Cure() : AMateria() {
-    type = "cure";
-}
+Cure::Cure() : AMateria("cure") {}
 
 /**
  * Copy Constructor: This one copy all members from an object to another one that created in the same time

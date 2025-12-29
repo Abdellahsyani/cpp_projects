@@ -22,6 +22,11 @@ AMateria::AMateria() {
 }
 
 /**
+ * Parametrize Constructor: This one take a parameter name to init the object
+ */
+AMateria::AMateria(std::string const& type) : type(type) {}; 
+
+/**
  * Copy Constructor: This one copy all members from an object to another one that created in the same time
  *  - Happens only when the object is being created
  *  	- behavior: b,a(b)
@@ -42,7 +47,8 @@ AMateria& AMateria::operator=(const AMateria& other) {
 
 /**
  * use: we just init this here to avoid linker error
- *      but can't do anything here
+ *      and also create vtable for it and for cleaning code
+ *      but can't do anything here just default behavior
  */
 void AMateria::use(ICharacter& target)
 {

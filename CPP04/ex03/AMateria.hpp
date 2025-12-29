@@ -19,7 +19,7 @@ class ICharacter;
 
 /**
  * AMateria: This is an abstarct class that implemment all role about the project
- *            setting */
+ *            setting*/
 class AMateria
 {
 protected:

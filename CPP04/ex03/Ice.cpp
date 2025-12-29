@@ -16,9 +16,7 @@
  * Default Constructor: This called when an object created
  *  - does not take any parameter
  */
-Ice::Ice() : AMateria() {
-    type = "Ice";
-}
+Ice::Ice() : AMateria("ice") {}
 
 /**
  * Copy Constructor: This one copy all members from an object to another one that created in the same time
