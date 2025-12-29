@@ -17,6 +17,7 @@
 
 int main()
 {
+  Animal animal;
   Animal* animals[10];
   for (int i = 0; i < 10; i++)
   {
@@ -36,12 +37,12 @@ int main()
 
   Cat cat1;
   cat1.getBrain()->ideas[0] = "I love fish";
-
   Cat cat2 = cat1;
   cat2.getBrain()->ideas[0] = "I love birds";
 
   std::cout << "Cat 1 idea: " << cat1.getBrain()->ideas[0] << std::endl;
   std::cout << "Cat 2 idea: " << cat2.getBrain()->ideas[0] << std::endl;
+  std::cout << "Cat 3 idea: " << cat2.getBrain()->ideas[1] << std::endl;
   cat1 = cat2;
   std::cout << "Cat 1 idea: " << cat1.getBrain()->ideas[0] << std::endl;
   std::cout << "Cat 2 idea: " << cat2.getBrain()->ideas[0] << std::endl;

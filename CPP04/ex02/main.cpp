@@ -18,6 +18,8 @@ int main()
 {
   Animal *meta = new Dog();
   Animal *meta1 = new Cat();
+  // Animal animal;
+
 	Dog dog("how");
 	Cat cat("Meo");
 	Dog dog1(dog);
@@ -26,7 +28,12 @@ int main()
 
   meta->makeSound();
   meta1->makeSound();
+  dog.makeSound();
 	std::cout << dog1.getType() << std::endl;
 	std::cout << cat1.getType() << std::endl;
+
+  delete(meta);
+  delete(meta1);
+
 	return 0;
 }

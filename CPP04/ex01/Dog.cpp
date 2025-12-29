@@ -74,7 +74,7 @@ void Dog::makeSound() const
 /**
  * getBrain: This function for test the deep copy
  */
-Brain* Cat::getBrain() const {
+Brain* Dog::getBrain() const {
     return this->brain;
 }
 

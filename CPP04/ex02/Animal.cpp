@@ -60,6 +60,9 @@ std::string Animal::getType() const {
 	return this->type;
 }
 
+/**
+ * setType: this is a setter of the Animal
+ */
 void Animal::setType(std::string type) {
   this->type = type;
 }
