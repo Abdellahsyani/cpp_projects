@@ -33,7 +33,7 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
  * - SAFETY: Includes a self-assignment guard (this != &other).
  * - CLONING: Performs a deep copy of all valid blueprints from 'other'.
  */
-MateriaSource MateriaSource::operator=(const MateriaSource& other) {
+MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
   if (this != &other)
   {
     for (int i = 0; i < 4; i++)

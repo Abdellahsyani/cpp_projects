@@ -49,7 +49,7 @@ Ice::Ice(const Ice& other) : AMateria(other) {
  *    * RETURN:
  *        return a reference to (*this) to support assignment chaining (a = b = c).
  **/
-Ice Ice::operator=(const Ice& other) {
+Ice& Ice::operator=(const Ice& other) {
 	if (this != &other)
 		AMateria::operator=(other);
 	return (*this);
