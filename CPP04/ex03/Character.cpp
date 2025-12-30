@@ -6,7 +6,7 @@
  * Default Constructor: This called when an object created
  *  - does not take any parameter
  */
-Character::Character() : name("Character") {
+Character::Character() : _name("Character") {
   for (int i = 0; i < 4; i++)
     _inventory[i] = NULL;
 }
@@ -14,7 +14,7 @@ Character::Character() : name("Character") {
 /**
  * Parametrize Constructor: This one take a parameter name to init the object
  */
-Character::Character(std::string name) : name(name) {
+Character::Character(std::string name) : _name(name) {
   for (int i = 0; i < 4; i++)
     _inventory[i] = NULL;
 }
@@ -34,7 +34,7 @@ Character::Character(const Character& other) {
     else
       this->_inventory[i] = other._inventory[i]->clone();
   }
-  this->name = other.name;
+  this->_name = other._name;
 }
 
 /**
@@ -43,7 +43,7 @@ Character::Character(const Character& other) {
  *  - This copy assignment implement the deep copy to avoid shallow copy
  *    because shallow copy let leaks
  */
-Character Character::operator=(const Character& other) {
+Character& Character::operator=(const Character& other) {
   if (this != &other)
   {
     for (int i = 0; i < 4; i++)
@@ -63,7 +63,7 @@ Character Character::operator=(const Character& other) {
         this->_inventory[i] = other._inventory[i]->clone();
       }
     }
-    this->name = other.name;
+    this->_name = other._name;
   }
   return (*this);
 }
@@ -72,7 +72,7 @@ Character Character::operator=(const Character& other) {
  * getName: This is a getter of the Character name
  */
 std::string const& Character::getName() const {
-  return this->name;
+  return this->_name;
 }
 
 /**

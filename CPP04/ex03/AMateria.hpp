@@ -18,9 +18,15 @@
 class ICharacter;
 
 /**
- * AMateria: This is an abstarct class that implemment all role about the project
- *            it is called abstraction in (independny inversion) it is depend on ICharacter interface
- *            and ICharacter interface depend on it to serve the ( Open close pattern ) in OOP
+ * AMateria: An abstract base class representing a "Strategy" for spells.
+ *    * ARCHITECTURE ROLE:
+ *        This class serves as the Abstraction layer in the Dependency Inversion Principle (DIP).
+ *        It creates a decoupled relationship between the Character (High-level) and 
+ *        specific Materia types like Ice/Cure (Low-level).
+ *    * DESIGN PATTERN:
+ *        By using this interface, the system satisfies the Open/Closed Principle (OCP), 
+ *        allowing new Materia types to be added without modifying existing Character 
+ *        or Source logic.
  **/
 class AMateria
 {
