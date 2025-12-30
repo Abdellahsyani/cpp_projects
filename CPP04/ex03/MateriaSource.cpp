@@ -1,8 +1,10 @@
 #include "MateriaSource.hpp"
 
 /**
- * Default Constructor: This called when an object created
- *  - does not take any parameter
+ * Default Constructor: Initializes the Materia "Vault".
+ * - ROLE: Clears the _blueprint array to NULL.
+ * - Why: Ensures the Source starts empty and prevents undefined behavior 
+ * when checking slots for the first time.
  */
 MateriaSource::MateriaSource() {
   for (int i = 0; i < 4; i++)
@@ -10,11 +12,10 @@ MateriaSource::MateriaSource() {
 }
 
 /**
- * Copy Constructor: This one copy all members from an object to another one that created in the same time
- *  - Happens only when the object is being created
- *  	- behavior: b,a(b)
- *  	- The copy constructor apply the deep copy to avoid shallow copy
- *  	  if we don't use deep copy we will occure memory leak.
+ * Copy Constructor: Duplicates the entire Source library.
+ * - DEEP COPY: Uses AMateria::clone() to create new instances of stored 
+ * blueprints. This ensures the new Source has its own unique memory 
+ * independent of the original.
  */
 MateriaSource::MateriaSource(const MateriaSource& other) {
   for (int i = 0; i < 4; i++)
@@ -27,10 +28,10 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
 }
 
 /**
- * Copy assignment Constructor: This type of constructor create an object from an existing one
- *  - so it behaves like this: a, b, a = b
- *  - This copy assignment implement the deep copy to avoid shallow copy
- *    because shallow copy let leaks
+ * Copy Assignment Operator: Replaces current library with another.
+ * - CLEANUP: Must delete existing blueprints first to prevent memory leaks.
+ * - SAFETY: Includes a self-assignment guard (this != &other).
+ * - CLONING: Performs a deep copy of all valid blueprints from 'other'.
  */
 MateriaSource MateriaSource::operator=(const MateriaSource& other) {
   if (this != &other)
@@ -57,8 +58,10 @@ MateriaSource MateriaSource::operator=(const MateriaSource& other) {
 }
 
 /**
- * learnMateria; This function check if there some empty slot in _blueprint array
- *              fill it or (teach MateriaSource the spell) and save on it's brain
+ * learnMateria: Stores a "Master Copy" (Blueprint) of a spell.
+ * - OWNERSHIP: The MateriaSource takes full ownership of the pointer 'm'.
+ * - BRAIN: Stores up to 4 blueprints. Once a slot is filled, it acts as 
+ * the template for all future creations.
  */
 void MateriaSource::learnMateria(AMateria* m) {
   for (int i = 0; i < 4; i++)
@@ -72,11 +75,11 @@ void MateriaSource::learnMateria(AMateria* m) {
 }
 
 /**
- * createMateria: This function loop through _blueprint array and check for
- *              type on it if that array type == type clone() it and return,
- *              by using This method we insure that we don't care about the type of Materia
- *              we just using it mean's (create new spell's)
- *        if not return 0
+ * createMateria: Manufactures a new spell instance from a stored blueprint.
+ * - POLYMORPHISM: Searches the 'brain' for a matching type.
+ * - PROTOTYPE PATTERN: Calls clone() on the blueprint to return a fresh 
+ * heap-allocated copy. The original blueprint remains in the Source.
+ * - RETURN: Returns the new Materia pointer, or 0 if the type is unknown.
  */
 AMateria* MateriaSource::createMateria(std::string const &type) {
   for (int i = 0; i < 4; i++)
@@ -88,8 +91,9 @@ AMateria* MateriaSource::createMateria(std::string const &type) {
 }
 
 /**
- * Destructor: This one used when the program finish
- * 	and calls to free all thing
+ * Destructor: Cleans up the Source's internal library.
+ * - RESPONSIBILITY: Deletes all 4 "Master Copy" Materias to ensure 
+ * a clean exit with zero memory leaks in Valgrind.
  */
 MateriaSource::~MateriaSource() {
   for (int i = 0; i < 4; i++)

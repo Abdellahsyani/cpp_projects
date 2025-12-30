@@ -18,11 +18,15 @@
 class AMateria;
 
 /**
- * ICharacter: This is an interface (all functions are pure virtual)
- *            we implemment this interface as contract if you want to be a Character you need
- *            to do these roles.
- *            In this situation the ICharacter create players to use spells that will created by using
- *            IMateriaSource interface
+ * ICharacter: A pure interface defining the "Character" contract.
+ *    ** ARCHITECTURE:
+ *        Every method is pure virtual (= 0), making this a strict Interface.
+ *        It defines the API for any entity that needs to manage an inventory 
+ *        and interact with Materia spells.
+ *    ** INTERACTION:
+ *        Provides the polymorphic hooks for the Character class. It allows 
+ *        Materia (AMateria) to target players without knowing their concrete 
+ *        type, facilitating loose coupling.
  **/
 class ICharacter
 {

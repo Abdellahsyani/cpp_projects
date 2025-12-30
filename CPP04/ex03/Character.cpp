@@ -3,8 +3,9 @@
 
 
 /**
- * Default Constructor: This called when an object created
- *  - does not take any parameter
+ * Default Constructor: Initializes a Character with a default name.
+ * - Ensures all inventory slots are initialized to NULL to prevent 
+ * accessing indeterminate memory.
  */
 Character::Character() : _name("Character") {
   for (int i = 0; i < 4; i++)
@@ -12,7 +13,8 @@ Character::Character() : _name("Character") {
 }
 
 /**
- * Parametrize Constructor: This one take a parameter name to init the object
+ * Parameterized Constructor: Initializes a Character with a specific name.
+ * - Sets the internal _name and clears the inventory slots.
  */
 Character::Character(std::string name) : _name(name) {
   for (int i = 0; i < 4; i++)
@@ -20,11 +22,11 @@ Character::Character(std::string name) : _name(name) {
 }
 
 /**
- * Copy Constructor: This one copy all members from an object to another one that created in the same time
- *  - Happens only when the object is being created
- *  	- behavior: b,a(b)
- *  	- The copy constructor apply the deep copy to avoid shallow copy
- *  	  if we don't use deep copy we will occure memory leak.
+ * Copy Constructor: Performs a Deep Copy of an existing Character.
+ *  - ROLE: Creates a new object by duplicating the name and cloning 
+ *          each Materia in the inventory.
+ *  - MEMORY: Uses AMateria::clone() to ensure the new Character owns 
+ *          distinct memory from the original, preventing double-free errors.
  */
 Character::Character(const Character& other) {
   for (int i = 0; i < 4; i++)
@@ -38,10 +40,10 @@ Character::Character(const Character& other) {
 }
 
 /**
- * Copy assignment Constructor: This type of constructor create an object from an existing one
- *  - so it behaves like this: a, b, a = b
- *  - This copy assignment implement the deep copy to avoid shallow copy
- *    because shallow copy let leaks
+ * Copy Assignment Operator: Replaces current state with a Deep Copy of another.
+ * - SELF-ASSIGNMENT: Guarded by (this != &other).
+ * - CLEANUP: Deletes existing Materia before copying to prevent memory leaks.
+ * - CLONING: Uses the Prototype pattern (clone()) to duplicate Materia.
  */
 Character& Character::operator=(const Character& other) {
   if (this != &other)
@@ -69,17 +71,16 @@ Character& Character::operator=(const Character& other) {
 }
 
 /**
- * getName: This is a getter of the Character name
+ * getName: Returns the Character's name by constant reference.
  */
 std::string const& Character::getName() const {
   return this->_name;
 }
 
 /**
- * equip; This function check if there some empty slot in _inventory array
- *  fill it with m pointer
- *  if all slots are full dont do anything
- *  I set continue to avoid an unexpected bugs
+ * equip: Adds a Materia to the first available slot.
+ * - OWNERSHIP: Once equipped, the Character takes ownership of the pointer.
+ * - CONSTRAINTS: Fills slots 0 to 3. If full, the Materia is ignored.
  */
 void Character::equip(AMateria* m) {
   for (int i = 0; i < 4; i++)
@@ -93,9 +94,10 @@ void Character::equip(AMateria* m) {
 }
 
 /**
- * unequip: This function loop through the _inventory array
- *          and start setting it to NULL without deleting the address
- *        (This will case a memory leak but we should free it in main.cpp)
+ * unequip: Removes a Materia from the inventory without deleting it.
+ * - IMPORTANT: The address is set to NULL so the Character no longer "owns" it.
+ * - LEAK PREVENTION: The pointer must be saved externally before calling this 
+ * to avoid a memory leak.
  */
 void Character::unequip(int idx) {
     if (idx < 0 || idx >= 4) {
@@ -105,8 +107,9 @@ void Character::unequip(int idx) {
 }
 
 /**
- * use: This method take an index and target
- *      if the index is in _inventory array send the target to AMateria use() method
+ * use: Triggers the Materia's effect on a target.
+ * - POLYMORPHISM: Calls the virtual AMateria::use method.
+ * - SAFETY: Checks if index is valid and slot is not empty.
  */
 void Character::use(int idx, ICharacter& target)
 {
@@ -117,8 +120,8 @@ void Character::use(int idx, ICharacter& target)
 }
 
 /**
- * Destructor: THis one used when the program finish
- * 	and calls to free all thing
+ * Destructor: Cleans up all resources owned by the Character.
+ * - Ensures all heap-allocated Materia in the inventory are deleted.
  */
 Character::~Character() {
   for (int i = 0; i < 4; i++)

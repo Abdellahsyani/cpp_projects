@@ -14,30 +14,31 @@
 
 
 /**
- * Default Constructor: This called when an object created
- *  - does not take any parameter
+ * Default Constructor: Initializes a generic Materia.
+ * - Sets a placeholder type. Note: This is rarely used directly as 
+ * derived classes (Ice/Cure) call the parameterized constructor.
  */
 AMateria::AMateria() {
     type = "AMateria";
 }
 
 /**
- * Parametrize Constructor: This one take a parameter name to init the object
+ * Parameterized Constructor: The primary way to initialize Materia.
+ * - Used by derived classes (Ice/Cure) to set their specific types.
  */
 AMateria::AMateria(std::string const& type) : type(type) {}; 
 
 /**
- * Copy Constructor: This one copy all members from an object to another one that created in the same time
- *  - Happens only when the object is being created
- *  	- behavior: b,a(b)
+ * Copy Constructor: Duplicates the properties of another Materia.
+ * - Ensures that the 'type' attribute is correctly carried over to the new instance.
  */
 AMateria::AMateria(const AMateria& other) {
 	this->type = other.type;
 }
 
 /**
- * Copy assignment Constructor: This type of constructor create an object from an existing one
- *  - so it behaves like this: a, b, a = b
+ * Copy Assignment Operator: Synchronizes the state of two existing Materias.
+ * - Uses a self-assignment guard to protect the object's integrity.
  */
 AMateria& AMateria::operator=(const AMateria& other) {
 	if (this != &other)
@@ -46,9 +47,11 @@ AMateria& AMateria::operator=(const AMateria& other) {
 }
 
 /**
- * use: we just init this here to avoid linker error
- *      and also create vtable for it and for cleaning code
- *      but can't do anything here just default behavior
+ * use: Provides a default behavior for Materia interaction.
+ * - NOTE: This is a virtual method. While the base implementation does 
+ * nothing (voiding the target to prevent unused parameter warnings), 
+ * it is intended to be overridden by derived classes to provide 
+ * specific spell effects (Polymorphism).
  */
 void AMateria::use(ICharacter& target)
 {
@@ -65,7 +68,9 @@ std::string const& AMateria::getType() const
 
 
 /**
- * Destructor: THis one used when the program finish
- * 	and calls to free all thing
+ * Destructor: Cleans up the AMateria base components.
+ * - CRITICAL: Must be marked 'virtual' in the header to ensure that 
+ * when an AMateria* is deleted, the derived class destructor (Ice/Cure) 
+ * is called first, preventing memory leaks.
  */
 AMateria::~AMateria() {};

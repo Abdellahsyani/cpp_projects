@@ -6,8 +6,13 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 
+// Forward declaration
 class AMateria;
 
+
+/**
+ * MateriaSource: A concret class that Implementing IMateriaSource interface
+ * **/
 class MateriaSource : public IMateriaSource {
   private:
     AMateria* _blueprint[4];
