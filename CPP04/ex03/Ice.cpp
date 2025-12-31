@@ -67,7 +67,7 @@ Ice& Ice::operator=(const Ice& other) {
  *        modifying the Source's creation logic.
  **/
 AMateria* Ice::clone() const {
-  return new Ice;
+  return new Ice();
 }
 
 /**
