@@ -1,10 +1,10 @@
-NAME = 
+NAME = Bureaucrat
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = 
-SRC = 
+HDR = Bureaucrat.hpp
+SRC = main.cpp Bureaucrat.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

@@ -2,18 +2,20 @@
 
 
 #include <exception>
+#include <ios>
 #include <iostream>
+#include <istream>
 
 
 class Bureaucrat {
   private:
-    std::string const name;
-    int grade;
+    std::string const _name;
+    int _grade;
   public:
     Bureaucrat();
     Bureaucrat(std::string const name, int grade);
     Bureaucrat(const Bureaucrat& other);
-    Bureaucrat operator=(const Bureaucrat& other);
+    Bureaucrat& operator=(const Bureaucrat& other);
     ~Bureaucrat();
 
     // nested class to throw error
@@ -32,6 +34,8 @@ class Bureaucrat {
 
     std::string const getNmae();
     int getGrade();
-    void increment(int grade);
-    void decrement(int grade);
+    void increment();
+    void decrement();
 };
+
+std::iostream& operator<<(std::iostream& os, Bureaucrat& obj);
