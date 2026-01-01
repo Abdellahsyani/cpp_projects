@@ -15,6 +15,5 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : name(name), grade(gr
 /***/
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
 {
-  this->name = other.name;
   this->grade = other.grade; 
 }
