@@ -2,11 +2,21 @@
 
 
 #include <exception>
-#include <ios>
 #include <iostream>
-#include <istream>
 
 
+/**
+ * Bureaucrat: The class to apply exceptions
+ *  - ROLE:
+ *      Implement two nested calsses that inherit from exception class 
+ *      to make sure that we catch the error in the right way by overriding what() member function in exception class
+ *  - INSTRUCTION:
+ *      A Bureaucrat is a class that grade all Bureaucrat's by increment or decrement the Bureaucrat
+ *      between rank 1 to 150.
+ *      if there is some rank above 150 or under 1 we will catch the error and throw it.
+ *      - consider that the high rank is 1 and low rank is 150
+ *        so if we want to increment we should sutract from grade
+ * */
 class Bureaucrat {
   private:
     std::string const _name;
