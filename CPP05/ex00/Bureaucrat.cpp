@@ -16,15 +16,10 @@ Bureaucrat::Bureaucrat() : _name("Bureau"), _grade(0) {};
  *          and throw an error.
  **/
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name), _grade(grade) {
-  try {
     if (grade > 150)
-      throw "Grade is to low";
+      throw Bureaucrat::GradeLowException();
     if (grade < 1)
-      throw "Grade is to high";
-  }
-  catch (const char* str) {
-    std::cout << "Error: " << str;
-  }
+      throw Bureaucrat::GradeHighException(); 
 };
 
 /**
@@ -49,7 +44,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 /**
  * getGrade: a getter function to get the grade attribute
  */
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
   return _grade;
 }
@@ -57,7 +52,7 @@ int Bureaucrat::getGrade()
 /**
  * getNmae: A getter memeber function to get the name 
  */
-std::string const Bureaucrat::getNmae()
+std::string const Bureaucrat::getNmae() const 
 {
   return _name;
 }
@@ -68,14 +63,8 @@ std::string const Bureaucrat::getNmae()
 void Bureaucrat::increment()
 {
   this->_grade--;
-  try {
-    if (this->_grade < 1)
-      throw "The grade cannot be high than 1";
-  }
-  catch (const char* str)
-  {
-    std::cout << "Error: " << str;
-  }
+  if (this->_grade < 1)
+    throw Bureaucrat::GradeHighException(); 
 }
 
 /**
@@ -84,21 +73,17 @@ void Bureaucrat::increment()
 void Bureaucrat::decrement()
 {
   this->_grade++;
-  try {
-    if (this->_grade > 150)
-      throw "This grade cannot be low than 150";
-  }
-  catch (const char* str)
-  {
-    std::cout << "Error: " << str;
-  }
+  if (this->_grade > 150)
+    throw Bureaucrat::GradeLowException(); 
 }
 
-/***/
-std::iostream& operator<<(std::iostream& os, Bureaucrat& obj)
+/**
+ * operator<<: Overloads the ostream operator to print Bureaucrat objects.
+ * We use std::ostream because we are only OUTPUTTING data.
+ */
+std::ostream& operator<<(std::ostream& os, Bureaucrat& obj)
 {
-  os << obj.getNmae();
-  os << obj.getGrade();
+  os << obj.getNmae() << ", bureaucrat grade " << obj.getGrade() << ".";
   return os;
 }
 

@@ -20,22 +20,24 @@ class Bureaucrat {
 
     // nested class to throw error
     class GradeHighException : public std::exception {
-      virtual const char* what() const throw() {
-        return "Grade is to high";
+      public:
+        virtual const char* what() const throw() {
+          return "Grade is to high";
       } 
     };
 
     // nested class to throw error
     class GradeLowException : public std::exception {
-      virtual const char* what() {
-        return "Grade is to low";
+      public:
+        virtual const char* what() const throw() {
+          return "Grade is to low";
       }
     };
 
-    std::string const getNmae();
-    int getGrade();
+    std::string const getNmae() const;
+    int getGrade() const;
     void increment();
     void decrement();
 };
 
-std::iostream& operator<<(std::iostream& os, Bureaucrat& obj);
+std::ostream& operator<<(std::ostream& os, Bureaucrat& obj);
