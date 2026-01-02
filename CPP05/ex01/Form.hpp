@@ -1,7 +1,9 @@
 #pragma once
 
 #include <string>
+#include "Bureaucrat.hpp"
 
+/***/
 class Form {
   private:
     std::string const _name;
@@ -11,6 +13,20 @@ class Form {
   public:
     Form();
     Form(const Form& other);
-    Form& operator=(const Form& other);
+    Form& perator=(const Form& other);
     ~Form();
+
+  // Getters
+  void getName();
+  void getFlag();
+  void getSignGrade();
+  void getExecGrade();
+
+  void beSigned(Bureaucrat& sign);
+
+  class GradeTooHighException {};
+  class GradeTooLowException {};
+
 };
+
+std::ostream& operator<<(std::ostream& os, Form& obj);

@@ -1,6 +1,4 @@
 #include "Bureaucrat.hpp"
-#include <ios>
-#include <istream>
 
 /**
  * Bureaucrat: This is constructor responsible about setting the attributes
