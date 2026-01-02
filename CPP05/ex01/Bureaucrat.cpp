@@ -1,6 +1,4 @@
 #include "Bureaucrat.hpp"
-#include <ios>
-#include <istream>
 
 /**
  * Bureaucrat: This is constructor responsible about setting the attributes
@@ -75,6 +73,25 @@ void Bureaucrat::decrement()
   this->_grade++;
   if (this->_grade > 150)
     throw Bureaucrat::GradeLowException(); 
+}
+
+/**
+ * signForm: This is method that sign the contract and catch the error if ocurred
+ *  - ROLE:
+ *      . Check if the Form signed write a message who sign this form and what is this form
+ *      . if the form is not signed write a message that show the name of bureaucrat and form and what is the reason
+ *        (catch the error)
+ **/
+void Bureaucrat::signForm(const Form& form)
+{
+  try {
+    form.beSigned(*this);
+    std::cout << this->getNmae() << " signed " << form.getNmae() << std::endl;
+  }
+  catch (std::exception& error)
+  {
+    std::cout << this->getNmae() << " couldn't sign " << form.getNmae() << " because " << error.what() << std::endl;
+  }
 }
 
 /**

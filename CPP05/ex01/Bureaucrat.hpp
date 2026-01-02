@@ -4,6 +4,7 @@
 #include <exception>
 #include <iostream>
 
+class Form;
 
 /**
  * Bureaucrat: The class to apply exceptions
@@ -48,6 +49,7 @@ class Bureaucrat {
     int getGrade() const;
     void increment();
     void decrement();
+    void signForm(const Form& form);
 };
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat& obj);

@@ -1,91 +1,105 @@
 #include "Form.hpp" 
 
 /**
- * Bureaucrat: This is constructor responsible about setting the attributes
+ * Form: This is constructor responsible about setting the attributes
  *      for any object that created from this class.
  **/
-Bureaucrat::Bureaucrat() : _name("Bureau"), _grade(0) {};
+Form::Form() : _name("Form"), _isSigned(false), _signGrade(0), _execGrade(0) {};
 
 /**
- * Bureaucrat: This is a parametrize constructor to init the attributes
+ * Form: This is a parametrize constructor to init the attributes
  *        without need for setters
  *    - ROLE:
- *          we use exception here to check if Bureaucrat enter's some high or low Grade
+ *          we use exception here to check if Form enter's some high or low Grade
  *          and throw an error.
  **/
-Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name), _grade(grade) {
-    if (grade > 150)
-      throw Bureaucrat::GradeLowException();
-    if (grade < 1)
-      throw Bureaucrat::GradeHighException(); 
+Form::Form(std::string const name, const int signGrade, const int execGrade) :
+  _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
+{
+    if (_signGrade < 1 || _execGrade < 1)
+      throw Form::GradeTooHighException();
+    if (_signGrade > 150 || _execGrade > 150)
+      throw Form::GradeTooLowException(); 
 };
 
 /**
- * Bureaucrat: a copy constructor to create an instance from another
+ * Form: a copy constructor to create an instance from another
  **/
-Bureaucrat::Bureaucrat(const Bureaucrat& other)
+Form::Form(const Form& other)
 {
-  this->_grade = other._grade; 
+  this->_isSigned = other._isSigned; 
 }
 
 /**
- * Bureaucrat: A copy assignement operator
+ * Form: A copy assignement operator
  *   - USAGE:
  *        This override an existing instance with another one
  **/
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+Form& Form::operator=(const Form& other) {
   if (this != &other)
-    this->_grade = other._grade;
+    this->_isSigned = other._isSigned;
   return (*this);
 }
 
 /**
- * getGrade: a getter function to get the grade attribute
- */
-int Bureaucrat::getGrade() const
+ * getFlag: A setter function for bool _isSigned
+ **/
+bool Form::getFlag()
 {
-  return _grade;
+  return this->_isSigned;
+}
+
+/**
+ * getSignGrade: A getter method for _signGrade
+ **/
+const int Form::getSignGrade()
+{
+  return this->_signGrade;
+}
+
+/**
+ * getExecGrade: A getter method for _execGrade
+ **/
+void getExecGrade()
+{
+  return this->_execGrade;
 }
 
 /**
  * getNmae: A getter memeber function to get the name 
  */
-std::string const Bureaucrat::getNmae() const 
+std::string const Form::getNmae() const 
 {
-  return _name;
+  return this->_name;
+}
+
+/***/
+void Form::beSigned(const Bureaucrat& sign)
+{
+  if (sign.getGrade() > this->getSignGrade())
+    throw Form::GradeTooLowException();
+  if (this->_isSigned == true)
+  {
+    std::cout << "Form is already signed!" << std::endl;
+    return;
+  }
+  this->_isSigned = true;
 }
 
 /**
- * increment: This is a memeber function to increment the grade
- **/
-void Bureaucrat::increment()
-{
-  this->_grade--;
-  if (this->_grade < 1)
-    throw Bureaucrat::GradeHighException(); 
-}
-
-/**
- * decrement: This is a memeber function to decrement the grade
- **/
-void Bureaucrat::decrement()
-{
-  this->_grade++;
-  if (this->_grade > 150)
-    throw Bureaucrat::GradeLowException(); 
-}
-
-/**
- * operator<<: Overloads the ostream operator to print Bureaucrat objects.
+ * operator<<: Overloads the ostream operator to print Form objects.
  * We use std::ostream because we are only OUTPUTTING data.
  */
-std::ostream& operator<<(std::ostream& os, Bureaucrat& obj)
+std::ostream& operator<<(std::ostream& os, const Form& obj)
 {
-  os << obj.getNmae() << ", bureaucrat grade " << obj.getGrade() << ".";
-  return os;
+    os << "Form: " << obj.getName() 
+       << " | Signed: " << (obj.getFlag() ? "Yes" : "No")
+       << " | Grade to Sign: " << obj.getSignGrade()
+       << " | Grade to Execute: " << obj.getExecGrade();
+    return os;
 }
 
 /**
- * ~Bureaucrat:: The destructor responsible for cleaning the memory
+ * ~Form:: The destructor responsible for cleaning the memory
  **/
-Bureaucrat::~Bureaucrat() {};
+Form::~Form() {};
