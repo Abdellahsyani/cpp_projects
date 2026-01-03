@@ -13,7 +13,7 @@ class Bureaucrat;
  *        if no Bureaucrat throw an exception 
  **/
 class Form {
-  private:
+  protected:
     std::string const _name;
     bool _isSigned;
     const int _signGrade;
@@ -23,13 +23,14 @@ class Form {
     Form(const Form& other);
     Form(std::string const name, const int isSigned, const int execGrade);
     Form& operator=(const Form& other);
-    ~Form();
+    virtual ~Form();
 
   // Getters
   std::string const getName() const;
   bool getFlag();
   int getSignGrade();
   int getExecGrade();
+  virtual void execute(Bureaucrat const & executor) const = 0;
 
   void beSigned(const Bureaucrat& sign);
 
