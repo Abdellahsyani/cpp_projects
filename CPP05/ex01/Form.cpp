@@ -1,4 +1,5 @@
 #include "Form.hpp" 
+#include "Bureaucrat.hpp"
 
 /**
  * Form: This is constructor responsible about setting the attributes
@@ -25,7 +26,11 @@ Form::Form(std::string const name, const int signGrade, const int execGrade) :
 /**
  * Form: a copy constructor to create an instance from another
  **/
-Form::Form(const Form& other)
+Form::Form(const Form& other) :
+  _name(other._name),
+  _isSigned(other._isSigned),
+  _signGrade(other._signGrade),
+  _execGrade(other._execGrade)
 {
   this->_isSigned = other._isSigned; 
 }
@@ -46,34 +51,39 @@ Form& Form::operator=(const Form& other) {
  **/
 bool Form::getFlag()
 {
-  return this->_isSigned;
+  return _isSigned;
 }
 
 /**
  * getSignGrade: A getter method for _signGrade
  **/
-const int Form::getSignGrade()
+int Form::getSignGrade()
 {
-  return this->_signGrade;
+  return _signGrade;
 }
 
 /**
  * getExecGrade: A getter method for _execGrade
- **/
-void getExecGrade()
+ **/ 
+int Form::getExecGrade()
 {
-  return this->_execGrade;
+  return _execGrade;
 }
 
 /**
  * getNmae: A getter memeber function to get the name 
  */
-std::string const Form::getNmae() const 
+std::string const Form::getName() const 
 {
-  return this->_name;
+  return _name;
 }
 
-/***/
+/**
+ * beSigned: This beSigned  function check if the Grade in Form
+ *          is accepted from the Bureaucrat
+ *          - if yes _isSigned = true
+ *          - if no throw an exception
+ **/
 void Form::beSigned(const Bureaucrat& sign)
 {
   if (sign.getGrade() > this->getSignGrade())
@@ -90,7 +100,7 @@ void Form::beSigned(const Bureaucrat& sign)
  * operator<<: Overloads the ostream operator to print Form objects.
  * We use std::ostream because we are only OUTPUTTING data.
  */
-std::ostream& operator<<(std::ostream& os, const Form& obj)
+std::ostream& operator<<(std::ostream& os, Form& obj)
 {
     os << "Form: " << obj.getName() 
        << " | Signed: " << (obj.getFlag() ? "Yes" : "No")

@@ -1,30 +1,34 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <exception>
 
 int main()
 {
   try {
-    Bureaucrat bero("abdo", 149);
-    std::cout << bero << std::endl;
-    bero.decrement();
-    bero.decrement();
-    std::cout << bero << std::endl;
+    Bureaucrat b("abdo", 1);
+    Form f("Back-end developer", 3, 4);
+
+    b.signForm(f);
+    f.beSigned(b);
+    std::cout << f << std::endl;
   }
-  catch (std::exception& error)
+  catch (std::exception &e)
   {
-    std::cout << error.what() << std::endl;
+    std::cout << "Error: " << e.what() << std::endl;
   }
+
+  std::cout << "-----------------------------------------" << std::endl;
 
   try {
-    Bureaucrat bero1("syani", 1);
-    std::cout << bero1 << std::endl;
-    bero1.increment();
-    std::cout << bero1 << std::endl;
-  }
-  catch (std::exception& error)
-  {
-    std::cout << error.what();
-  }
+    Bureaucrat b("abdo", 13);
+    Form f("Software engineer", 3, 4);
 
+    b.signForm(f);
+    std::cout << f << std::endl;
+  }
+  catch (std::exception &e)
+  {
+    std::cout << "Error: " << e.what() << std::endl;
+  }
   return 0;
 }

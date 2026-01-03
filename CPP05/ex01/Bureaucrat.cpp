@@ -44,15 +44,15 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
  */
 int Bureaucrat::getGrade() const
 {
-  return _grade;
+  return this->_grade;
 }
 
 /**
  * getNmae: A getter memeber function to get the name 
  */
-std::string const Bureaucrat::getNmae() const 
+std::string const Bureaucrat::getName() const 
 {
-  return _name;
+  return this->_name;
 }
 
 /**
@@ -82,15 +82,15 @@ void Bureaucrat::decrement()
  *      . if the form is not signed write a message that show the name of bureaucrat and form and what is the reason
  *        (catch the error)
  **/
-void Bureaucrat::signForm(const Form& form)
+void Bureaucrat::signForm(Form& form)
 {
   try {
     form.beSigned(*this);
-    std::cout << this->getNmae() << " signed " << form.getNmae() << std::endl;
+    std::cout << this->getName() << " signed " << form.getName() << std::endl;
   }
   catch (std::exception& error)
   {
-    std::cout << this->getNmae() << " couldn't sign " << form.getNmae() << " because " << error.what() << std::endl;
+    std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << error.what() << std::endl;
   }
 }
 
@@ -100,7 +100,7 @@ void Bureaucrat::signForm(const Form& form)
  */
 std::ostream& operator<<(std::ostream& os, Bureaucrat& obj)
 {
-  os << obj.getNmae() << ", bureaucrat grade " << obj.getGrade() << ".";
+  os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << ".";
   return os;
 }
 

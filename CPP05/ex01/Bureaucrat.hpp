@@ -3,8 +3,8 @@
 
 #include <exception>
 #include <iostream>
+#include "Form.hpp"
 
-class Form;
 
 /**
  * Bureaucrat: The class to apply exceptions
@@ -45,11 +45,11 @@ class Bureaucrat {
       }
     };
 
-    std::string const getNmae() const;
+    std::string const getName() const;
     int getGrade() const;
     void increment();
     void decrement();
-    void signForm(const Form& form);
+    void signForm(Form& form);
 };
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat& obj);
