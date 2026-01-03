@@ -48,9 +48,9 @@ int Bureaucrat::getGrade() const
 }
 
 /**
- * getNmae: A getter memeber function to get the name 
+ * getName: A getter memeber function to get the name 
  */
-std::string const Bureaucrat::getNmae() const 
+std::string const Bureaucrat::getName() const 
 {
   return _name;
 }
@@ -81,7 +81,7 @@ void Bureaucrat::decrement()
  */
 std::ostream& operator<<(std::ostream& os, Bureaucrat& obj)
 {
-  os << obj.getNmae() << ", bureaucrat grade " << obj.getGrade() << ".";
+  os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << ".";
   return os;
 }
 

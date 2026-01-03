@@ -44,7 +44,7 @@ class Bureaucrat {
       }
     };
 
-    std::string const getNmae() const;
+    std::string const getName() const;
     int getGrade() const;
     void increment();
     void decrement();
