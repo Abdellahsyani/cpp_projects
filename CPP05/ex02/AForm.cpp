@@ -109,7 +109,11 @@ std::ostream& operator<<(std::ostream& os, AForm& obj)
     return os;
 }
 
-/***/
+/**
+ * checkRequirements: A function to check the requirements for AForm to hire some form
+ *      - ROLE:
+ *          check an validate all requirements if any is not valid throw an error
+ **/
 void AForm::checkRequirements(Bureaucrat const & executor) const {
   if (this->getFlag() == false)
     throw AAForm::AFormNotSignedException();

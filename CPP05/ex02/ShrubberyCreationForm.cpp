@@ -7,37 +7,43 @@
 ShrubberyCreationForm::ShrubberyCreationForm() :
   AForm("ShrubberyCreationForm", false, 145, 137) {}
 
-  /**
-   * ShrubberyCreationForm: This is a parametrize constructor to init the attributes
-   *        without need for setters
-   *    - ROLE:
-   *          we use exception here to check if ShrubberyCreationForm enter's some high or low Grade
-   *          and throw an error.
-   **/
-  ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
-    AForm("ShrubberyCreationForm", 145, 137) {}
+/**
+ * ShrubberyCreationForm: This is a parametrize constructor to init the attributes
+ *        without need for setters
+ **/
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
+  AForm("ShrubberyCreationForm", 145, 137), _target(target) {}
 
-    /**
-     * ShrubberyCreationForm: a copy constructor to create an instance from another
-     **/
-    ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) :
-      AForm(other), _target(other._target) {}
+/**
+ * ShrubberyCreationForm: a copy constructor to create an instance from another
+ **/
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) :
+  AForm(other), _target(other._target) {}
 
-      /**
-       * ShrubberyCreationForm: A copy assignement operator
-       *   - USAGE:
-       *        This override an existing instance with another one
-       **/
-      ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
-        if (this != &other)
-        {
-          AForm::operator=(other);
-          this->_target = other._target;
-        }
-        return (*this);
-      }
+/**
+ * ShrubberyCreationForm: A copy assignement operator
+ *   - USAGE:
+ *        This override an existing instance with another one
+ **/
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
+  if (this != &other)
+  {
+    AForm::operator=(other);
+    this->_target = other._target;
+  }
+  return (*this);
+}
 
-/***/
+/**
+ * ShrubberyCreationForm: A method that execute a form if all requirements are valid
+ *    - ROLE:
+ *        in this function we create a file and put a tree inside it
+ *        this tree won't execute if some of the requirements are not valid
+ *        instead of that it will throw an exception.
+ *    - MEAN:
+ *        This acts as a form that Bureaucrat wants to execute this form should
+ *        pass all requirements like an interview then you will be hired
+ **/
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
   this->checkRequirements(executor);
