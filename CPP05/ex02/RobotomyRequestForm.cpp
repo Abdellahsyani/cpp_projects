@@ -10,9 +10,6 @@ RobotomyRequestForm::RobotomyRequestForm() :
 /**
  * RobotomyRequestForm: This is a parametrize constructor to init the attributes
  *        without need for setters
- *    - ROLE:
- *          we use exception here to check if RobotomyRequestForm enter's some high or low Grade
- *          and throw an error.
  **/
 RobotomyRequestForm::RobotomyRequestForm(std::string target) :
   AForm("RobotomyRequestForm", 72, 45) {}
@@ -35,6 +32,21 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
     this->_target = other._target;
   }
   return (*this);
+}
+
+/**
+ * RobotomyRequestForm: A method that execute a form if all requirements are valid
+ *    - ROLE:
+ *        in this function we create a file and put a tree inside it
+ *        this tree won't execute if some of the requirements are not valid
+ *        instead of that it will throw an exception.
+ *    - MEAN:
+ *        This acts as a form that Bureaucrat wants to execute this form should
+ *        pass all requirements like an interview then you will be hired
+ **/
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+{
+  this->checkRequirements(executor);
 }
 
 /**
