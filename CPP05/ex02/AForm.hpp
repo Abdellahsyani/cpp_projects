@@ -12,18 +12,18 @@ class Bureaucrat;
  *        all required skills then Bureaucrat sign the forms
  *        if no Bureaucrat throw an exception 
  **/
-class Form {
+class AForm {
   protected:
     std::string const _name;
     bool _isSigned;
     const int _signGrade;
     const int _execGrade;
   public:
-    Form();
-    Form(const Form& other);
-    Form(std::string const name, const int isSigned, const int execGrade);
-    Form& operator=(const Form& other);
-    virtual ~Form();
+    AForm();
+    AForm(const AForm& other);
+    AForm(std::string const name, const int isSigned, const int execGrade);
+    AForm& operator=(const AForm& other);
+    virtual ~AForm();
 
   // Getters
   std::string const getName() const;
@@ -31,6 +31,7 @@ class Form {
   int getSignGrade();
   int getExecGrade();
   virtual void execute(Bureaucrat const & executor) const = 0;
+  void checkRequirements(Bureaucrat const & executor) const;
 
   void beSigned(const Bureaucrat& sign);
 
@@ -49,6 +50,14 @@ class Form {
         return "Grade is To Low!";
     }
   };
+
+  // nested class
+  class AFormNotSignedException : public std::exeption {
+    public:
+      virtual const char* what const throw() {
+        return "AForm is not Signed!";
+      }
+  };
 };
 
-std::ostream& operator<<(std::ostream& os, Form& obj);
+std::ostream& operator<<(std::ostream& os, AForm& obj);

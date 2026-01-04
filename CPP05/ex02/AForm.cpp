@@ -1,32 +1,32 @@
-#include "Form.hpp" 
+#include "AForm.hpp" 
 #include "Bureaucrat.hpp"
 
 /**
- * Form: This is constructor responsible about setting the attributes
+ * AForm: This is constructor responsible about setting the attributes
  *      for any object that created from this class.
  **/
-Form::Form() : _name("Form"), _isSigned(false), _signGrade(0), _execGrade(0) {};
+AForm::AForm() : _name("AForm"), _isSigned(false), _signGrade(0), _execGrade(0) {};
 
 /**
- * Form: This is a parametrize constructor to init the attributes
+ * AForm: This is a parametrize constructor to init the attributes
  *        without need for setters
  *    - ROLE:
- *          we use exception here to check if Form enter's some high or low Grade
+ *          we use exception here to check if AForm enter's some high or low Grade
  *          and throw an error.
  **/
-Form::Form(std::string const name, const int signGrade, const int execGrade) :
+AForm::AForm(std::string const name, const int signGrade, const int execGrade) :
   _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 {
     if (_signGrade < 1 || _execGrade < 1)
-      throw Form::GradeTooHighException();
+      throw AForm::GradeTooHighException();
     if (_signGrade > 150 || _execGrade > 150)
-      throw Form::GradeTooLowException(); 
+      throw AForm::GradeTooLowException(); 
 };
 
 /**
- * Form: a copy constructor to create an instance from another
+ * AForm: a copy constructor to create an instance from another
  **/
-Form::Form(const Form& other) :
+AForm::AForm(const AForm& other) :
   _name(other._name),
   _isSigned(other._isSigned),
   _signGrade(other._signGrade),
@@ -36,11 +36,11 @@ Form::Form(const Form& other) :
 }
 
 /**
- * Form: A copy assignement operator
+ * AForm: A copy assignement operator
  *   - USAGE:
  *        This override an existing instance with another one
  **/
-Form& Form::operator=(const Form& other) {
+AForm& AForm::operator=(const AForm& other) {
   if (this != &other)
     this->_isSigned = other._isSigned;
   return (*this);
@@ -49,7 +49,7 @@ Form& Form::operator=(const Form& other) {
 /**
  * getFlag: A setter function for bool _isSigned
  **/
-bool Form::getFlag()
+bool AForm::getFlag()
 {
   return _isSigned;
 }
@@ -57,7 +57,7 @@ bool Form::getFlag()
 /**
  * getSignGrade: A getter method for _signGrade
  **/
-int Form::getSignGrade()
+int AForm::getSignGrade()
 {
   return _signGrade;
 }
@@ -65,7 +65,7 @@ int Form::getSignGrade()
 /**
  * getExecGrade: A getter method for _execGrade
  **/ 
-int Form::getExecGrade()
+int AForm::getExecGrade()
 {
   return _execGrade;
 }
@@ -73,43 +73,51 @@ int Form::getExecGrade()
 /**
  * getNmae: A getter memeber function to get the name 
  */
-std::string const Form::getName() const 
+std::string const AForm::getName() const 
 {
   return _name;
 }
 
 /**
- * beSigned: This beSigned  function check if the Grade in Form
+ * beSigned: This beSigned  function check if the Grade in AForm
  *          is accepted from the Bureaucrat
  *          - if yes _isSigned = true
  *          - if no throw an exception
  **/
-void Form::beSigned(const Bureaucrat& sign)
+void AForm::beSigned(const Bureaucrat& sign)
 {
   if (sign.getGrade() > this->getSignGrade())
-    throw Form::GradeTooLowException();
+    throw AForm::GradeTooLowException();
   if (this->_isSigned == true)
   {
-    std::cout << "Form is already signed!" << std::endl;
+    std::cout << "AForm is already signed!" << std::endl;
     return;
   }
   this->_isSigned = true;
 }
 
 /**
- * operator<<: Overloads the ostream operator to print Form objects.
+ * operator<<: Overloads the ostream operator to print AForm objects.
  * We use std::ostream because we are only OUTPUTTING data.
  */
-std::ostream& operator<<(std::ostream& os, Form& obj)
+std::ostream& operator<<(std::ostream& os, AForm& obj)
 {
-    os << "Form: " << obj.getName() 
+    os << "AForm: " << obj.getName() 
        << " | Signed: " << (obj.getFlag() ? "Yes" : "No")
        << " | Grade to Sign: " << obj.getSignGrade()
        << " | Grade to Execute: " << obj.getExecGrade();
     return os;
 }
 
+/***/
+void AForm::checkRequirements(Bureaucrat const & executor) const {
+  if (this->getFlag() == false)
+    throw AAForm::AFormNotSignedException();
+  if (executor.getGrade() > this->getExecGrade())
+    throw AForm::GradeTooLowException();
+}
+
 /**
- * ~Form:: The destructor responsible for cleaning the memory
+ * ~AForm:: The destructor responsible for cleaning the memory
  **/
-Form::~Form() {};
+AForm::~AForm() {};
