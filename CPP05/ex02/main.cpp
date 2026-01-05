@@ -28,10 +28,11 @@ int main()
   std::cout << "====================== PresidentialPardonForm =======================" << std::endl;
 
   try {
-    Bureaucrat b("bob", 40);
+    Bureaucrat b("bob", 10);
     PresidentialPardonForm pres("president");
 
     b.signForm(pres);
+    b.executeForm(pres);
     pres.execute(b);
   }
   catch (std::exception& e)
