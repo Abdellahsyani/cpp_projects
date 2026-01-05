@@ -58,6 +58,14 @@ class AForm {
         return "AForm is not Signed!";
       }
   };
+
+  // nested class
+  class AFormNotFoundException : public std::exception {
+    public:
+      virtual const char* what() const throw() {
+        return "Form not found!";
+      }
+  };
 };
 
 std::ostream& operator<<(std::ostream& os, AForm& obj);
