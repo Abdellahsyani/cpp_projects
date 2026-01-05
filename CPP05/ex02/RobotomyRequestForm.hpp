@@ -5,11 +5,18 @@
 class AForm;
 class Bureaucrat;
 
+/**
+ * RobotomyRequestForm: A concret class that implement roles from abstraction class AForm
+ *      ROLE:
+ *        This is a class to define the RobotomyRequestForm form to let the Bureaucrat hire
+ *        these forms to do some tasks
+ **/
 class RobotomyRequestForm : public AForm {
   private:
     std::string _target;
   public:
     RobotomyRequestForm();
+    RobotomyRequestForm(std::string target);
     RobotomyRequestForm(const RobotomyRequestForm & other);
     RobotomyRequestForm &operator=(const RobotomyRequestForm& other);
     ~RobotomyRequestForm();

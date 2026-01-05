@@ -3,8 +3,8 @@ NAME = Bureaucrat
 CXX = c++
 CXXFLAGS = -g -Wall -Wextra -Werror -std=c++98
 
-HDR = Bureaucrat.hpp Form.hpp
-SRC = main.cpp Bureaucrat.cpp Form.cpp
+HDR = Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

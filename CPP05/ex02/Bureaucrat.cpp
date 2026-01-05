@@ -82,7 +82,7 @@ void Bureaucrat::decrement()
  *      . if the form is not signed write a message that show the name of bureaucrat and form and what is the reason
  *        (catch the error)
  **/
-void Bureaucrat::signForm(Form& form)
+void Bureaucrat::signForm(AForm& form)
 {
   try {
     form.beSigned(*this);

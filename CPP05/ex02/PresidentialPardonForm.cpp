@@ -5,7 +5,7 @@
  *      for any object that created from this class.
  **/
 PresidentialPardonForm::PresidentialPardonForm() :
-  AForm("PresidentialPardonForm", false, 25, 5) {}
+  AForm("PresidentialPardonForm", false, 25, 5), _target("Pres") {}
 
 /**
  * PresidentialPardonForm: This is a parametrize constructor to init the attributes
@@ -15,7 +15,7 @@ PresidentialPardonForm::PresidentialPardonForm() :
  *          and throw an error.
  **/
 PresidentialPardonForm::PresidentialPardonForm(std::string target) :
-  AForm("PresidentialPardonForm", 25, 5) {}
+  AForm("PresidentialPardonForm", 25, 5), _target(target) {}
 
 /**
  * PresidentialPardonForm: a copy constructor to create an instance from another
@@ -35,6 +35,22 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
     this->_target = other._target;
   }
   return (*this);
+}
+
+/**
+ * PresidentialPardonForm: A method that execute a form if all requirements are valid
+ *    - ROLE:
+ *        In this method we make some noises by printing a message to stdout
+ *        pick a random number by using rand() to make this form success 50% and fail 50%
+ *    - MEAN:
+ *        This acts as a form that Bureaucrat wants to execute this form should
+ *        pass all requirements like an interview then you will be hired
+ *        if doesn't pass throw an error that tell us the reason that make this form failed
+ **/
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+{
+  this->checkRequirements(executor);
+  std::cout << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
 
 /**

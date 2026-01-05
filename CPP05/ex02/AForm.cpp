@@ -49,7 +49,7 @@ AForm& AForm::operator=(const AForm& other) {
 /**
  * getFlag: A setter function for bool _isSigned
  **/
-bool AForm::getFlag()
+bool AForm::getFlag() const
 {
   return _isSigned;
 }
@@ -57,7 +57,7 @@ bool AForm::getFlag()
 /**
  * getSignGrade: A getter method for _signGrade
  **/
-int AForm::getSignGrade()
+int AForm::getSignGrade() const
 {
   return _signGrade;
 }
@@ -65,7 +65,7 @@ int AForm::getSignGrade()
 /**
  * getExecGrade: A getter method for _execGrade
  **/ 
-int AForm::getExecGrade()
+int AForm::getExecGrade() const 
 {
   return _execGrade;
 }
@@ -116,7 +116,7 @@ std::ostream& operator<<(std::ostream& os, AForm& obj)
  **/
 void AForm::checkRequirements(Bureaucrat const & executor) const {
   if (this->getFlag() == false)
-    throw AAForm::AFormNotSignedException();
+    throw AForm::AFormNotSignedException();
   if (executor.getGrade() > this->getExecGrade())
     throw AForm::GradeTooLowException();
 }

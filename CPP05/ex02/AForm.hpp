@@ -27,9 +27,9 @@ class AForm {
 
   // Getters
   std::string const getName() const;
-  bool getFlag();
-  int getSignGrade();
-  int getExecGrade();
+  bool getFlag() const;
+  int getSignGrade() const;
+  int getExecGrade() const;
   virtual void execute(Bureaucrat const & executor) const = 0;
   void checkRequirements(Bureaucrat const & executor) const;
 
@@ -52,9 +52,9 @@ class AForm {
   };
 
   // nested class
-  class AFormNotSignedException : public std::exeption {
+  class AFormNotSignedException : public std::exception {
     public:
-      virtual const char* what const throw() {
+      virtual const char* what() const throw() {
         return "AForm is not Signed!";
       }
   };

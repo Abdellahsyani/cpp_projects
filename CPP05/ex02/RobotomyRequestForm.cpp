@@ -37,16 +37,24 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 /**
  * RobotomyRequestForm: A method that execute a form if all requirements are valid
  *    - ROLE:
- *        in this function we create a file and put a tree inside it
- *        this tree won't execute if some of the requirements are not valid
- *        instead of that it will throw an exception.
+ *        In this method we make some noises by printing a message to stdout
+ *        pick a random number by using rand() to make this form success 50% and fail 50%
  *    - MEAN:
  *        This acts as a form that Bureaucrat wants to execute this form should
  *        pass all requirements like an interview then you will be hired
+ *        if doesn't pass throw an error that tell us the reason that make this form failed
  **/
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
   this->checkRequirements(executor);
+  std::cout << "* DRILL NOISES *" << std::endl;
+  int chance = rand() % 2;
+  if (chance == 1) {
+    std::cout << _target << " has been robotomized successfully 50% of the time!" << std::endl;
+  }
+  else {
+    std::cout << "The robotomy failed" << std::endl;
+  }
 }
 
 /**
