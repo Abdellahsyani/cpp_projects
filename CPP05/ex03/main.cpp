@@ -8,71 +8,43 @@
 #include <cstdlib>
 #include <ctime>
 
+void test_intern(std::string name, std::string target)
+{
+  std::cout << "\n============ Testing ============" << std::endl;
+  Intern intern;
+  Bureaucrat b("Bob", 5);
+  AForm* form;
+
+  form = NULL;
+
+  try {
+    form = intern.makeForm(name, target);
+
+    if (form != NULL) {
+      b.signForm(*form);
+      form->execute(b);
+      delete(form);
+    }
+  }
+  catch (std::exception& e) {
+      delete(form);
+      std::cout << "Error: " << e.what() << std::endl;
+  } 
+}
+
 int main()
 {
   std::srand(std::time(NULL));
 
-  {
-    std::cout << "===================== RobotomyRequestForm ========================" << std::endl;
+  std::string forms[] = {
+        "robotomy request",
+        "presidential pardon",
+        "shrubbery creation",
+        "invalid form name" 
+    };
 
-    AForm* form = NULL;
-    try {
-      Intern Inter;
-
-      form = Inter.makeForm("robotomy request", "Robot");
-      Bureaucrat b("abdo", 40);
-
-      b.signForm(*form);
-      form->execute(b);
-      delete(form);
-    }
-    catch (std::exception& e)
-    {
-      delete(form);
-      std::cout << "Error: " << e.what() << std::endl;
-    }
-  }
-
-  std::cout << "====================== PresidentialPardonForm =======================" << std::endl;
-
-  {
-    AForm* form = NULL;
-    try {
-      Intern intern;
-
-      form = intern.makeForm("presidential pardon", "Bob");
-      Bureaucrat b("bob", 40);
-
-      b.signForm(*form);
-      form->execute(b);
-      delete(form);
-    }
-    catch (std::exception& e)
-    {
-      delete(form);
-      std::cout << "Error: " << e.what() << std::endl;
-    }
-  }
-
-  std::cout << "====================== ShrubberyCreationForm =======================" << std::endl;
-
-  {
-    AForm* form = NULL;
-    try {
-      Intern inter;
-
-      form = inter.makeForm("shrubbery creation", "Jhon");
-      Bureaucrat b("bob", 40);
-
-      b.signForm(*form);
-      form->execute(b);
-      delete(form);
-    }
-    catch (std::exception& e)
-    {
-      delete(form);
-      std::cout << "Error: " << e.what() << std::endl;
-    }
+  for (int i = 0; i < 4; i++) {
+    test_intern(forms[i], "Abdo");
   }
 
   return 0;
