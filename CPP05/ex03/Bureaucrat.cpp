@@ -95,6 +95,20 @@ void Bureaucrat::signForm(AForm& form)
 }
 
 /**
+ * executeForm: A method to execute an instance Form
+ *      on failure throw an error
+ **/
+void Bureaucrat::executeForm(AForm const & form) const {
+  try {
+    form.execute(*this);
+    std::cout << this->getName() << " executed " << form.getName() << std::endl;
+  }
+  catch (std::exception& e) {
+    std::cout << "Fail to exectute " << form.getName() << " becuase " << e.what() << std::endl;
+  }
+}
+
+/**
  * operator<<: Overloads the ostream operator to print Bureaucrat objects.
  * We use std::ostream because we are only OUTPUTTING data.
  */

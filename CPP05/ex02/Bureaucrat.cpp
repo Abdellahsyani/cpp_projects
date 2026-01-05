@@ -94,7 +94,10 @@ void Bureaucrat::signForm(AForm& form)
   }
 }
 
-/***/
+/**
+ * executeForm: A method to execute an instance Form
+ *      on failure throw an error
+ **/
 void Bureaucrat::executeForm(AForm const & form) const {
   try {
     form.execute(*this);
