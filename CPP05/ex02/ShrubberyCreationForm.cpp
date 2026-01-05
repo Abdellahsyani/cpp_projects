@@ -5,7 +5,7 @@
  *      for any object that created from this class.
  **/
 ShrubberyCreationForm::ShrubberyCreationForm() :
-  AForm("ShrubberyCreationForm", false, 145, 137) {}
+  AForm("ShrubberyCreationForm",145, 137), _target("Shru") {}
 
 /**
  * ShrubberyCreationForm: This is a parametrize constructor to init the attributes

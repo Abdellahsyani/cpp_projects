@@ -5,7 +5,7 @@
  *      for any object that created from this class.
  **/
 PresidentialPardonForm::PresidentialPardonForm() :
-  AForm("PresidentialPardonForm", false, 25, 5), _target("Pres") {}
+  AForm("PresidentialPardonForm", 25, 5), _target("Pres") {}
 
 /**
  * PresidentialPardonForm: This is a parametrize constructor to init the attributes

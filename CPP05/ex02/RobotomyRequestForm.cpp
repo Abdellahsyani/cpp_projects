@@ -5,14 +5,14 @@
  *      for any object that created from this class.
  **/
 RobotomyRequestForm::RobotomyRequestForm() :
-  AForm("RobotomyRequestForm", false, 72, 45) {}
+  AForm("RobotomyRequestForm", 72, 45), _target("Robo") {}
 
 /**
  * RobotomyRequestForm: This is a parametrize constructor to init the attributes
  *        without need for setters
  **/
 RobotomyRequestForm::RobotomyRequestForm(std::string target) :
-  AForm("RobotomyRequestForm", 72, 45) {}
+  AForm("RobotomyRequestForm", 72, 45), _target(target) {}
 
 /**
  * RobotomyRequestForm: a copy constructor to create an instance from another

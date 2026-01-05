@@ -1,9 +1,9 @@
 #pragma once
 
 #include <iostream>
-
-class AForm;
-class Bureaucrat;
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
+#include <fstream>
 
 /**
  * ShrubberyCreationForm: A concret class that apply abstraction AForm roles to hire a ShrubberyCreationForm

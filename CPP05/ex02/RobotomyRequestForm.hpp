@@ -1,9 +1,9 @@
 #pragma once
 
 #include <iostream>
-
-class AForm;
-class Bureaucrat;
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
+#include <cstdlib>
 
 /**
  * RobotomyRequestForm: A concret class that implement roles from abstraction class AForm
