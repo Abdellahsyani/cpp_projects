@@ -4,7 +4,7 @@ Welcome to my C++ learning repository! This project is dedicated to mastering Ob
 
 ## 📚 About
 
-This repository contains a series of C++ modules (CPP00 through CPP05) that progressively explore fundamental and advanced OOP concepts. Each module includes multiple exercises designed to build a solid understanding of C++ programming principles.
+This repository contains a series of C++ modules (CPP00 through CPP05) that progressively explore fundamental and advanced OOP concepts. Each module includes multiple exercises designed to build a solid foundation in C++ programming.
 
 ## 🗂️ Repository Structure
 
@@ -70,21 +70,58 @@ make re       # Rebuild from scratch
 ## 📖 Module Overview
 
 ### CPP00 - Introduction to C++
-Introduction to C++ basics, namespaces, classes, member functions, and I/O streams.
+Introduction to the fundamentals of C++, including namespaces, classes, member functions, stdio streams, initialization lists, static and const keywords. This module covers the basic building blocks needed to write C++ programs and introduces object-oriented programming concepts.
+
+#### 📚 Resources
+- [C++ Classes and Objects](https://www.learncpp.com/cpp-tutorial/classes-and-class-members/)
+- [Namespaces in C++](https://en.cppreference.com/w/cpp/language/namespace)
+- [Member Initialization Lists](https://www.learncpp.com/cpp-tutorial/constructor-member-initializer-lists/)
+- [Static Members](https://www.learncpp.com/cpp-tutorial/static-member-variables/)
+- [Const Keyword](https://www.learncpp.com/cpp-tutorial/const-class-objects-and-member-functions/)
+
 ### CPP01 - Memory Allocation
-Deep dive into memory allocation, pointers to members, references, and the switch statement.
+Deep dive into dynamic memory allocation, pointers to members, references, and understanding the difference between stack and heap memory. Learn about memory leaks, proper resource management, and the importance of destructors in C++.
+
+#### 📚 Resources
+- [Dynamic Memory Allocation](https://www.learncpp.com/cpp-tutorial/dynamic-memory-allocation-with-new-and-delete/)
+- [Pointers vs References](https://www.geeksforgeeks.org/pointers-vs-references-cpp/)
+- [Memory Management](https://isocpp.org/wiki/faq/freestore-mgmt)
+- [Stack vs Heap Memory](https://www.learncpp.com/cpp-tutorial/the-stack-and-the-heap/)
+- [RAII Pattern](https://en.cppreference.com/w/cpp/language/raii)
 
 ### CPP02 - Ad-hoc Polymorphism
-Understanding fixed-point numbers, operator overloading, and orthodox canonical class form.
+Understanding operator overloading, fixed-point numbers, and the orthodox canonical class form (Coplien form). This module teaches how to make custom types behave like built-in types and properly manage copy semantics.
+
+#### 📚 Resources
+- [Operator Overloading](https://www.learncpp.com/cpp-tutorial/introduction-to-operator-overloading/)
+- [The Rule of Three](https://en.cppreference.com/w/cpp/language/rule_of_three)
+- [Copy Constructor](https://www.learncpp.com/cpp-tutorial/copy-constructors/)
+- [Assignment Operator](https://www.learncpp.com/cpp-tutorial/overloading-the-assignment-operator/)
+- [Fixed Point Arithmetic](https://en.wikipedia.org/wiki/Fixed-point_arithmetic)
 
 ### CPP03 - Inheritance
-Exploring inheritance hierarchies and the diamond problem.
+Exploring inheritance hierarchies, access specifiers, and understanding the diamond problem in multiple inheritance. Learn how to create class hierarchies and understand the relationship between base and derived classes.
+
+#### 📚 Resources
+- [Inheritance Basics](https://www.learncpp.com/cpp-tutorial/introduction-to-inheritance/)
+- [Multiple Inheritance](https://www.learncpp.com/cpp-tutorial/multiple-inheritance/)
+- [Diamond Problem](https://www.geeksforgeeks.org/multiple-inheritance-in-c/)
+- [Virtual Inheritance](https://en.cppreference.com/w/cpp/language/derived_class)
+- [Access Specifiers](https://www.learncpp.com/cpp-tutorial/public-vs-private-inheritance/)
 
 ### CPP04 - Subtype Polymorphism
-Working with abstract classes, interfaces, and runtime polymorphism.
+Working with abstract classes, interfaces, pure virtual functions, and runtime polymorphism through virtual functions. Understanding how to design flexible and extensible class hierarchies using polymorphic behavior.
+
+#### 📚 Resources
+- [Virtual Functions](https://www.learncpp.com/cpp-tutorial/virtual-functions/)
+- [Abstract Classes](https://www.learncpp.com/cpp-tutorial/pure-virtual-functions-abstract-base-classes-and-interface-classes/)
+- [Polymorphism in C++](https://www.geeksforgeeks.org/polymorphism-in-c/)
+- [Virtual Destructors](https://www.learncpp.com/cpp-tutorial/virtual-destructors-virtual-assignment-and-overriding-virtualization/)
+- [Interface Classes](https://isocpp.org/wiki/faq/abcs)
 
 ### CPP05 - Exceptions
-Mastering exception handling and repetition of previous concepts.
+Mastering exception handling, understanding stack unwinding, and learning how to write robust error-handling code. This module also reinforces concepts from previous modules through repetition and practical application.
+
 #### 📚 Resources
 - [Stack Unwinding](https://stackoverflow.com/questions/2331316/what-is-stack-unwinding)
 - [Skeleton Template](https://refactoring.guru/design-patterns/template-method)
