@@ -85,6 +85,10 @@ Working with abstract classes, interfaces, and runtime polymorphism.
 
 ### CPP05 - Exceptions
 Mastering exception handling and repetition of previous concepts.
+- #### Resource
+[Stack Unwinding](https://stackoverflow.com/questions/2331316/what-is-stack-unwinding)
+[Skeleton pattern](https://refactoring.guru/design-patterns/template-method/cpp/example)
+[Exceptions and repetitive](https://stackoverflow.com/questions/77901472/how-to-simplify-the-repetitive-exception-handling-in-c)
 
 ## 📝 Notes
 
