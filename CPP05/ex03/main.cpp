@@ -22,6 +22,7 @@ void test_intern(std::string name, std::string target)
     if (form != NULL) {
       b.signForm(*form);
       b.executeForm(*form);
+      std::cout << *form << std::endl;
       delete(form);
     }
   }
