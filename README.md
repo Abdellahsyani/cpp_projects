@@ -87,8 +87,9 @@ Working with abstract classes, interfaces, and runtime polymorphism.
 Mastering exception handling and repetition of previous concepts.
 #### 📚 Resources
 - [Stack Unwinding](https://stackoverflow.com/questions/2331316/what-is-stack-unwinding)
-- [Skeleton pattern](https://refactoring.guru/design-patterns/template-method/cpp/example)
+- [Skeleton Template](https://refactoring.guru/design-patterns/template-method)
 - [Exceptions and repetitive](https://stackoverflow.com/questions/77901472/how-to-simplify-the-repetitive-exception-handling-in-c)
+- [Factory pattern](https://refactoring.guru/design-patterns/factory-method/cpp/example)
 
 ## 📝 Notes
 
