@@ -10,14 +10,13 @@
 
 void test_intern(std::string name, std::string target)
 {
-  std::cout << "\n============ Testing ============" << std::endl;
+  std::cout << "\n============ Testing " << name << " ============" << std::endl;
   Intern intern;
-  Bureaucrat b("Bob", 5);
   AForm* form;
 
   form = NULL;
-
   try {
+    Bureaucrat b("Bob", 7);
     form = intern.makeForm(name, target);
 
     if (form != NULL) {
