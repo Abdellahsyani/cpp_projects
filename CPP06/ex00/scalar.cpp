@@ -1,17 +1,26 @@
 #include "scalar.hpp"
 
 
-
 /***/
 void ScalarConverter::convert(std::string type) {
-  char* end;
-  double value = std::strtod(type.c_str(), &end);
+  char* end = NULL;
+  double value;
+
+  if (type.length() == 1 && !std::isdigit(type[0]))
+    value = static_cast<double>(type[0]);
+  else
+    value = std::strtod(type.c_str(), &end);
+
+  std::string remainder = (end != NULL) ? std::string(end) : "";
+  bool isGarbage = false;
+  if (end != NULL && *end != '\0' && remainder != "f") {
+      if (type.length() != 1)
+        isGarbage = true;
+    }
 
   try {
-    if (isnan(value) || isinf(value))
+    if (isGarbage || isnan(value) || isinf(value) || (value < 0 || value > 127))
       throw std::string("impossible");
-    if (value < 0 || value > 127)
-        throw std::string("impossible");
     char c = static_cast<char>(value);
     if (!std::isprint(c)) 
       throw std::string("Non displayable");
@@ -22,7 +31,7 @@ void ScalarConverter::convert(std::string type) {
   }
 
   try {
-    if (isnan(value) || isinf(value) || value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min())
+    if (isGarbage || isnan(value) || isinf(value) || value > std::numeric_limits<int>::max() || value < -std::numeric_limits<int>::max())
       throw std::string("impossible");
     int num = static_cast<int>(value);
     std::cout << "int: "<< num << std::endl;
@@ -32,19 +41,31 @@ void ScalarConverter::convert(std::string type) {
   }
 
   try {
-    if (isnan(value) || isinf(value) || value > std::numeric_limits<float>::max() || value < -std::numeric_limits<float>::min()) 
+    if (isGarbage || value > std::numeric_limits<float>::max() || value < -std::numeric_limits<float>::max()) 
       throw std::string("impossible");
-    float num = static_cast<float>(value);
-    std::cout << "float: "<< std::fixed << std::setprecision(1) << num << "f" << std::endl;
+    std::cout << "float: ";
+    if (isnan(value))
+      std::cout << "nanf" << std::endl;
+    else if (isinf(value))
+        std::cout << (value < 1 ? "-inff" : "+inff");
+    else
+      std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
   }
   catch (std::string &e) {
     std::cout << "float: " << e << std::endl;
   }
 
   try {
-    if (isnan(value) || isinf(value) || value > std::numeric_limits<double>::max() || value < -std::numeric_limits<double>::min()) 
+    if (isGarbage || value > std::numeric_limits<double>::max() || value < -std::numeric_limits<double>::min()) 
       throw std::string("impossible");
-    std::cout << "double: "<< value << std::endl;
+    std::cout << "double: ";
+    if (isnan(value))
+      std::cout << "nan" << std::endl;
+    else if (isinf(value))
+        std::cout << (value < 0 ? "-inf" : "+inf");
+    else 
+      std::cout << std::fixed << std::setprecision(1) << static_cast<double>(value) << std::endl;
+        
   }
   catch (std::string &e) {
     std::cout << "double: " << e << std::endl;
