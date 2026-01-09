@@ -1,28 +1,11 @@
 #include "scalar.hpp"
 
-/**
- * ScalarConverter: This is constructor responsible about setting the attributes
- *      for any object that created from this class.
- **/
-ScalarConverter::ScalarConverter() {}
 
-/**
- * ScalarConverter: a copy constructor to create an instance from another
- **/
-ScalarConverter::ScalarConverter(const ScalarConverter& other) { (void)other; }
 
-/**
- * ScalarConverter: A copy assignement operator
- *   - USAGE:
- *        This override an existing instance with another one
- **/
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
-  (void)other;
-  return (*this);
-}
-
+/***/
 void ScalarConverter::convert(std::string type) {
-  double value = std::strtod(type.c_str(), NULL);
+  char* end;
+  double value = std::strtod(type.c_str(), &end);
 
   try {
     if (isnan(value) || isinf(value))
@@ -39,7 +22,7 @@ void ScalarConverter::convert(std::string type) {
   }
 
   try {
-    if (isnan(value) || isinf(value) || value > INT_MAX || value < INT_MIN)
+    if (isnan(value) || isinf(value) || value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min())
       throw std::string("impossible");
     int num = static_cast<int>(value);
     std::cout << "int: "<< num << std::endl;
@@ -49,17 +32,21 @@ void ScalarConverter::convert(std::string type) {
   }
 
   try {
-    if (isnan(value) || isinf(value) || value > INT_MAX || value < INT_MIN) 
+    if (isnan(value) || isinf(value) || value > std::numeric_limits<float>::max() || value < -std::numeric_limits<float>::min()) 
       throw std::string("impossible");
-    int num = static_cast<int>(value);
-    std::cout << "float: "<< num << std::endl;
+    float num = static_cast<float>(value);
+    std::cout << "float: "<< std::fixed << std::setprecision(1) << num << "f" << std::endl;
   }
   catch (std::string &e) {
     std::cout << "float: " << e << std::endl;
   }
-}
 
-/**
- * ~ScalarConverter:: The destructor responsible for cleaning the memory
- **/
-ScalarConverter::~ScalarConverter() {}
+  try {
+    if (isnan(value) || isinf(value) || value > std::numeric_limits<double>::max() || value < -std::numeric_limits<double>::min()) 
+      throw std::string("impossible");
+    std::cout << "double: "<< value << std::endl;
+  }
+  catch (std::string &e) {
+    std::cout << "double: " << e << std::endl;
+  }
+}
