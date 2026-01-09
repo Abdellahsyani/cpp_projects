@@ -9,7 +9,9 @@
 #include <limits>
 #include <iomanip>
 
-/***/
+/**
+ * ScalarConverter: A non instiation class that define a static method convert
+ */
 class ScalarConverter {
 private:
     ScalarConverter();
