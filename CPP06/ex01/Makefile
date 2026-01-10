@@ -1,10 +1,10 @@
-NAME = scalar
+NAME = Serializer
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = scalar.hpp 
-SRC = main.cpp scalar.cpp
+HDR = Serializer.hpp 
+SRC = main.cpp Serializer.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
