@@ -2,19 +2,7 @@
 
 #include <iostream>
 #include <stdint.h>
-
-/**
- * Data: A Plain Old Data (POD) structure.
- * This structure serves as our serialization target. It contains diverse 
- * scalar types (int, float, char) to verify that data integrity is 
- * maintained after the address is converted and restored.
- **/
-struct Data {
-  int n;
-  float f;
-  char c;
-};
-
+#include "Data.hpp"
 
 /**
  * Serializer: A static utility class for pointer serialization.

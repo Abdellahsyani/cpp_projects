@@ -1,4 +1,5 @@
 #include "Serializer.hpp"
+#include "Data.hpp"
 
 int main()
 {
@@ -7,6 +8,9 @@ int main()
   data.n = 24;
   data.f = 5.4;
   data.c = 'A';
+  std::cout << data.n << std::endl;
+  std::cout << data.f << std::endl;
+  std::cout << data.c << std::endl;
 
   std::cout << "before serialize: " << &data << std::endl;  
 
