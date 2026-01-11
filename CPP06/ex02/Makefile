@@ -1,10 +1,10 @@
-NAME = Serializer
+NAME = dynamic
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = Serializer.hpp Data.hpp 
-SRC = main.cpp Serializer.cpp
+HDR = Base.hpp A.hpp B.hpp C.hpp 
+SRC = main.cpp Base.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
