@@ -5,6 +5,12 @@
 #include <cstdlib>
 #include <ctime>
 
+
+/**
+ * @main: Test the dynamic_cast to see if all work as expected
+ *
+ * @srand: to make the rand() function work and generate the different objects
+ **/
 int main() {
   std::srand(std::time(NULL));
 
