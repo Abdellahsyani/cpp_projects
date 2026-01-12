@@ -16,13 +16,13 @@ void ScalarConverter::convert(std::string type) {
   else {
     value = std::strtod(type.c_str(), &end);
   }
-    
+
   std::string remainder = (end != NULL) ? std::string(end) : "";
   bool isGarbage = false;
   if (end != NULL && *end != '\0' && remainder != "f") {
     if (type.length() != 1)
       isGarbage = true;
-    }
+  }
 
   try {
     if (isGarbage || isnan(value) || isinf(value) || (value < 0 || value > 127))
@@ -38,18 +38,18 @@ void ScalarConverter::convert(std::string type) {
 
   try {
     if (isGarbage || isnan(value) || isinf(value) ||
-      value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min())
+        value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min())
       throw std::string("impossible");
     std::cout << "int: "<< static_cast<int>(value) << std::endl;
   }
   catch (std::string& e) {
-    std::cout << "char: " << e << std::endl;
+    std::cout << "int: " << e << std::endl;
   }
 
   try {
     if (isGarbage)
       throw std::string("impossible");
-    
+
     float f = static_cast<float>(value);
 
     std::cout << "float: ";
@@ -61,7 +61,7 @@ void ScalarConverter::convert(std::string type) {
       std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
   }
   catch (std::string& e) {
-    std::cout << "char: " << e << std::endl;
+    std::cout << "float: " << e << std::endl;
   }
 
   try {
@@ -79,6 +79,6 @@ void ScalarConverter::convert(std::string type) {
     }
   }
   catch (std::string& e) {
-    std::cout << "char: " << e << std::endl;
+    std::cout << "double: " << e << std::endl;
   }
 }
