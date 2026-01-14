@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+
+/**
+ * iter: */
 template <typename Array, typename F>
 void iter(Array *arr, size_t const len, F func) {
   for (size_t i = 0; i < len; i++) {
