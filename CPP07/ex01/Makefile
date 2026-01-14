@@ -1,10 +1,10 @@
-NAME = scalar
+NAME = ex01
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = scalar.hpp 
-SRC = main.cpp scalar.cpp
+HDR = iter.hpp 
+SRC = main.cpp 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
