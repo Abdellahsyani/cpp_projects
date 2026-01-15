@@ -21,6 +21,7 @@ void func1(T& n)
   std::cout << n << std::endl;
 }
 
+
 int main()
 {
   float const arr[] = {1.2f, 54.6f,  34.5f};
