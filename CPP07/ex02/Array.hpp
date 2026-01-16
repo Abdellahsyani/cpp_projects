@@ -12,7 +12,7 @@ class Array {
     Array(unsigned int size);
     Array(const Array &other);
     Array &operator=(const Array &other);
-    Array &operator[](Array &other);
+    T& operator[](unsigned int idx);
     ~Array();
 };
 

@@ -11,10 +11,10 @@ Array<T>::Array(unsigned int size) : _n(size) {
 template <typename T>
 Array<T>::Array(const Array &other) {
   this->_n = other._n;
+  this->_element = new T[_n]();
   for (unsigned int i = 0; i < this->_n; i++)
   {
     if (this->_n > 0) {
-      this->_element = new T[_n]();
       this->_element[i] = other._element[i];
     }
     else {
@@ -24,14 +24,14 @@ Array<T>::Array(const Array &other) {
 }
 
 template <typename T>
-Array& Array<T>::operator=(const Array &other) {
+Array<T>& Array<T>::operator=(const Array &other) {
   if (other != &other) {
     delete[] this->_element;
 
     this->_n = other._n;
     if (this->_n > 0) {
       this->_element = new T[_n]();
-      for (int i = 0; i < this->_n; i++)
+      for (unsigned int i = 0; i < this->_n; i++)
       {
         this->_element[i] = other._element[i];
       }
@@ -45,10 +45,12 @@ Array& Array<T>::operator=(const Array &other) {
 
 
 template <typename T>
-Array& Array<T>::operator[](Array &other) {
-
+T& Array<T>::operator[](unsigned int idx) {
+  if (idx >= _n) {
+    throw std::out_of_range("Index out of range");
+  }
+  return _element[idx];
 }
 
-
 template <typename T>
-Array<T>::~Array() { delete[]; };
+Array<T>::~Array() { delete[] this->_element; };
