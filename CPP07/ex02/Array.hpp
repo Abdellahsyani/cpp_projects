@@ -13,6 +13,7 @@ class Array {
     Array(const Array &other);
     Array &operator=(const Array &other);
     T& operator[](unsigned int idx);
+    const T& operator[](unsigned int idx) const;
     ~Array();
 };
 
