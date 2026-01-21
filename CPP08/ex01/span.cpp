@@ -27,22 +27,34 @@ Span& Span::operator=(const Span& other) {
 };
 
 
-/***/
+/**
+ * addNumber: A member function that add numbers to the span vector
+ * @param n: the number that will be added 
+ **/
 void Span::addNumber(unsigned int n) {
   if (this->_vec.size() >= this->_n)
     throw std::out_of_range("Span is full!");
   this->_vec.push_back(n);
 };
 
-/***/
+/**
+ * bunchOfNumber: A member function that add a bunch of numbers to span vector at ones
+ * @param range: the range that will add numbers from
+ **/
 void Span::bunchOfNumber(unsigned int range) {
-  for (unsigned int i = 0; i < _n; i++) {
-    unsigned int num = rand() % range;
-    _vec.push_back(num);
+  if (this->_vec.size() >= this->_n)
+    throw std::out_of_range("Span is full!");
+  _vec.reserve(_n);
+  for (unsigned int i = _vec.size(); i < _n; i++) {
+    _vec.push_back(rand() % range);
   }
 };
 
-/***/
+/**
+ * shortestSpan: The function that find the shortest span in the vector
+ *
+ * return : the shortest one when find it
+ **/
 int Span::shortestSpan() {
   if (_vec.size() < 2)
     throw Span::SpanNumberNotEnough();
@@ -54,7 +66,9 @@ int Span::shortestSpan() {
   return *std::min_element(diffs.begin() + 1, diffs.end());
 };
 
-/***/
+/**
+ * longestSpan: A function that rerurn the longest Span in the vector 
+ **/
 int Span::longestSpan() {
   if (_vec.size() < 2)
     throw Span::SpanNumberNotEnough();
@@ -63,5 +77,7 @@ int Span::longestSpan() {
 };
 
 
-/***/
+/**
+ * Destructor: to clean up all trash
+ **/
 Span::~Span() {};

@@ -1,9 +1,9 @@
-NAME = ex00 
+NAME = easy 
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = template.hpp 
+HDR = easyfind.hpp 
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
