@@ -10,6 +10,6 @@
 #include <climits>
 
 
-void validateCurrency(std::string& line);
+bool validateCurrency(std::string& line);
 
 #endif

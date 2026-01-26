@@ -26,7 +26,7 @@ void checkValue(int value) {
     throw std::string("not a positive number");
 };
 
-void validateCurrency(std::string& line) {
+bool validateCurrency(std::string& line) {
   int year;
   int month;
   int day;
@@ -56,6 +56,7 @@ void validateCurrency(std::string& line) {
   } catch (std::string& e) {
     std::cout << "Error: " << e << std::endl;
   }
+  return false;
 }
 
 
