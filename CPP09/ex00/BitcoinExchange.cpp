@@ -18,8 +18,8 @@ void checkDay(int day) {
   }
 };
 
-void checkValue(int value) {
-  if (value > 1000 || value == INT_MAX || value > INT_MAX) {
+void checkValue(double value) {
+  if (value > 1000) {
     throw std::string("too large a number");
   }
   if (value < 0)
@@ -27,36 +27,40 @@ void checkValue(int value) {
 };
 
 bool validateCurrency(std::string& line) {
-  int year;
-  int month;
-  int day;
-  char Hyphen1;
-  char Hyphen2;
-  char pipe;
-  int value;
+  int year = 0;
+  int month = 0;
+  int day = 0;
+  char Hyphen1 = 0;
+  char Hyphen2 = 0;
+  char pipe = 0;
+  double value = 0.0;
   std::stringstream ss(line);
 
+  if (line.empty())
+    return false;
+  if (!(ss >> year >> Hyphen1 >> month >> Hyphen2 >> day >> pipe >> value)) {
+    std::cout << "Error: bad input => " << line << std::endl;
+    return false;
+  }
+  char extra;
+  if (ss >> extra) {
+    std::cout << "Error: bad input => " << extra << std::endl;
+    return false;
+  }
   try {
-    if (ss >> year, ss >> Hyphen1, ss >> month, ss >> Hyphen2, ss >> day, ss >> pipe, ss >> value) {
-      checkYear(year);
-      if (Hyphen1 != '-') {
-        throw std::string("Invalid hyphen");
-      }
-      checkMonth(month);
-      if (Hyphen2 != '-') {
-        throw std::string("Invalid hyphen");
-      }
-      checkDay(day);
-      if (pipe != '|') {
-        throw std::string("Invalid format");
-      }
-      checkValue(value);
+    checkYear(year);
+    if (Hyphen1 != '-' || Hyphen2 != '-') {
+      throw std::string("Invalid hyphen");
     }
+    checkMonth(month);
+    checkDay(day);
+    if (pipe != '|') {
+      throw std::string("Invalid format");
+    }
+    checkValue(value);
     std::cout << year << Hyphen1 << month << Hyphen2 << day << " => " << value << std::endl;
   } catch (std::string& e) {
-    std::cout << "Error: " << e << std::endl;
+      std::cout << "Error: " << e << std::endl;
   }
-  return false;
+  return true;
 }
-
-

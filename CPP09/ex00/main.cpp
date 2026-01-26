@@ -15,9 +15,14 @@ int main(int ac, char *av[]) {
   }
 
   std::string line;
+  if (std::getline(file, line)) {
+    if (line.find("data") != std::string::npos) {};
+  }
   while (std::getline(file, line))
+  {
     if (validateCurrency(line) == false)
       continue;
+  }
 
   return 0;
 }
