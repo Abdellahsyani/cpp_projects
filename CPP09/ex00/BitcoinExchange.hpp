@@ -6,6 +6,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <climits>
 
 
 void validateCurrency(std::string& line);

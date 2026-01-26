@@ -16,7 +16,7 @@ int main(int ac, char *av[]) {
 
   std::string line;
   while (std::getline(file, line))
-    validateCurrency(line + 1);
+    validateCurrency(line);
 
   return 0;
 }
