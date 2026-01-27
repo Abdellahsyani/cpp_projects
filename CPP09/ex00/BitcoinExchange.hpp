@@ -8,6 +8,8 @@
 #include <string>
 #include <sstream>
 #include <climits>
+#include <stdlib.h>
+#include <iomanip>
 
 
 bool validateCurrency(std::string& line);

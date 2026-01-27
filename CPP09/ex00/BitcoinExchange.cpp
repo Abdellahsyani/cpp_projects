@@ -30,7 +30,7 @@ void checkValue(double value) {
     throw std::string("not a positive number");
 };
 
-void fillMap(std::map<std::string, double> &Map, std::string &line) {
+void fillMap(std::map<std::string, double> &Map) {
   std::ifstream readFile;
   std::string fileCsv = "data.csv";
   readFile.open(fileCsv.c_str());
@@ -39,18 +39,17 @@ void fillMap(std::map<std::string, double> &Map, std::string &line) {
     std::cerr << "Fail to open file" << std::endl;
     return;
   }
-
   std::string date;
   std::string price;
   std::string header;
   if (std::getline(readFile, header)) {
     if (header.find("date") != std::string::npos) {};
   }
-  while (std::getline(readFile, date, ",")) {
+  while (std::getline(readFile, date, ',')) {
     if (std::getline(readFile, price)) {
-      double value = static_cast<double>(price);
-      map.insert(date, value);
-    };
+      double value = std::atof(price.c_str());
+      Map[date] = value;
+    }
   }
 }
 
@@ -65,7 +64,13 @@ bool validateCurrency(std::string& line) {
   std::stringstream ss(line);
   std::string date = line.substr(0,10);
   std::map<std::string, double> Map;
-  fillMap(Map, line);
+  fillMap(Map);
+  std::map<std::string, double>::iterator it = Map.find("2021-11-19");
+  if (it != Map.end()) {
+    std::cout << it->first << " => " << std::fixed << std::setprecision(2) << it->second << std::endl;
+  } else {
+    std::cout << "Date not found!" << std::endl;
+  }
 
   if (line.empty())
     return false;
