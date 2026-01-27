@@ -12,9 +12,13 @@ void checkMonth(int month) {
   }
 };
 
-void checkDay(int day) {
+void checkDay(int day, int month) {
   if (day < 1 || day > 31) {
     throw std::string("Invalid day");
+  }
+  if (month == 2) {
+    if (day < 1 || day > 29)
+      throw std::string("Invalid day");
   }
 };
 
@@ -26,6 +30,30 @@ void checkValue(double value) {
     throw std::string("not a positive number");
 };
 
+void fillMap(std::map<std::string, double> &Map, std::string &line) {
+  std::ifstream readFile;
+  std::string fileCsv = "data.csv";
+  readFile.open(fileCsv.c_str());
+
+  if (!readFile.is_open()) {
+    std::cerr << "Fail to open file" << std::endl;
+    return;
+  }
+
+  std::string date;
+  std::string price;
+  std::string header;
+  if (std::getline(readFile, header)) {
+    if (header.find("date") != std::string::npos) {};
+  }
+  while (std::getline(readFile, date, ",")) {
+    if (std::getline(readFile, price)) {
+      double value = static_cast<double>(price);
+      map.insert(date, value);
+    };
+  }
+}
+
 bool validateCurrency(std::string& line) {
   int year = 0;
   int month = 0;
@@ -35,6 +63,9 @@ bool validateCurrency(std::string& line) {
   char pipe = 0;
   double value = 0.0;
   std::stringstream ss(line);
+  std::string date = line.substr(0,10);
+  std::map<std::string, double> Map;
+  fillMap(Map, line);
 
   if (line.empty())
     return false;
@@ -53,7 +84,7 @@ bool validateCurrency(std::string& line) {
       throw std::string("Invalid hyphen");
     }
     checkMonth(month);
-    checkDay(day);
+    checkDay(day, month);
     if (pipe != '|') {
       throw std::string("Invalid format");
     }
