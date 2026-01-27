@@ -65,12 +65,7 @@ bool validateCurrency(std::string& line) {
   std::string date = line.substr(0,10);
   std::map<std::string, double> Map;
   fillMap(Map);
-  std::map<std::string, double>::iterator it = Map.find("2021-11-19");
-  if (it != Map.end()) {
-    std::cout << it->first << " => " << std::fixed << std::setprecision(2) << it->second << std::endl;
-  } else {
-    std::cout << "Date not found!" << std::endl;
-  }
+  std::map<std::string, double>::iterator it = Map.lower_bound(date);
 
   if (line.empty())
     return false;
@@ -94,7 +89,14 @@ bool validateCurrency(std::string& line) {
       throw std::string("Invalid format");
     }
     checkValue(value);
-    std::cout << year << Hyphen1 << month << Hyphen2 << day << " => " << value << std::endl;
+    if (it == Map.begin())
+      throw std::string("Date too old");
+    if (it != Map.end() && it->first == date) {
+      std::cout << year << Hyphen1 << month << Hyphen2 << day << " => " << value << " = " << value * it->second << std::endl;
+    } else {
+      --it;
+      std::cout << year << Hyphen1 << month << Hyphen2 << day << " => " << value << " = " << value * it->second << std::endl;
+    }
   } catch (std::string& e) {
       std::cout << "Error: " << e << std::endl;
   }
