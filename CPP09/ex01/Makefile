@@ -3,8 +3,8 @@ NAME = RPN
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = BitcoinExchange.hpp
-SRC = main.cpp BitcoinExchange.cpp
+HDR = RNP.hpp
+SRC = main.cpp RNP.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
