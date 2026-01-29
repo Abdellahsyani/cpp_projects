@@ -1,7 +1,7 @@
 #include "BitcoinExchange.hpp"
 
 void checkYear(int year) {
-  if (year < 1 || year > 2026) {
+  if (year < 2008 || year > 2026) {
     throw std::string("Invalid year");
   }
 };
