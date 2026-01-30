@@ -29,17 +29,23 @@ int main(int ac, char *av[]) {
   try {
     int n = 0;
     for (int i = 1; i < ac; i++) {
-      input[n] = StringToInt(av[i]);
-      n++;
+      n = StringToInt(av[i]);
+      input.push_back(n);
     }
-    for (int i = 0; i < input.size(); i += 2) {
+    int reminder = 0;
+    for (int i = 0; i + 1 < input.size(); i += 2) {
       if (input[i] < input[i+1]) {
         pairs.push_back(std::make_pair(input[i+1], input[i]));
       } else {
-        pairs.push_back(std::make_pair(input[i], input[i+1]))
+        pairs.push_back(std::make_pair(input[i], input[i+1]));
       }
+      if (input.size() % 2 != 0)
+        reminder = input[input.size() - 1];
     }
 
+    // for (const auto&p : pairs) {
+    //   std::cout << "first: " << p.first << " second: " << p.second << std::endl;
+    // }
   } catch (std::exception &e) {
     std::cout << "Error: " << e.what() << std::endl;
   }
