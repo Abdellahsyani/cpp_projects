@@ -24,32 +24,38 @@ int main(int ac, char *av[]) {
     return 1;
   }
 
-  std::vector<std::pair<int, int>> pairs;
+  std::vector<Node> pairs;
   std::vector<int> input;
+  Node node;
+  node.rem = 0;
   try {
     int n = 0;
     for (int i = 1; i < ac; i++) {
       n = StringToInt(av[i]);
       input.push_back(n);
     }
-    int reminder = 0;
-    for (int i = 0; i + 1 < input.size(); i += 2) {
+    pairs.reserve(input.size() / 2);
+    for (size_t i = 0; i + 1 < input.size(); i += 2) {
       if (input[i] < input[i+1]) {
-        pairs.push_back(std::make_pair(input[i+1], input[i]));
+        node.first = input[i+1];
+        node.second = input[i];
       } else {
-        pairs.push_back(std::make_pair(input[i], input[i+1]));
+        node.first = input[i];
+        node.second = input[i+1];
       }
       if (input.size() % 2 != 0)
-        reminder = input[input.size() - 1];
+        node.rem = input[input.size() - 1];
+      pairs.push_back(node);
     }
-
-    // for (const auto&p : pairs) {
-    //   std::cout << "first: " << p.first << " second: " << p.second << std::endl;
+    // std::cout << pairs[0].rem << std::endl;
+    // for (size_t i = 0; i < input.size() / 2; i++) {
+    //   std::cout << "first: " << pairs[i].first << " second: " << pairs[i].second << std::endl;
     // }
+
   } catch (std::exception &e) {
     std::cout << "Error: " << e.what() << std::endl;
   }
-  // VectorTest();
+  VectorTest(pairs);
   // DequeTest();
 
   return 0;

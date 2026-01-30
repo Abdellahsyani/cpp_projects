@@ -7,5 +7,10 @@
 #include <vector>
 #include <climits>
 
+struct Node {
+  int first;
+  int second;
+  int rem;
+};
 
 #endif // !PMERGEME_HPP

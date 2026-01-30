@@ -3,8 +3,8 @@ NAME = PmergeMe
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = BitcoinExchange.hpp
-SRC = main.cpp BitcoinExchange.cpp
+HDR = PmergeMe.hpp
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
