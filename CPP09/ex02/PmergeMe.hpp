@@ -8,8 +8,8 @@
 #include <climits>
 
 struct Node {
-  int first;
-  int second;
+  int winner;
+  std::vector<int> losers;
   int rem;
 };
 

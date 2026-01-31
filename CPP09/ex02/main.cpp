@@ -37,11 +37,11 @@ int main(int ac, char *av[]) {
     pairs.reserve(input.size() / 2);
     for (size_t i = 0; i + 1 < input.size(); i += 2) {
       if (input[i] < input[i+1]) {
-        node.first = input[i+1];
-        node.second = input[i];
+        node.winner = input[i+1];
+        node.losers[i] = input[i];
       } else {
-        node.first = input[i];
-        node.second = input[i+1];
+        node.winner = input[i];
+        node.losers[i] = input[i+1];
       }
       if (input.size() % 2 != 0)
         node.rem = input[input.size() - 1];
