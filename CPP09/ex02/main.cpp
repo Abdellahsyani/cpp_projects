@@ -26,8 +26,6 @@ int main(int ac, char *av[]) {
 
   std::vector<Node> pairs;
   std::vector<int> input;
-  Node node;
-  node.rem = 0;
   try {
     int n = 0;
     for (int i = 1; i < ac; i++) {
@@ -36,6 +34,8 @@ int main(int ac, char *av[]) {
     }
     pairs.reserve(input.size() / 2);
     for (size_t i = 0; i + 1 < input.size(); i += 2) {
+      Node node;
+      node.rem = 0;
       if (input[i] < input[i+1]) {
         node.winner = input[i+1];
         node.losers.push_back(input[i]);

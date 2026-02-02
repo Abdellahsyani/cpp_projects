@@ -13,4 +13,6 @@ struct Node {
   int rem;
 };
 
+void VectorTest(std::vector<Node>& pairs);
+
 #endif // !PMERGEME_HPP
