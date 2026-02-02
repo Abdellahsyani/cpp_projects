@@ -13,6 +13,22 @@ std::vector<Node> SortNumbers(std::vector<Node>& pairs) {
   return SortNumbers();
 }
 
+std::vector<Node> makePair(std::vector<Node>& pairs) {
+    Node node;
+    std::vector<Node> paired;
+    for (size_t i = 0; i + 1 < pairs.size(); i += 2) {
+      if (pairs[i].winner > pairs[i+1].winner) {
+        node.winner = pairs[i].winner;
+        node.losers.push_back(pairs[i+1].winner);
+      } else {
+        node.winner = pairs[i+1].winner;
+        node.losers.push_back(pairs[i].winner);
+      }
+      paired.push_back(node);
+  }
+  return paired;
+}
+
 std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
   if (pairs.size() <= 1) {
     return pairs;

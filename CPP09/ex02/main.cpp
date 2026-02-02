@@ -38,10 +38,10 @@ int main(int ac, char *av[]) {
     for (size_t i = 0; i + 1 < input.size(); i += 2) {
       if (input[i] < input[i+1]) {
         node.winner = input[i+1];
-        node.losers[i] = input[i];
+        node.losers.push_back(input[i]);
       } else {
         node.winner = input[i];
-        node.losers[i] = input[i+1];
+        node.losers.push_back(input[i+1]);
       }
       if (input.size() % 2 != 0)
         node.rem = input[input.size() - 1];
