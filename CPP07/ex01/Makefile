@@ -4,7 +4,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 HDR = iter.hpp 
-SRC = main.cpp 
+SRC = ex01.cpp 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
