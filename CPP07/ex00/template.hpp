@@ -1,6 +1,7 @@
 #ifndef TEMPLATE_HPP
 # define TEMPLATE_HPP
 
+#include <iostream>
 /**
  * swap: A function that swaps two types by using template
  *
@@ -34,6 +35,8 @@ void swap(T& a, T& b) {
  **/
 template <typename T>
 T min(T a, T b) {
+  if (a == b)
+    return b;
   return (a < b) ? a : b;
 }
 
@@ -53,6 +56,8 @@ T min(T a, T b) {
  **/
 template <typename T>
 T max(T a, T b) {
+  if (a == b)
+    return b;
   return (a > b) ? a : b;
 }
 
