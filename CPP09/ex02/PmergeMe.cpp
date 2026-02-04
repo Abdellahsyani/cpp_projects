@@ -1,16 +1,27 @@
 #include "PmergeMe.hpp"
 
 
+/***/
 void BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
   std::vector<int>::iterator limit;
 
   limit = std::find(MainChain.begin(), MainChain.end(), winner);
   std::vector<int>::iterator pos = std::lower_bound(MainChain.begin(), limit, loser);
+  std::cout << "pos: " << *pos << std::endl;
+  std::cout << "loser: " << loser << std::endl;
+  std::cout << "winner: " << *limit << std::endl;
   MainChain.insert(pos, loser);
 }
 
+/***/
 std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
   std::vector<int> MainChain;
+
+  // for (size_t i = 0; i < sortedNodes.size(); i++) {
+  //   std::cout << "winner: " << sortedNodes[i].winner << std::endl;
+  //   for (size_t j = 0; j < sortedNodes[i].losers.size(); j++)
+  //     std::cout << "[losers: " << sortedNodes[i].losers[j] << " ]"<< std::endl;
+  // }
 
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
     MainChain.push_back(sortedNodes[i].winner);
@@ -74,6 +85,8 @@ std::vector<Node> makePair(std::vector<Node>& pairs) {
   return paired;
 }
 
+
+/***/
 std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
   if (pairs.size() <= 1) {
     return pairs;
@@ -85,15 +98,17 @@ std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
   return SortNumbers(sortedWinners, pairs);
 }
 
+
+/***/
 void VectorTest(std::vector<Node>& pairs) {
-  std::cout << "before" << std::endl;
-  for (size_t i = 0; i + 1 < pairs.size(); ++i) {
-      std::cout << pairs[i].winner << std::endl;
-    }
+  // std::cout << "before" << std::endl;
+  // for (size_t i = 0; i + 1 < pairs.size(); ++i) {
+  //     std::cout << pairs[i].winner << std::endl;
+  //   }
 
   std::vector<Node> sortList = sortRecursion(pairs);
-  std::cout << "after" << std::endl;
-  for (size_t i = 0; i + 1 < sortList.size(); ++i) {
-      std::cout << sortList[i].winner << std::endl;
-    }
+  // std::cout << "after" << std::endl;
+  // for (size_t i = 0; i < sortList.size(); i++) {
+  //     std::cout << sortList[i].winner << std::endl;
+  // }
 }
