@@ -13,7 +13,7 @@ std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>&
   std::vector<int> MainChain;
 
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
-    MainChain.push_back(sortedNodes[i].winner)
+    MainChain.push_back(sortedNodes[i].winner);
   }
 
   if (!pairs.empty()) {
@@ -34,10 +34,19 @@ std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>&
       BinarySearch(MainChain, currentLoser, currentWinner);
     }
   }
+
+  if (!pairs.empty() && pairs.back().rem != -1) {
+    int stray = pairs.back().rem;
+    std::vector<int>::iterator pos = std::lower_bound(MainChain.begin(), MainChain.end(), stray);
+    MainChain.insert(pos, stray);
+  }
+
+
   std::vector<Node> result;
   for (size_t i = 0; i < MainChain.size(); ++i) {
     Node n;
     n.winner = MainChain[i];
+    n.rem = -1;
     result.push_back(n);
   }
   return result;
@@ -48,7 +57,7 @@ std::vector<Node> makePair(std::vector<Node>& pairs) {
 
   for (size_t i = 0; i + 1 < pairs.size(); i += 2) {
     Node node;
-    node.rem = 0;
+    node.rem = -1;
     if (pairs[i].winner > pairs[i+1].winner) {
       node.winner = pairs[i].winner;
       node.losers = pairs[i].losers;
@@ -60,11 +69,8 @@ std::vector<Node> makePair(std::vector<Node>& pairs) {
     }
     paired.push_back(node);
   }
-  if (pairs.size() % 2 != 0)
-    node.rem = pairs[pairs.size() - 1].winner;
-  else {
-    node.rem = -1;
-  }
+  if (pairs.size() % 2 != 0 && !paired.empty())
+    paired.back().rem = pairs[pairs.size() - 1].winner;
   return paired;
 }
 
