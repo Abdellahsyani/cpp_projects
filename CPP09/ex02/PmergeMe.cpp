@@ -12,13 +12,35 @@ void BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
 std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
   std::vector<int> MainChain;
 
-  for (size_t i = 0; i < sortedNodes.size(); i++) {
+  for (size_t i = 0; i < sortedNodes.size(); ++i) {
     MainChain.push_back(sortedNodes[i].winner)
   }
 
   if (!pairs.empty()) {
+    int firstWinner = MainChain[0];
+    for (size_t i = 0; i < pairs.size(); ++i) {
+      if (pairs[i].winner == firstWinner) {
+        MainChain.insert(MainChain.begin(), pairs[i].losers.back());
+        break;
 
+      }
+    }
   }
+
+  for (size_t i = 0; i < pairs.size(); ++i) {
+    int currentLoser = pairs[i].losers.back();
+    int currentWinner = pairs[i].winner;
+    if (std::find(MainChain.begin(), MainChain.end(), currentLoser) == MainChain.end()) {
+      BinarySearch(MainChain, currentLoser, currentWinner);
+    }
+  }
+  std::vector<Node> result;
+  for (size_t i = 0; i < MainChain.size(); ++i) {
+    Node n;
+    n.winner = MainChain[i];
+    result.push_back(n);
+  }
+  return result;
 }
 
 std::vector<Node> makePair(std::vector<Node>& pairs) {
@@ -54,7 +76,7 @@ std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
   std::vector<Node> nextRound = makePair(pairs);
   std::vector<Node> sortedWinners = sortRecursion(nextRound);
 
-  return SortNumbers(mainChain, pairs);
+  return SortNumbers(sortedWinners, pairs);
 }
 
 void VectorTest(std::vector<Node>& pairs) {
