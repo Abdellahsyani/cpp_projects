@@ -35,7 +35,7 @@ int main(int ac, char *av[]) {
     pairs.reserve(input.size() / 2);
     for (size_t i = 0; i + 1 < input.size(); i += 2) {
       Node node;
-      node.rem = 0;
+      node.rem = -1;
       if (input[i] < input[i+1]) {
         node.winner = input[i+1];
         node.losers.push_back(input[i]);

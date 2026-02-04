@@ -76,7 +76,7 @@ std::vector<Node> makePair(std::vector<Node>& pairs) {
 
 std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
   if (pairs.size() <= 1) {
-      return pairs;
+    return pairs;
   }
 
   std::vector<Node> nextRound = makePair(pairs);
@@ -86,5 +86,14 @@ std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
 }
 
 void VectorTest(std::vector<Node>& pairs) {
+  std::cout << "before" << std::endl;
+  for (size_t i = 0; i + 1 < pairs.size(); ++i) {
+      std::cout << pairs[i].winner << std::endl;
+    }
+
   std::vector<Node> sortList = sortRecursion(pairs);
+  std::cout << "after" << std::endl;
+  for (size_t i = 0; i + 1 < sortList.size(); ++i) {
+      std::cout << sortList[i].winner << std::endl;
+    }
 }
