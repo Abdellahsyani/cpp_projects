@@ -1,22 +1,24 @@
 #include "PmergeMe.hpp"
 
 
-// int BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
-// }
+void BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
+  std::vector<int>::iterator limit;
 
-std::vector<Node> SortNumbers(std::vector<Node>& mainChain, std::vector<Node>& pairs) {
-  (void)mainChain;
-  for (size_t i = 0; i < pairs.size(); i++) {
-    std::cout << "Winner: " << pairs[i].winner;
+  limit = std::find(MainChain.begin(), MainChain.end(), winner);
+  std::vector<int>::iterator pos = std::lower_bound(MainChain.begin(), limit, loser);
+  MainChain.insert(pos, loser);
+}
 
-    // Print ALL losers in this suitcase to see the history
-    std::cout << " | Losers: [";
-    for (size_t j = 0; j < pairs[i].losers.size(); j++) {
-      std::cout << pairs[i].losers[j] << (j == pairs[i].losers.size() - 1 ? "" : ", ");
-    }
-    std::cout << "]" << std::endl;
+std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
+  std::vector<int> MainChain;
+
+  for (size_t i = 0; i < sortedNodes.size(); i++) {
+    MainChain.push_back(sortedNodes[i].winner)
   }
-  return pairs;
+
+  if (!pairs.empty()) {
+
+  }
 }
 
 std::vector<Node> makePair(std::vector<Node>& pairs) {
@@ -35,8 +37,11 @@ std::vector<Node> makePair(std::vector<Node>& pairs) {
       node.losers.push_back(pairs[i].winner);
     }
     paired.push_back(node);
-    if (pairs.size() % 2 != 0)
-      node.rem = pairs[pairs.size() - 1].winner;
+  }
+  if (pairs.size() % 2 != 0)
+    node.rem = pairs[pairs.size() - 1].winner;
+  else {
+    node.rem = -1;
   }
   return paired;
 }
@@ -47,10 +52,9 @@ std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
   }
 
   std::vector<Node> nextRound = makePair(pairs);
-  std::vector<Node> mainChain = sortRecursion(nextRound);
+  std::vector<Node> sortedWinners = sortRecursion(nextRound);
 
-  std::vector<Node> result = SortNumbers(mainChain, pairs);
-  return result;
+  return SortNumbers(mainChain, pairs);
 }
 
 void VectorTest(std::vector<Node>& pairs) {
