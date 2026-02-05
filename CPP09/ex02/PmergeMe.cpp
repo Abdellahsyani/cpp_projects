@@ -3,14 +3,6 @@
 
 /***/
 void BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
-  std::vector<int>::iterator limit;
-
-  limit = std::find(MainChain.begin(), MainChain.end(), winner);
-  std::vector<int>::iterator pos = std::lower_bound(MainChain.begin(), limit, loser);
-  std::cout << "pos: " << *pos << std::endl;
-  std::cout << "loser: " << loser << std::endl;
-  std::cout << "winner: " << *limit << std::endl;
-  MainChain.insert(pos, loser);
 }
 
 /***/
@@ -23,44 +15,6 @@ std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>&
   //     std::cout << "[losers: " << sortedNodes[i].losers[j] << " ]"<< std::endl;
   // }
 
-  for (size_t i = 0; i < sortedNodes.size(); ++i) {
-    MainChain.push_back(sortedNodes[i].winner);
-  }
-
-  if (!pairs.empty()) {
-    int firstWinner = MainChain[0];
-    for (size_t i = 0; i < pairs.size(); ++i) {
-      if (pairs[i].winner == firstWinner) {
-        MainChain.insert(MainChain.begin(), pairs[i].losers.back());
-        break;
-
-      }
-    }
-  }
-
-  for (size_t i = 0; i < pairs.size(); ++i) {
-    int currentLoser = pairs[i].losers.back();
-    int currentWinner = pairs[i].winner;
-    if (std::find(MainChain.begin(), MainChain.end(), currentLoser) == MainChain.end()) {
-      BinarySearch(MainChain, currentLoser, currentWinner);
-    }
-  }
-
-  if (!pairs.empty() && pairs.back().rem != -1) {
-    int stray = pairs.back().rem;
-    std::vector<int>::iterator pos = std::lower_bound(MainChain.begin(), MainChain.end(), stray);
-    MainChain.insert(pos, stray);
-  }
-
-
-  std::vector<Node> result;
-  for (size_t i = 0; i < MainChain.size(); ++i) {
-    Node n;
-    n.winner = MainChain[i];
-    n.rem = -1;
-    result.push_back(n);
-  }
-  return result;
 }
 
 std::vector<Node> makePair(std::vector<Node>& pairs) {
