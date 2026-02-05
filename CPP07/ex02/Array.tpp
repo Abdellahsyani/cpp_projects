@@ -10,14 +10,13 @@ Array<T>::Array(unsigned int size) : _n(size) {
 
 template <typename T>
 Array<T>::Array(const Array<T> &other) {
-  this->_element = new T[other._n]();
   this->_n = other._n;
-  for (unsigned int i = 0; i < other->_n; i++)
-  {
-    if (this->_n > 0) {
+  if (this->_n > 0) {
+    this->_element = new T[other._n]();
+    for (unsigned int i = 0; i < other->_n; i++) {
       this->_element[i] = other._element[i];
     }
-    else {
+  } else {
       this->_element = NULL;
     }
   }
@@ -29,8 +28,7 @@ Array<T>& Array<T>::operator=(const Array<T> &other) {
     T* tmp = NULL;
     if (this->_n > 0) {
       tmp = new T[other._n]();
-      for (unsigned int i = 0; i < other->_n; i++)
-      {
+      for (unsigned int i = 0; i < other->_n; i++) {
         tmp[i] = other._element[i];
       }
     }
