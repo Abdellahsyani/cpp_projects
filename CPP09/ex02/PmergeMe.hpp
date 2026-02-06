@@ -13,7 +13,7 @@ struct Node {
   int stray;
   bool has_stray;
 
-  Node() : winner(0), stray(0), has_stray(false) {};
+  Node() : winner(0), stray(0), has_stray(false) {}
 };
 
 
@@ -24,7 +24,7 @@ private:
 public:
   PmergeMe();
   PmergeMe(const PmergeMe& other);
-  PmergeMe operator=(const PmergeMe& other);
+  PmergeMe& operator=(const PmergeMe& other);
   ~PmergeMe();
 
   void BinarySearch(std::vector<int>& MainChain, int loser, int winner);

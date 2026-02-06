@@ -1,6 +1,24 @@
 #include "PmergeMe.hpp"
 
 /***/
+PmergeMe::PmergeMe() : comparison(0) {};
+
+/***/
+PmergeMe::PmergeMe(const PmergeMe& other) {
+  this->comparison = other.comparison;
+}
+
+/***/
+PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
+  if (this != &other)
+    this->comparison = other.comparison;
+  return *this;
+}
+
+/***/
+PmergeMe::~PmergeMe() {};
+
+/***/
 // void PmergeMe::BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
 // }
 
@@ -9,6 +27,8 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
 
   for (size_t i = 0; i < sortedNodes.size(); i++) {
     std::cout << "winner: " << sortedNodes[i].winner << std::endl;
+    if (sortedNodes[i].has_stray == true)
+      std::cout << "winner stray: " << sortedNodes[i].stray << std::endl;
     for (size_t j = 0; j < sortedNodes[i].losers.size(); j++)
       std::cout << "[losers: " << sortedNodes[i].losers[j] << " ]"<< std::endl;
   }
@@ -33,6 +53,7 @@ std::vector<Node> PmergeMe::makePair(std::vector<Node>& pairs) {
   }
   if (pairs.size() % 2 != 0 && !paired.empty())
   {
+    std::cout << " ==== Enter2 =====" << std::endl;
     paired.back().stray = pairs[pairs.size() - 1].winner;
     paired.back().has_stray = true;
   }

@@ -47,6 +47,7 @@ int main(int ac, char *av[]) {
     }
     if (input.size() % 2 != 0)
     {
+      std::cout << " ==== Enter1 =====" << std::endl;
       pairs.back().stray = input[input.size() - 1];
       pairs.back().has_stray = true;
     }
