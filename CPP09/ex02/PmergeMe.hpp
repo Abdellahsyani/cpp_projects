@@ -13,6 +13,25 @@ struct Node {
   int rem;
 };
 
-void VectorTest(std::vector<Node>& pairs);
+
+class PmergeMe {
+private:
+  size_t comparison;
+
+public:
+  PmergeMe();
+  PmergeMe(const PmergeMe& other);
+  PmergeMe operator=(const PmergeMe& other);
+  ~PmergeMe();
+
+
+
+  void BinarySearch(std::vector<int>& MainChain, int loser, int winner);
+  std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
+  std::vector<Node> makePair(std::vector<Node>& pairs);
+  std::vector<Node> sortRecursion(std::vector<Node>& pairs);
+  void VectorTest(std::vector<Node>& pairs);
+  
+};
 
 #endif // !PMERGEME_HPP
