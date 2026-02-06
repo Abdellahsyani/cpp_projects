@@ -1,28 +1,25 @@
 #include "PmergeMe.hpp"
 
+/***/
+// void PmergeMe::BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
+// }
 
 /***/
-void BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
+std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
+
+  for (size_t i = 0; i < sortedNodes.size(); i++) {
+    std::cout << "winner: " << sortedNodes[i].winner << std::endl;
+    for (size_t j = 0; j < sortedNodes[i].losers.size(); j++)
+      std::cout << "[losers: " << sortedNodes[i].losers[j] << " ]"<< std::endl;
+  }
+  return pairs;
 }
 
-/***/
-std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
-  std::vector<int> MainChain;
-
-  // for (size_t i = 0; i < sortedNodes.size(); i++) {
-  //   std::cout << "winner: " << sortedNodes[i].winner << std::endl;
-  //   for (size_t j = 0; j < sortedNodes[i].losers.size(); j++)
-  //     std::cout << "[losers: " << sortedNodes[i].losers[j] << " ]"<< std::endl;
-  // }
-
-}
-
-std::vector<Node> makePair(std::vector<Node>& pairs) {
+std::vector<Node> PmergeMe::makePair(std::vector<Node>& pairs) {
   std::vector<Node> paired;
 
   for (size_t i = 0; i + 1 < pairs.size(); i += 2) {
     Node node;
-    node.rem = -1;
     if (pairs[i].winner > pairs[i+1].winner) {
       node.winner = pairs[i].winner;
       node.losers = pairs[i].losers;
@@ -35,13 +32,16 @@ std::vector<Node> makePair(std::vector<Node>& pairs) {
     paired.push_back(node);
   }
   if (pairs.size() % 2 != 0 && !paired.empty())
-    paired.back().rem = pairs[pairs.size() - 1].winner;
+  {
+    paired.back().stray = pairs[pairs.size() - 1].winner;
+    paired.back().has_stray = true;
+  }
   return paired;
 }
 
 
 /***/
-std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
+std::vector<Node> PmergeMe::sortRecursion(std::vector<Node>& pairs) {
   if (pairs.size() <= 1) {
     return pairs;
   }
@@ -54,7 +54,7 @@ std::vector<Node> sortRecursion(std::vector<Node>& pairs) {
 
 
 /***/
-void VectorTest(std::vector<Node>& pairs) {
+void PmergeMe::VectorTest(std::vector<Node>& pairs) {
   // std::cout << "before" << std::endl;
   // for (size_t i = 0; i + 1 < pairs.size(); ++i) {
   //     std::cout << pairs[i].winner << std::endl;

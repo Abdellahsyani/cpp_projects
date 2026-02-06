@@ -10,7 +10,10 @@
 struct Node {
   int winner;
   std::vector<int> losers;
-  int rem;
+  int stray;
+  bool has_stray;
+
+  Node() : winner(0), stray(0), has_stray(false) {};
 };
 
 
@@ -23,8 +26,6 @@ public:
   PmergeMe(const PmergeMe& other);
   PmergeMe operator=(const PmergeMe& other);
   ~PmergeMe();
-
-
 
   void BinarySearch(std::vector<int>& MainChain, int loser, int winner);
   std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);

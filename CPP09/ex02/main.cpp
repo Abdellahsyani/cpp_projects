@@ -26,6 +26,7 @@ int main(int ac, char *av[]) {
 
   std::vector<Node> pairs;
   std::vector<int> input;
+  PmergeMe merge;
   try {
     int n = 0;
     for (int i = 1; i < ac; i++) {
@@ -35,7 +36,6 @@ int main(int ac, char *av[]) {
     pairs.reserve(input.size() / 2);
     for (size_t i = 0; i + 1 < input.size(); i += 2) {
       Node node;
-      node.rem = -1;
       if (input[i] < input[i+1]) {
         node.winner = input[i+1];
         node.losers.push_back(input[i]);
@@ -43,9 +43,12 @@ int main(int ac, char *av[]) {
         node.winner = input[i];
         node.losers.push_back(input[i+1]);
       }
-      if (input.size() % 2 != 0)
-        node.rem = input[input.size() - 1];
       pairs.push_back(node);
+    }
+    if (input.size() % 2 != 0)
+    {
+      pairs.back().stray = input[input.size() - 1];
+      pairs.back().has_stray = true;
     }
     // std::cout << pairs[0].rem << std::endl;
     // for (size_t i = 0; i < input.size() / 2; i++) {
@@ -55,7 +58,7 @@ int main(int ac, char *av[]) {
   } catch (std::exception &e) {
     std::cout << "Error: " << e.what() << std::endl;
   }
-  VectorTest(pairs);
+  merge.VectorTest(pairs);
   // DequeTest();
 
   return 0;
