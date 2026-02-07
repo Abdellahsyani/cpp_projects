@@ -25,6 +25,7 @@ PmergeMe::~PmergeMe() {};
 /***/
 std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
 
+  std::cout << " ==== Enter2 =====" << std::endl;
   for (size_t i = 0; i < sortedNodes.size(); i++) {
     std::cout << "winner: " << sortedNodes[i].winner << std::endl;
     if (sortedNodes[i].has_stray == true)
@@ -53,7 +54,6 @@ std::vector<Node> PmergeMe::makePair(std::vector<Node>& pairs) {
   }
   if (pairs.size() % 2 != 0 && !paired.empty())
   {
-    std::cout << " ==== Enter2 =====" << std::endl;
     paired.back().stray = pairs[pairs.size() - 1].winner;
     paired.back().has_stray = true;
   }
