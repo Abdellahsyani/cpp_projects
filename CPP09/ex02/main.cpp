@@ -39,9 +39,11 @@ int main(int ac, char *av[]) {
       if (input[i] < input[i+1]) {
         node.winner = input[i+1];
         node.losers.push_back(input[i]);
+        merge.pendingList.push_back(input[i]);
       } else {
         node.winner = input[i];
         node.losers.push_back(input[i+1]);
+        merge.pendingList.push_back(input[i+1]);
       }
       pairs.push_back(node);
     }

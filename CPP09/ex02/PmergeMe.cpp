@@ -56,7 +56,7 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
     for (size_t j = node.losers.size() - 1; j > 0; --j) {
       int loserValue = node.losers[j];
       int upperBound = node.winner;
- 
+
       int pos = BinarySearch(MainChain, upperBound, loserValue);
       // std::cout << "Pos: " << pos << std::endl;
       MainChain.insert(MainChain.begin() + pos, loserValue);
@@ -64,16 +64,30 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
   }
   for (size_t i = 0; i < sortedNodes.size(); i++) {
     if (sortedNodes[i].has_stray == true) {
-      int pos = BinarySearch(MainChain, MainChain.size() - 1, sortedNodes[i].stray);
+      int strayValue = sortedNodes[i].stray;
+      // int pos = BinarySearch(MainChain, MainChain.back(), strayValue);
+      std::vector<int>::iterator it;
+
+      std::vector<int>::iterator WinnerIt = std::find(MainChain.begin(), MainChain.end(), strayValue);
+      it = std::lower_bound(MainChain.begin(), WinnerIt, strayValue);
+      int pos = std::distance(MainChain.begin(), it);
       std::cout << "Pos: " << pos << std::endl;
-      MainChain.insert(MainChain.begin() + pos, sortedNodes[i].stray);
+      MainChain.insert(MainChain.begin() + pos, strayValue);
+      break;
     }
   }
 
-  for (size_t i = 0; i < MainChain.size(); i++)
-  {
-       std::cout << "Sorted: " << MainChain[i] << std::endl;
-  }
+  // for (size_t i = 0; i < this->pendingList.size(); i++)
+  // {
+  //   std::cout << " " << this->pendingList[i] << " ";
+  // }
+  // std::cout << "\n";
+  //
+  // for (size_t i = 0; i < MainChain.size(); i++)
+  // {
+  //   std::cout << " " << MainChain[i] << " ";
+  // }
+  // std::cout << "\n";
 
   return pairs;
 }
