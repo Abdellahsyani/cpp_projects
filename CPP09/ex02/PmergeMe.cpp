@@ -19,8 +19,17 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 PmergeMe::~PmergeMe() {};
 
 /***/
-// void PmergeMe::BinarySearch(std::vector<int>& MainChain, int loser, int winner) {
-// }
+int PmergeMe::BinarySearch(std::vector<int>& MainChain, int winner, int loser) {
+  std::vector<int>::iterator it;
+
+  std::vector<int>::iterator WinnerIt = std::find(MainChain.begin(), MainChain.end(), winner);
+  if (WinnerIt == MainChain.end())
+    return 0;
+  it = std::lower_bound(MainChain.begin(), WinnerIt, loser);
+  int pos = std::distance(MainChain.begin(), it);
+
+  return pos;
+}
 
 /***/
 std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
@@ -41,11 +50,29 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
 
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
     Node& node = sortedNodes[i];
+    if (sortedNodes[i].has_stray == true)
+      std::cout << "stray: " << sortedNodes[i].stray << std::endl;
 
     for (size_t j = node.losers.size() - 1; j > 0; --j) {
-      int loserValue = losers[j];
+      int loserValue = node.losers[j];
       int upperBound = node.winner;
+ 
+      int pos = BinarySearch(MainChain, upperBound, loserValue);
+      // std::cout << "Pos: " << pos << std::endl;
+      MainChain.insert(MainChain.begin() + pos, loserValue);
     }
+  }
+  for (size_t i = 0; i < sortedNodes.size(); i++) {
+    if (sortedNodes[i].has_stray == true) {
+      int pos = BinarySearch(MainChain, MainChain.size() - 1, sortedNodes[i].stray);
+      std::cout << "Pos: " << pos << std::endl;
+      MainChain.insert(MainChain.begin() + pos, sortedNodes[i].stray);
+    }
+  }
+
+  for (size_t i = 0; i < MainChain.size(); i++)
+  {
+       std::cout << "Sorted: " << MainChain[i] << std::endl;
   }
 
   return pairs;
