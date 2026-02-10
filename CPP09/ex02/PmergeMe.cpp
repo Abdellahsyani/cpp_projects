@@ -33,16 +33,18 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
   //   for (size_t j = 0; j < sortedNodes[i].losers.size(); j++)
   //     std::cout << "[losers: " << sortedNodes[i].losers[j] << " ]"<< std::endl;
   // }
-  std::vector<int> main;
 
-  for (size_t i = 0; i < sortedNodes.size(); i++) {
-    if (sortedNodes[i].winner < sortedNodes[i+1].winner) {
-      std::cout << "mainchain: " << sortedNodes[i].winner << std::endl;
-      main.push_back(sortedNodes[i].winner);
-    }
-    else {
-      std::cout << "mainchain: " << sortedNodes[i].winner << std::endl;
-      main.push_back(sortedNodes[i+1].winner);
+  std::vector<int> MainChain;
+  for (size_t i = 0; i < sortedNodes.size(); ++i) {
+    MainChain.push_back(sortedNodes[i].winner);
+  }
+
+  for (size_t i = 0; i < sortedNodes.size(); ++i) {
+    Node& node = sortedNodes[i];
+
+    for (size_t j = node.losers.size() - 1; j > 0; --j) {
+      int loserValue = losers[j];
+      int upperBound = node.winner;
     }
   }
 
