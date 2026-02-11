@@ -34,16 +34,6 @@ int PmergeMe::BinarySearch(std::vector<int>& MainChain, int winner, int loser) {
 /***/
 std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
 
-  // std::cout << " ==== Enter2 =====" << std::endl;
-  // for (size_t i = 0; i < sortedNodes.size(); i++) {
-  //   std::cout << "winner: " << sortedNodes[i].winner << std::endl;
-  //   if (sortedNodes[i].has_stray == true)
-  //     std::cout << "winner stray: " << sortedNodes[i].stray << std::endl;
-  //   for (size_t j = 0; j < sortedNodes[i].losers.size(); j++)
-  //     std::cout << "[losers: " << sortedNodes[i].losers[j] << " ]"<< std::endl;
-  // }
-
-  std::vector<int> MainChain;
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
     MainChain.push_back(sortedNodes[i].winner);
   }
@@ -65,27 +55,28 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
   for (size_t i = 0; i < sortedNodes.size(); i++) {
     if (sortedNodes[i].has_stray == true) {
       int strayValue = sortedNodes[i].stray;
-      // int pos = BinarySearch(MainChain, MainChain.back(), strayValue);
       std::vector<int>::iterator it;
 
       std::vector<int>::iterator WinnerIt = std::find(MainChain.begin(), MainChain.end(), strayValue);
       it = std::lower_bound(MainChain.begin(), WinnerIt, strayValue);
       int pos = std::distance(MainChain.begin(), it);
-      std::cout << "Pos: " << pos << std::endl;
       MainChain.insert(MainChain.begin() + pos, strayValue);
       break;
     }
   }
 
-  // for (size_t i = 0; i < this->pendingList.size(); i++)
-  // {
-  //   std::cout << " " << this->pendingList[i] << " ";
-  // }
-  // std::cout << "\n";
-  //
+  // std::cout << "MainChain" << std::endl;
   // for (size_t i = 0; i < MainChain.size(); i++)
   // {
   //   std::cout << " " << MainChain[i] << " ";
+  // }
+  // std::cout << "\n";
+  //
+  //
+  // std::cout << "pairs" << std::endl;
+  // for (size_t i = 0; i < pairs.size(); i++)
+  // {
+  //   std::cout << " " << pairs[i].winner << " ";
   // }
   // std::cout << "\n";
 
@@ -138,8 +129,8 @@ void PmergeMe::VectorTest(std::vector<Node>& pairs) {
   //   }
 
   std::vector<Node> sortList = sortRecursion(pairs);
-  // std::cout << "after" << std::endl;
-  // for (size_t i = 0; i < sortList.size(); i++) {
-  //     std::cout << sortList[i].winner << std::endl;
-  // }
+  std::cout << "after" << std::endl;
+  for (size_t i = 0; i < sortList.size(); i++) {
+      std::cout << sortList[i].winner << std::endl;
+  }
 }

@@ -28,6 +28,7 @@ public:
   ~PmergeMe();
 
   std::vector<int> pendingList;
+  std::vector<int> MainChain;
   int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
   std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
   std::vector<Node> makePair(std::vector<Node>& pairs);
