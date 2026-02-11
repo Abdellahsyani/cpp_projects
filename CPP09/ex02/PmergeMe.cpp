@@ -33,6 +33,7 @@ int PmergeMe::BinarySearch(std::vector<int>& MainChain, int winner, int loser) {
 
 /***/
 std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
+  MainChain.clear();
 
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
     MainChain.push_back(sortedNodes[i].winner);
@@ -71,8 +72,8 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
   //   std::cout << " " << MainChain[i] << " ";
   // }
   // std::cout << "\n";
-  //
-  //
+
+
   // std::cout << "pairs" << std::endl;
   // for (size_t i = 0; i < pairs.size(); i++)
   // {
@@ -129,8 +130,13 @@ void PmergeMe::VectorTest(std::vector<Node>& pairs) {
   //   }
 
   std::vector<Node> sortList = sortRecursion(pairs);
+
   std::cout << "after" << std::endl;
   for (size_t i = 0; i < sortList.size(); i++) {
-      std::cout << sortList[i].winner << std::endl;
+    std::cout << "Winner[ " << sortList[i].winner << " ]=> (";
+    for (size_t j = 0; j < sortList[i].losers.size(); j++) {
+      std::cout << sortList[i].losers[j] << " ";
+    }
+    std::cout << ")" << std::endl;
   }
 }
