@@ -121,6 +121,41 @@ std::vector<Node> PmergeMe::sortRecursion(std::vector<Node>& pairs) {
   return SortNumbers(sortedWinners, pairs);
 }
 
+/***/
+void PmergeMe::eraseNumber(int num) {
+  std::vector<int>::iterator iv = std::find(pendingList.begin(), pendingList.end(), num);
+  if (iv != pendingList.end())
+    pendingList.erase(iv);
+}
+
+/***/
+void PmergeMe::FordJohnson(std::vector<Node>& sortList) {
+//  J(0) = 0
+//  J(1) = 1
+//  J(n) = J(n-1) + 2 * J(n-2)
+
+  int freeInsert = MainChain[0];
+  int freeOne;
+  std::vector<Node>::iterator it = sortList.begin();
+  while (it != sortList.end()) {
+    if (it->winner == freeInsert)
+    {
+      freeOne = it->losers[0];
+      break;
+    }
+    ++it;
+  }
+  MainChain.insert(MainChain.begin(), freeOne);
+  eraseNumber(num);
+  getInsertionOrder(pendingList.size());
+
+  for (size_t i = 0; i < pendingList.size(); i++)
+    std::cout << pendingList[i] << std::endl;
+
+
+  // for (size_t i = 0; i < MainChain.size(); i++)
+  //   std::cout << MainChain[i] << std::endl;
+}
 
 /***/
 void PmergeMe::VectorTest(std::vector<Node>& pairs) {
@@ -130,8 +165,8 @@ void PmergeMe::VectorTest(std::vector<Node>& pairs) {
   //   }
 
   std::vector<Node> sortList = sortRecursion(pairs);
+  FordJohnson(sortList);
 
-  std::cout << "after" << std::endl;
   for (size_t i = 0; i < sortList.size(); i++) {
     std::cout << "Winner[ " << sortList[i].winner << " ]=> (";
     for (size_t j = 0; j < sortList[i].losers.size(); j++) {

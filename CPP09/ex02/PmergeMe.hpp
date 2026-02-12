@@ -33,6 +33,9 @@ public:
   std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
   std::vector<Node> makePair(std::vector<Node>& pairs);
   std::vector<Node> sortRecursion(std::vector<Node>& pairs);
+  void FordJohnson(std::vector<Node>& sortList);
+  void eraseNumber(int num);
+  int getInsertionOrder(size_t size);
   void VectorTest(std::vector<Node>& pairs);
   
 };
