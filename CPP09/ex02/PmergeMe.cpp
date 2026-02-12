@@ -128,6 +128,30 @@ void PmergeMe::eraseNumber(int num) {
     pendingList.erase(iv);
 }
 
+/***/ 
+int PmergeMe::getNextJacobsthal(int prev, int curr) {
+  return curr + 2 * prev;
+}
+
+int PmergeMe::getInsertionOrder(int totalpending) {
+  int prevJacob = 1;
+  int currJacob = 3;
+  int lastReach = 1;
+
+  while (lastReach < totalpending) {
+    int limitJacob = (currJacob > totalpending) ? totalpending : currJacob;
+
+    for (int i = limitJacob; i > lastReach; --i) {
+      int winner = MainChain[i];
+    }
+
+    lastReach = limitJacob;
+    int nextJacob = getNextJacobsthal(currJacob, prevJacob);
+    prevJacob = currJacob;
+    currJacob = nextJacob;
+  }
+}
+
 /***/
 void PmergeMe::FordJohnson(std::vector<Node>& sortList) {
 //  J(0) = 0
@@ -147,7 +171,7 @@ void PmergeMe::FordJohnson(std::vector<Node>& sortList) {
   }
   MainChain.insert(MainChain.begin(), freeOne);
   eraseNumber(num);
-  getInsertionOrder(pendingList.size());
+  std::vector<int> size = getInsertionOrder(pendingList.size());
 
   for (size_t i = 0; i < pendingList.size(); i++)
     std::cout << pendingList[i] << std::endl;
