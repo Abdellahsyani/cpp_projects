@@ -184,18 +184,18 @@ void PmergeMe::FordJohnson(std::vector<Node>& sortList) {
 /***/
 void PmergeMe::VectorTest(std::vector<Node>& pairs) {
   // std::cout << "before" << std::endl;
-  // for (size_t i = 0; i + 1 < pairs.size(); ++i) {
-  //     std::cout << pairs[i].winner << std::endl;
-  //   }
+  for (size_t i = 0; i < pendingList.size(); ++i) {
+      std::cout << pendingList[i] << std::endl;
+    }
 
   std::vector<Node> sortList = sortRecursion(pairs);
   FordJohnson(sortList);
 
-  for (size_t i = 0; i < sortList.size(); i++) {
-    std::cout << "Winner[ " << sortList[i].winner << " ]=> (";
-    for (size_t j = 0; j < sortList[i].losers.size(); j++) {
-      std::cout << sortList[i].losers[j] << " ";
-    }
-    std::cout << ")" << std::endl;
-  }
+  // for (size_t i = 0; i < sortList.size(); i++) {
+  //   std::cout << "Winner[ " << sortList[i].winner << " ]=> (";
+  //   for (size_t j = 0; j < sortList[i].losers.size(); j++) {
+  //     std::cout << sortList[i].losers[j] << " ";
+  //   }
+  //   std::cout << ")" << std::endl;
+  // }
 }

@@ -36,6 +36,7 @@ public:
   void FordJohnson(std::vector<Node>& sortList);
   void eraseNumber(int num);
   int getInsertionOrder(size_t size);
+  int getNextJacobsthal(int prev, int curr);
   void VectorTest(std::vector<Node>& pairs);
   
 };
