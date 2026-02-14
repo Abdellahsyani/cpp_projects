@@ -133,23 +133,26 @@ int PmergeMe::getNextJacobsthal(int prev, int curr) {
   return curr + 2 * prev;
 }
 
-int PmergeMe::getInsertionOrder(int totalpending) {
+std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
+  std::vector<int> order;
   int prevJacob = 1;
   int currJacob = 3;
   int lastReach = 1;
 
+  order.push_back(1);
   while (lastReach < totalpending) {
     int limitJacob = (currJacob > totalpending) ? totalpending : currJacob;
 
     for (int i = limitJacob; i > lastReach; --i) {
-      int winner = MainChain[i];
+      order.push_back(i);
     }
 
     lastReach = limitJacob;
-    int nextJacob = getNextJacobsthal(currJacob, prevJacob);
+    int nextJacob = getNextJacobsthal(prevJacob, currJacob);
     prevJacob = currJacob;
     currJacob = nextJacob;
   }
+  return order;
 }
 
 /***/
@@ -170,15 +173,33 @@ void PmergeMe::FordJohnson(std::vector<Node>& sortList) {
     ++it;
   }
   MainChain.insert(MainChain.begin(), freeOne);
-  eraseNumber(num);
-  std::vector<int> size = getInsertionOrder(pendingList.size());
+  eraseNumber(freeOne);
+  std::vector<int> order = getInsertionOrder(pendingList.size());
 
-  for (size_t i = 0; i < pendingList.size(); i++)
-    std::cout << pendingList[i] << std::endl;
+  for (size_t j = 0; j < order.size(); j++) {
+    int idx = order[j] - 1;
+    if (idx >= (int)pendingList.size())
+      continue;
 
+    int loser = pendingList[idx];
 
-  // for (size_t i = 0; i < MainChain.size(); i++)
-  //   std::cout << MainChain[i] << std::endl;
+    int winner = -1;
+    for (size_t i = 0; i < sortList.size(); i++) {
+      if (sortList[i].losers[0] == loser) {
+        winner = sortList[i].winner;
+        break;
+      }
+    }
+    if (winner == -1)
+      continue;
+
+    int pos = BinarySearch(MainChain, winner, loser);
+    MainChain.insert(MainChain.begin() + pos, loser);
+  }
+
+  for (size_t i = 0; i < MainChain.size(); i++)
+    std::cout << MainChain[i] << " ";
+  std::cout << "\n";
 }
 
 /***/

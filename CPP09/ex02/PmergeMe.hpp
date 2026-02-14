@@ -35,7 +35,7 @@ public:
   std::vector<Node> sortRecursion(std::vector<Node>& pairs);
   void FordJohnson(std::vector<Node>& sortList);
   void eraseNumber(int num);
-  int getInsertionOrder(size_t size);
+  std::vector<int> getInsertionOrder(int totalpending);
   int getNextJacobsthal(int prev, int curr);
   void VectorTest(std::vector<Node>& pairs);
   
