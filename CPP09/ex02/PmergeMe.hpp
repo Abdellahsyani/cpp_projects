@@ -16,17 +16,25 @@ struct Node {
   Node() : winner(0), stray(0), has_stray(false) {}
 };
 
+struct ComparisonCounter {
+    size_t& count;
+    ComparisonCounter(size_t& c) : count(c) {}
+
+    bool operator()(int a, int b) const {
+        count++; // Increment your class variable
+        return a < b;
+    }
+};
 
 class PmergeMe {
-private:
-  size_t comparison;
-
 public:
   PmergeMe();
   PmergeMe(const PmergeMe& other);
   PmergeMe& operator=(const PmergeMe& other);
   ~PmergeMe();
 
+
+  size_t comparison;
   std::vector<int> pendingList;
   std::vector<int> MainChain;
   int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
