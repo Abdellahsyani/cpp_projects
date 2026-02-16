@@ -37,14 +37,14 @@ int PmergeMe::BinarySearch(std::vector<int>& MainChain, int winner, int loser) {
 std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
   MainChain.clear();
 
+  std::cout << "level: " << std::endl;
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
+    std::cout << "Winner: " << sortedNodes[i].winner << std::endl;
     MainChain.push_back(sortedNodes[i].winner);
   }
 
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
     Node& node = sortedNodes[i];
-    if (sortedNodes[i].has_stray == true)
-      std::cout << "stray: " << sortedNodes[i].stray << std::endl;
 
     for (size_t j = node.losers.size() - 1; j > 0; --j) {
       int loserValue = node.losers[j];
@@ -54,19 +54,32 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
       MainChain.insert(MainChain.begin() + pos, loserValue);
     }
   }
-  for (size_t i = 0; i < sortedNodes.size(); i++) {
-    if (sortedNodes[i].has_stray == true) {
-        int strayValue = sortedNodes[i].stray;
+
+  for (size_t i = 0; i < pairs.size(); i++) {
+    if (pairs[i].has_stray == true) {
+      int strayValue = pairs[i].stray;
+      int parentWinner = pairs[i].winner;
+
+      std::vector<int>::iterator parenIt = std::find(MainChain.begin(), MainChain.end(), parentWinner);
+
+      if (parenIt != MainChain.end()) {
+        ComparisonCounter spy(this->comparison);
         std::vector<int>::iterator it = std::lower_bound(
-            MainChain.begin(),
-            MainChain.end(),
-            strayValue
+          MainChain.begin(),
+          parenIt,
+          strayValue,
+          spy
         );
         int pos = std::distance(MainChain.begin(), it);
         MainChain.insert(MainChain.begin() + pos, strayValue);
-        break;
+      }
+      break;
     }
   }
+  std::cout << "MainChain: ";
+  for (size_t i = 0; i < MainChain.size(); i++)
+    std::cout << MainChain[i] << " ";
+  std::cout << "\n";
   // for (size_t i = 0; i < sortedNodes.size(); i++) {
   //   if (sortedNodes[i].has_stray == true) {
   //     int strayValue = sortedNodes[i].stray;
