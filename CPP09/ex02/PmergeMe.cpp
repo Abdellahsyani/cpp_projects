@@ -37,7 +37,7 @@ int PmergeMe::BinarySearch(std::vector<int>& MainChain, int winner, int loser) {
 std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
   MainChain.clear();
 
-  std::cout << "level: " << std::endl;
+  std::cout << " ---------------- level -----------------" << std::endl;
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
     std::cout << "Winner: " << sortedNodes[i].winner << std::endl;
     MainChain.push_back(sortedNodes[i].winner);
@@ -49,8 +49,10 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
     for (size_t j = node.losers.size() - 1; j > 0; --j) {
       int loserValue = node.losers[j];
       int upperBound = node.winner;
+      std::cout << "loser: " << loserValue << " upper: " << upperBound << std::endl;
 
       int pos = BinarySearch(MainChain, upperBound, loserValue);
+      std::cout << "pos: " << pos << std::endl;
       MainChain.insert(MainChain.begin() + pos, loserValue);
     }
   }
@@ -58,9 +60,8 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
   for (size_t i = 0; i < pairs.size(); i++) {
     if (pairs[i].has_stray == true) {
       int strayValue = pairs[i].stray;
-      int parentWinner = pairs[i].winner;
 
-      std::vector<int>::iterator parenIt = std::find(MainChain.begin(), MainChain.end(), parentWinner);
+      std::vector<int>::iterator parenIt = std::find(MainChain.begin(), MainChain.end(), strayValue);
 
       if (parenIt != MainChain.end()) {
         ComparisonCounter spy(this->comparison);
@@ -76,22 +77,11 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
       break;
     }
   }
+
   std::cout << "MainChain: ";
   for (size_t i = 0; i < MainChain.size(); i++)
     std::cout << MainChain[i] << " ";
   std::cout << "\n";
-  // for (size_t i = 0; i < sortedNodes.size(); i++) {
-  //   if (sortedNodes[i].has_stray == true) {
-  //     int strayValue = sortedNodes[i].stray;
-  //     std::vector<int>::iterator it;
-  //
-  //     std::vector<int>::iterator WinnerIt = std::find(MainChain.begin(), MainChain.end(), strayValue);
-  //     it = std::lower_bound(MainChain.begin(), WinnerIt, strayValue);
-  //     int pos = std::distance(MainChain.begin(), it);
-  //     MainChain.insert(MainChain.begin() + pos, strayValue);
-  //     break;
-  //   }
-  // }
 
   return pairs;
 }
@@ -169,10 +159,10 @@ std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
     currJacob = nextJacob;
   }
 
-  std::cout << "Jacobsthal: ";
-  for (size_t o = 0; o < order.size(); o++)
-    std::cout << order[o] << " ";
-  std::cout << "\n";
+  // std::cout << "Jacobsthal: ";
+  // for (size_t o = 0; o < order.size(); o++)
+  //   std::cout << order[o] << " ";
+  // std::cout << "\n";
   return order;
 }
 
@@ -215,9 +205,9 @@ void PmergeMe::FordJohnson(std::vector<Node>& sortList) {
     MainChain.insert(MainChain.begin() + pos, loser);
   }
 
-  for (size_t i = 0; i < MainChain.size(); i++)
-    std::cout << MainChain[i] << " ";
-  std::cout << "\n";
+  // for (size_t i = 0; i < MainChain.size(); i++)
+  //   std::cout << MainChain[i] << " ";
+  // std::cout << "\n";
 }
 
 /***/
@@ -225,6 +215,8 @@ void PmergeMe::VectorTest(std::vector<Node>& pairs) {
   // std::cout << "before" << std::endl;
 
   std::vector<Node> sortList = sortRecursion(pairs);
+  // for (size_t i = 0; i < sortList.size(); i++)
+  //   std::cout << sortList[i].winner << std::endl;
   FordJohnson(sortList);
 
 }
