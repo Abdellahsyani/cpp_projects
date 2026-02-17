@@ -46,8 +46,6 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
     Node& node = sortedNodes[i];
 
-    if (sortedNodes[i].has_stray == true)
-      std::cout << "stray: " << sortedNodes[i].stray << std::endl;
     for (size_t j = node.losers.size() - 1; j > 0; --j) {
       int loserValue = node.losers[j];
       int upperBound = node.winner;
@@ -61,6 +59,7 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
   for (size_t i = 0; i < pairs.size(); i++) {
     if (pairs[i].has_stray == true) {
       int strayValue = pairs[i].stray;
+      std::cout << "stray: " << strayValue << std::endl;
 
       // std::vector<int>::iterator parenIt = std::find(MainChain.begin(), MainChain.end(), strayValue);
 
