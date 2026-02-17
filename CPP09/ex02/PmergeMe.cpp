@@ -46,13 +46,14 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
   for (size_t i = 0; i < sortedNodes.size(); ++i) {
     Node& node = sortedNodes[i];
 
+    if (sortedNodes[i].has_stray == true)
+      std::cout << "stray: " << sortedNodes[i].stray << std::endl;
     for (size_t j = node.losers.size() - 1; j > 0; --j) {
       int loserValue = node.losers[j];
       int upperBound = node.winner;
       std::cout << "loser: " << loserValue << " upper: " << upperBound << std::endl;
 
       int pos = BinarySearch(MainChain, upperBound, loserValue);
-      std::cout << "pos: " << pos << std::endl;
       MainChain.insert(MainChain.begin() + pos, loserValue);
     }
   }
@@ -61,19 +62,18 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vec
     if (pairs[i].has_stray == true) {
       int strayValue = pairs[i].stray;
 
-      std::vector<int>::iterator parenIt = std::find(MainChain.begin(), MainChain.end(), strayValue);
+      // std::vector<int>::iterator parenIt = std::find(MainChain.begin(), MainChain.end(), strayValue);
 
-      if (parenIt != MainChain.end()) {
         ComparisonCounter spy(this->comparison);
         std::vector<int>::iterator it = std::lower_bound(
           MainChain.begin(),
-          parenIt,
+          MainChain.end(),
           strayValue,
           spy
         );
         int pos = std::distance(MainChain.begin(), it);
+        std::cout << "pos: " << pos << std::endl;
         MainChain.insert(MainChain.begin() + pos, strayValue);
-      }
       break;
     }
   }
