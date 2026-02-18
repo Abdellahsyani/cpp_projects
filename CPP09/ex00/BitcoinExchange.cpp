@@ -1,17 +1,26 @@
 #include "BitcoinExchange.hpp"
 
+/**
+ * checkYear: a function to validate year
+ * throw an exception if not valid 
+ **/
 void checkYear(int year) {
   if (year < 2008 || year > 2026) {
     throw std::string("Invalid year");
   }
 };
 
+/**
+ * checkMonth: a function to validate month 
+ * throw an exception if not valid 
+ **/
 void checkMonth(int month) {
   if (month < 1 || month > 12) {
     throw std::string("Invalid month");
   }
 };
 
+/***/
 void checkDay(int day, int month) {
   if (day < 1 || day > 31) {
     throw std::string("Invalid day");
@@ -22,6 +31,7 @@ void checkDay(int day, int month) {
   }
 };
 
+/***/
 void checkValue(double value) {
   if (value > 1000) {
     throw std::string("too large a number");
@@ -30,6 +40,7 @@ void checkValue(double value) {
     throw std::string("not a positive number");
 };
 
+/***/
 void fillMap(std::map<std::string, double> &Map) {
   std::ifstream readFile;
   std::string fileCsv = "data.csv";
@@ -53,6 +64,7 @@ void fillMap(std::map<std::string, double> &Map) {
   }
 }
 
+/***/
 bool validateCurrency(std::string& line) {
   int year = 0;
   int month = 0;
