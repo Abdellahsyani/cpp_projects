@@ -20,7 +20,10 @@ void checkMonth(int month) {
   }
 };
 
-/***/
+/**
+ * checkDay: a function to validate the day
+ * throw an exception if the day bigger than 31
+ **/
 void checkDay(int day, int month) {
   if (day < 1 || day > 31) {
     throw std::string("Invalid day");
@@ -31,7 +34,10 @@ void checkDay(int day, int month) {
   }
 };
 
-/***/
+/**
+ * checkValue: a function to validate value
+ * throw and exception if value bigger than 1000
+ **/
 void checkValue(double value) {
   if (value > 1000) {
     throw std::string("too large a number");
@@ -40,7 +46,10 @@ void checkValue(double value) {
     throw std::string("not a positive number");
 };
 
-/***/
+/**
+ * fillMap: a function to fill map with dates and price of currency 
+ * @Map a map that will filled by data
+ **/
 void fillMap(std::map<std::string, double> &Map) {
   std::ifstream readFile;
   std::string fileCsv = "data.csv";
@@ -64,7 +73,9 @@ void fillMap(std::map<std::string, double> &Map) {
   }
 }
 
-/***/
+/**
+ * validateCurrency: a function to validate 
+ * */
 bool validateCurrency(std::string& line) {
   int year = 0;
   int month = 0;
