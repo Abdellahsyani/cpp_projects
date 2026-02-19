@@ -7,29 +7,31 @@
 #include <stdexcept>
 #include <vector>
 
+/**
+ * Span: */
 class Span {
 private:
-unsigned int _n;
-std::vector<int> _vec;
+  unsigned int _n;
+  std::vector<int> _vec;
 
 public:
-Span();
-Span(unsigned int n);
-Span(const Span &other);
-Span& operator=(const Span &other);
-~Span();
+  Span();
+  Span(unsigned int n);
+  Span(const Span &other);
+  Span& operator=(const Span &other);
+  ~Span();
 
-void addNumber(unsigned int n);
-int shortestSpan();
-int longestSpan();
-void bunchOfNumber(unsigned int range);
+  void addNumber(unsigned int n);
+  int shortestSpan();
+  int longestSpan();
+  void bunchOfNumber(unsigned int range);
 
-class SpanNumberNotEnough : public std::exception {
-public:
-  virtual const char* what() const throw() {
-    return "Error: Not enough numbers to find a span";
-  }
-};
+  class SpanNumberNotEnough : public std::exception {
+  public:
+    virtual const char* what() const throw() {
+      return "Error: Not enough numbers to find a span";
+    }
+  };
 
 };
 
