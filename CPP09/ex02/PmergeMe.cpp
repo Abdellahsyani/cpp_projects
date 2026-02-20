@@ -1,9 +1,13 @@
 #include "PmergeMe.hpp"
 
-/***/
-PmergeMe::PmergeMe() : comparison(0) {};
+/**
+ * PmergeMe: default constructor
+ **/
+PmergeMe::PmergeMe() {};
 
-/***/
+/**
+ * PmergeMe: Parametrize constructor
+ **/
 PmergeMe::PmergeMe(const PmergeMe& other) {
   this->comparison = other.comparison;
 }
