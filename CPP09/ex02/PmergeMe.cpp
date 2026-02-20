@@ -12,14 +12,18 @@ PmergeMe::PmergeMe(const PmergeMe& other) {
   this->comparison = other.comparison;
 }
 
-/***/
+/**
+ * operator: copy assignment operator
+ **/
 PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
   if (this != &other)
     this->comparison = other.comparison;
   return *this;
 }
 
-/***/
+/**
+ * ~PmergeMe: deconstractor
+ **/
 PmergeMe::~PmergeMe() {};
 
 /***/
