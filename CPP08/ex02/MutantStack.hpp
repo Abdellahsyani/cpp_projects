@@ -5,7 +5,15 @@
 #include <stack>
 #include <iostream>
 
-/***/
+/**
+ * @brief A mutant version of std::stack that provides iterator access.
+ *  * std::stack is a container adapter that usually hides its underlying 
+ *      container. MutantStack inherits from std::stack and exposes the 
+ *      underlying container's iterators, allowing it to be used with 
+ *      STL algorithms and range-based loops while maintaining stack behavior.
+ *
+ * @tparam T The type of elements stored in the stack.
+ */
 template <typename T>
 class MutantStack : public std::stack<T> {
 public:
