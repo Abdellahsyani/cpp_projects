@@ -32,7 +32,7 @@ int main() {
     std::cout << "Found in Vector: " << *itV << std::endl;
 
     std::list<int>::iterator itl = easyfind(l, 4);
-    std::cout << "found in list: " << *itl << std::endl;
+    std::cout << "Found in list: " << *itl << std::endl;
 
     std::deque<int>::iterator itD = easyfind(d, 1);
     std::cout << "Found in Deque: " << *itD << std::endl;
