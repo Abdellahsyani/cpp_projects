@@ -1,6 +1,7 @@
 #include "span.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <limits.h>
 
 int main()
 {

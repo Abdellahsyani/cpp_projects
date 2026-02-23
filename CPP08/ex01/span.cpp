@@ -56,15 +56,20 @@ void Span::bunchOfNumber(unsigned int range) {
  * return : the shortest one when find it
  **/
 long Span::shortestSpan() {
-  if (_vec.size() < 2)
-    throw Span::SpanNumberNotEnough();
-  std::sort(_vec.begin(), _vec.end());
+    if (_vec.size() < 2)
+        throw Span::SpanNumberNotEnough();
+    
+    std::sort(_vec.begin(), _vec.end());
 
-  std::vector<int> diffs(_vec.size());
-  std::adjacent_difference(_vec.begin(), _vec.end(), diffs.begin());
-
-  return *std::min_element(diffs.begin() + 1, diffs.end());
-};
+    long minSpan = -1;
+    for (size_t i = 0; i < _vec.size() - 1; i++) {
+        long currentDiff = static_cast<long>(_vec[i + 1]) - static_cast<long>(_vec[i]);
+        
+        if (minSpan == -1 || currentDiff < minSpan)
+          minSpan = currentDiff;
+    }
+    return minSpan;
+}
 
 /**
  * longestSpan: A function that rerurn the longest Span in the vector 
@@ -73,7 +78,7 @@ long Span::longestSpan() {
   if (_vec.size() < 2)
     throw Span::SpanNumberNotEnough();
   std::sort(_vec.begin(), _vec.end());
-  return (_vec.back() - _vec.front());
+  return (static_cast<long>(_vec.back()) - static_cast<long>(_vec.front()));
 };
 
 
