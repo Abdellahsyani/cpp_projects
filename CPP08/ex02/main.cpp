@@ -24,5 +24,13 @@ int main()
     ++it;
   }
   std::stack<int> s(mstack);
+  // MutantStack<int>::iterator ot = s.begin();
+  // MutantStack<int>::iterator et = s.end();
+  std::cout << "---------------------" << std::endl;
+  while (!s.empty())
+  {
+    std::cout << s.top() << std::endl;
+    s.pop();
+  }
   return 0;
 }
