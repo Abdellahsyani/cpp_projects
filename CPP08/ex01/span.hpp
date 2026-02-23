@@ -22,8 +22,8 @@ public:
   ~Span();
 
   void addNumber(unsigned int n);
-  int shortestSpan();
-  int longestSpan();
+  long shortestSpan();
+  long longestSpan();
   void bunchOfNumber(unsigned int range);
 
   class SpanNumberNotEnough : public std::exception {

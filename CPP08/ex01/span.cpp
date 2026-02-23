@@ -55,7 +55,7 @@ void Span::bunchOfNumber(unsigned int range) {
  *
  * return : the shortest one when find it
  **/
-int Span::shortestSpan() {
+long Span::shortestSpan() {
   if (_vec.size() < 2)
     throw Span::SpanNumberNotEnough();
   std::sort(_vec.begin(), _vec.end());
@@ -69,7 +69,7 @@ int Span::shortestSpan() {
 /**
  * longestSpan: A function that rerurn the longest Span in the vector 
  **/
-int Span::longestSpan() {
+long Span::longestSpan() {
   if (_vec.size() < 2)
     throw Span::SpanNumberNotEnough();
   std::sort(_vec.begin(), _vec.end());
