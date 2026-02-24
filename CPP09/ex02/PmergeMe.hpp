@@ -7,6 +7,13 @@
 #include <vector>
 #include <climits>
 
+/**
+ * Node: a struct to make pairs without using make_pair() function
+ * @param winner: The winner pair 
+ * @param losers: a vector of the losers that lose against winner
+ * @param stray: the strugle number from pairs
+ * @param has_stray:  a boolean to check if a level of pairs has a stray
+ **/
 struct Node {
   int winner;
   std::vector<int> losers;
