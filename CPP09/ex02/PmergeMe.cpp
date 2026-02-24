@@ -177,7 +177,7 @@ std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
 void PmergeMe::FordJohnson(std::vector<Node>& sortList) {
 
   int freeInsert = MainChain[0];
-  int freeOne;
+  int freeOne = 0;
   std::vector<Node>::iterator it = sortList.begin();
   while (it != sortList.end()) {
     if (it->winner == freeInsert)
