@@ -41,7 +41,8 @@ int PmergeMe::BinarySearch(std::vector<int>& MainChain, int winner, int loser) {
   return pos;
 }
 
-/***/
+/**
+ * SortNumbers: A memeber function to sort MainChain number*/
 std::vector<Node> PmergeMe::SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs) {
   MainChain.clear();
 
