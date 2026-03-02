@@ -68,47 +68,43 @@ std::vector<Node> PmergeMe::SortNumbers(std::vector<Node> &sortedNodes,
     }
   }
 
+  // for (size_t i = 0; i < pairs.size(); i++) {
+  //   if (pairs[i].has_stray == true) {
+  //     int strayValue = pairs[i].stray;
+  //
+  //     // ✅ Use the stray's paired winner as the upper bound
+  //     std::vector<int>::iterator upperIt =
+  //         std::find(MainChain.begin(), MainChain.end(), pairs[i].winner);
+  //     // If winner not found, search full chain; otherwise bound by winner
+  //     std::vector<int>::iterator end =
+  //         (upperIt != MainChain.end()) ? upperIt : MainChain.end();
+  //
+  //     ComparisonCounter spy(this->comparison);
+  //     std::vector<int>::iterator it =
+  //         std::lower_bound(MainChain.begin(), end, strayValue, spy);
+  //     int pos = std::distance(MainChain.begin(), it);
+  //     MainChain.insert(MainChain.begin() + pos, strayValue);
+  //     break;
+  //   }
+  // }
+
   for (size_t i = 0; i < pairs.size(); i++) {
     if (pairs[i].has_stray == true) {
       int strayValue = pairs[i].stray;
+      std::cout << "stray: " << strayValue << std::endl;
 
-      // ✅ Use the stray's paired winner as the upper bound
-      std::vector<int>::iterator upperIt =
-          std::find(MainChain.begin(), MainChain.end(), pairs[i].winner);
-      // If winner not found, search full chain; otherwise bound by winner
-      std::vector<int>::iterator end =
-          (upperIt != MainChain.end()) ? upperIt : MainChain.end();
+      // std::vector<int>::iterator parenIt = std::find(MainChain.begin(),
+      MainChain.end(), strayValue);
 
       ComparisonCounter spy(this->comparison);
       std::vector<int>::iterator it =
-          std::lower_bound(MainChain.begin(), end, strayValue, spy);
+          std::lower_bound(MainChain.begin(), MainChain.end(), strayValue, spy);
       int pos = std::distance(MainChain.begin(), it);
+      std::cout << "pos: " << pos << std::endl;
       MainChain.insert(MainChain.begin() + pos, strayValue);
       break;
     }
   }
-
-  // for (size_t i = 0; i < pairs.size(); i++) {
-  //   if (pairs[i].has_stray == true) {
-  //     int strayValue = pairs[i].stray;
-  //     std::cout << "stray: " << strayValue << std::endl;
-  //
-  //     // std::vector<int>::iterator parenIt = std::find(MainChain.begin(),
-  //     MainChain.end(), strayValue);
-  //
-  //       ComparisonCounter spy(this->comparison);
-  //       std::vector<int>::iterator it = std::lower_bound(
-  //         MainChain.begin(),
-  //         MainChain.end(),
-  //         strayValue,
-  //         spy
-  //       );
-  //       int pos = std::distance(MainChain.begin(), it);
-  //       std::cout << "pos: " << pos << std::endl;
-  //       MainChain.insert(MainChain.begin() + pos, strayValue);
-  //     break;
-  //   }
-  // }
 
   std::cout << "MainChain: ";
   for (size_t i = 0; i < MainChain.size(); i++)
