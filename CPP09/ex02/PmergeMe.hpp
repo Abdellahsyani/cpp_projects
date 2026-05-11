@@ -45,9 +45,9 @@ public:
   std::vector<int> pendingList;
   std::vector<int> MainChain;
   int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
-  std::vector<Node> SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
+  void SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
   std::vector<Node> makePair(std::vector<Node>& pairs);
-  std::vector<Node> sortRecursion(std::vector<Node>& pairs);
+  void sortRecursion(std::vector<Node>& pairs);
   void FordJohnson(std::vector<Node>& sortList);
   void eraseNumber(int num);
   std::vector<int> getInsertionOrder(int totalpending);
