@@ -32,19 +32,6 @@ int PmergeMe::BinarySearch(std::vector<int> &MainChain, int winner, int loser) {
 }
 
 /***/
-void PmergeMe::SortNumbers(std::vector<Node> &sortedNodes,
-    std::vector<Node> &pairs) {
-  (void)sortedNodes;
-  (void)pairs;
-}
-
-/***/
-std::vector<Node> PmergeMe::makePair(std::vector<Node> &pairs) {
-  (void)pairs;
-  return std::vector<Node>();
-}
-
-/***/
 void PmergeMe::sortRecursion(std::vector<Node> &pairs) {
   std::vector<int> values;
   for (size_t i = 0; i < pairs.size(); ++i) {
@@ -77,11 +64,6 @@ std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
     currJacob     = nextJacob;
   }
   return order;
-}
-
-/***/
-void PmergeMe::FordJohnson(std::vector<Node> &sortList) {
-  (void)sortList;
 }
 
 std::vector<int> PmergeMe::fordJohnsonSort(const std::vector<int>& values) {
@@ -166,6 +148,7 @@ std::vector<int> PmergeMe::fordJohnsonSort(const std::vector<int>& values) {
             orderedPending[i].first,
             orderedPending[i].second);
         mainChain.insert(mainChain.begin() + pos, orderedPending[i].second);
+        inserted[i] = true;
       }
     }
   }
