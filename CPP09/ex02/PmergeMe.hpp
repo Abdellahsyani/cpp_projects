@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <climits>
+#include <utility>
 
 /**
  * Node: a struct to make pairs without using make_pair() function
@@ -44,9 +45,10 @@ public:
   size_t comparison;
   std::vector<int> pendingList;
   std::vector<int> MainChain;
-  int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
+  int BinarySearch(std::vector<int>& MainChain, int winner, int loser);
   void SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
   std::vector<Node> makePair(std::vector<Node>& pairs);
+  std::vector<int> fordJohnsonSort(const std::vector<int>& values);
   void sortRecursion(std::vector<Node>& pairs);
   void FordJohnson(std::vector<Node>& sortList);
   void eraseNumber(int num);
