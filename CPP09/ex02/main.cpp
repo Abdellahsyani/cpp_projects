@@ -63,6 +63,10 @@ int main(int ac, char *av[]) {
   }
  
   merge.VectorTest(pairs);
+  std::cout << "Sorted: ";
+  for (size_t i = 0; i < merge.MainChain.size(); ++i)
+    std::cout << merge.MainChain[i] << " ";
+  std::cout << std::endl;
   std::cout << "comparison: " << merge.comparison << std::endl;
  
   return 0;

@@ -32,73 +32,14 @@ int PmergeMe::BinarySearch(std::vector<int> &MainChain, int winner, int loser) {
 }
 
 /***/
-void PmergeMe::SortNumbers(std::vector<Node> &sortedNodes,
-    std::vector<Node> &pairs) {
-  (void)pairs; // Unused parameter, can be removed if not needed
-
-  for (size_t i = 0; i < sortedNodes.size(); ++i) {
-    Node &node = sortedNodes[i];
-    if (node.losers.empty())
-      continue;
-    int loserValue = node.losers.back();
-    int upperBound = node.winner;
-    int pos = BinarySearch(MainChain, upperBound, loserValue);
-    MainChain.insert(MainChain.begin() + pos, loserValue);
-  }
-
-  for (size_t i = 0; i < sortedNodes.size(); ++i) {
-    if (sortedNodes[i].has_stray) {
-      int strayValue = sortedNodes[i].stray;
-      ComparisonCounter spy(this->comparison);
-      std::vector<int>::iterator it =
-        std::lower_bound(MainChain.begin(), MainChain.end(), strayValue, spy);
-      MainChain.insert(it, strayValue);
-      break;
-    }
-  }
-
-}
-
-/***/
-std::vector<Node> PmergeMe::makePair(std::vector<Node> &pairs) {
-  std::vector<Node> paired;
-
-  for (size_t i = 0; i + 1 < pairs.size(); i += 2) {
-    Node node;
-    this->comparison++;
-    if (pairs[i].winner > pairs[i + 1].winner) {
-      node.winner = pairs[i].winner;
-      node.losers = pairs[i].losers;
-      node.losers.push_back(pairs[i + 1].winner);
-    } else {
-      node.winner = pairs[i + 1].winner;
-      node.losers = pairs[i + 1].losers;
-      node.losers.push_back(pairs[i].winner);
-    }
-    paired.push_back(node);
-  }
-
-  if (pairs.size() % 2 != 0 && !paired.empty()) {
-    paired.back().has_stray = true;
-    paired.back().stray     = pairs[pairs.size() - 1].winner;
-  }
-
-  return paired;
-}
-
-/***/
 void PmergeMe::sortRecursion(std::vector<Node> &pairs) {
-  if (pairs.size() == 1) {
-    return ;
+  std::vector<int> values;
+  for (size_t i = 0; i < pairs.size(); ++i) {
+    values.push_back(pairs[i].winner);
+    for (size_t j = 0; j < pairs[i].losers.size(); ++j)
+      values.push_back(pairs[i].losers[j]);
   }
-
-  std::vector<Node> nextlevel = makePair(pairs);
-  std::cout << "Current Pairs: " << std::endl;
-  for (size_t i = 0; i < pairs.size(); i++) {
-    std::cout << "Winner: " << pairs[i].winner << std::endl;
-  }
-  sortRecursion(nextlevel);
-
+  MainChain = fordJohnsonSort(values);
 }
 
 int PmergeMe::getNextJacobsthal(int prev, int curr) { return curr + 2 * prev; }
@@ -125,57 +66,101 @@ std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
   return order;
 }
 
-/***/
-void PmergeMe::FordJohnson(std::vector<Node> &sortList) {
-  if (MainChain.empty() || sortList.empty())
-    return;
+std::vector<int> PmergeMe::fordJohnsonSort(const std::vector<int>& values) {
+  if (values.size() <= 1)
+    return values;
 
-  int freeInsert = MainChain[0];
-  int freeOne    = -1;
-  for (size_t i = 0; i < sortList.size(); i++) {
-    if (sortList[i].winner == freeInsert && !sortList[i].losers.empty()) {
-      freeOne = sortList[i].losers.back(); // This is fine for the free one
-      break;
+  std::vector<int> winners;
+  std::vector<std::pair<int, int> > pending;
+  bool hasStray = false;
+  int stray = 0;
+
+  for (size_t i = 0; i + 1 < values.size(); i += 2) {
+    int first = values[i];
+    int second = values[i + 1];
+    this->comparison++;
+    if (first < second) {
+      winners.push_back(second);
+      pending.push_back(std::make_pair(second, first));
+    } else {
+      winners.push_back(first);
+      pending.push_back(std::make_pair(first, second));
     }
   }
-  if (freeOne != -1) {
-    MainChain.insert(MainChain.begin(), freeOne);
-    std::vector<int>::iterator it = std::find(pendingList.begin(), pendingList.end(), freeOne);
-    if (it != pendingList.end())
-      pendingList.erase(it);
+
+  if (values.size() % 2 != 0) {
+    hasStray = true;
+    stray = values[values.size() - 1];
   }
-  if (pendingList.empty())
-    return;
 
-  std::vector<int> order = getInsertionOrder(static_cast<int>(pendingList.size()));
-
-  for (size_t j = 0; j < order.size(); j++) {
-    int idx = order[j] - 1; // 1-based to 0-based
-    if (idx < 0 || idx >= static_cast<int>(pendingList.size()))
-      continue;
-
-    int loser = pendingList[idx];
-    int winner = -1;
-    for (size_t i = 0; i < sortList.size(); ++i) {
-      for (size_t k = 0; k < sortList[i].losers.size(); ++k) {
-        if (sortList[i].losers[k] == loser) {
-          winner = sortList[i].winner;
-          break;
-        }
-      }
-      if (winner != -1) break;
-    }
-
-    if (winner == -1) {
+  std::vector<int> mainChain = fordJohnsonSort(winners);
+  if (pending.empty()) {
+    if (hasStray) {
       ComparisonCounter spy(this->comparison);
       std::vector<int>::iterator it =
-        std::lower_bound(MainChain.begin(), MainChain.end(), loser, spy);
-      MainChain.insert(it, loser);
-    } else {
-      int pos = BinarySearch(MainChain, winner, loser);
-      MainChain.insert(MainChain.begin() + pos, loser);
+        std::lower_bound(mainChain.begin(), mainChain.end(), stray, spy);
+      mainChain.insert(it, stray);
+    }
+    return mainChain;
+  }
+
+  std::vector<std::pair<int, int> > orderedPending;
+  std::vector<bool> used(pending.size(), false);
+  for (size_t i = 0; i < mainChain.size(); ++i) {
+    for (size_t j = 0; j < pending.size(); ++j) {
+      if (!used[j] && pending[j].first == mainChain[i]) {
+        used[j] = true;
+        orderedPending.push_back(pending[j]);
+        break;
+      }
     }
   }
+
+  for (size_t j = 0; j < pending.size(); ++j) {
+    if (!used[j])
+      orderedPending.push_back(pending[j]);
+  }
+
+  std::vector<bool> inserted(orderedPending.size(), false);
+  if (!orderedPending.empty()) {
+    mainChain.insert(mainChain.begin(), orderedPending[0].second);
+    inserted[0] = true;
+  }
+
+  if (orderedPending.size() > 1) {
+    std::vector<int> order =
+      getInsertionOrder(static_cast<int>(orderedPending.size() - 1));
+
+    for (size_t j = 0; j < order.size(); ++j) {
+      size_t pendingIdx = static_cast<size_t>(order[j]);
+      if (pendingIdx >= orderedPending.size() || inserted[pendingIdx])
+        continue;
+      int pos = BinarySearch(mainChain,
+          orderedPending[pendingIdx].first,
+          orderedPending[pendingIdx].second);
+      mainChain.insert(mainChain.begin() + pos, orderedPending[pendingIdx].second);
+      inserted[pendingIdx] = true;
+    }
+
+    for (size_t i = 1; i < orderedPending.size(); ++i) {
+      if (!inserted[i]) {
+        int pos = BinarySearch(mainChain,
+            orderedPending[i].first,
+            orderedPending[i].second);
+        mainChain.insert(mainChain.begin() + pos, orderedPending[i].second);
+        inserted[i] = true;
+      }
+    }
+  }
+
+  if (hasStray) {
+    ComparisonCounter spy(this->comparison);
+    std::vector<int>::iterator it =
+      std::lower_bound(mainChain.begin(), mainChain.end(), stray, spy);
+    mainChain.insert(it, stray);
+  }
+
+  return mainChain;
 }
 
 void PmergeMe::VectorTest(std::vector<Node> &pairs) {
@@ -183,13 +168,4 @@ void PmergeMe::VectorTest(std::vector<Node> &pairs) {
     return;
 
   sortRecursion(pairs);
-  // std::cout << "sortList: ";
-  // for (size_t i = 0; i < sortList.size(); i++)
-  //   std::cout << sortList[i].winner << " ";
-  // std::cout << std::endl;
-  //
-  // std::cout << "After: ";
-  // for (size_t i = 0; i < MainChain.size(); i++)
-  //   std::cout << MainChain[i] << " ";
-  // std::cout << std::endl;
 }
