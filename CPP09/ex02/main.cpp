@@ -31,32 +31,8 @@ int main(int ac, char *av[]) {
     int n = 0;
     for (int i = 1; i < ac; i++) {
       n = StringToInt(av[i]);
-      input.push_back(n);
+      pairs.push_back(Node(n));
     }
- 
-    for (size_t i = 0; i + 1 < input.size(); i += 2) {
-      Node node;
-      merge.comparison++;
-      if (input[i] < input[i + 1]) {
-        node.winner = input[i + 1];
-        node.losers.push_back(input[i]);
-        // merge.pendingList.push_back(input[i]);
-      } else {
-        node.winner = input[i];
-        node.losers.push_back(input[i + 1]);
-        // merge.pendingList.push_back(input[i + 1]);
-      }
-      pairs.push_back(node);
-    }
- 
-    if (input.size() % 2 != 0) {
-      Node strayNode;
-      strayNode.winner = input[input.size() - 1];
-      strayNode.has_stray = true;
-      strayNode.stray = strayNode.winner;
-      pairs.push_back(strayNode);
-    }
- 
   } catch (std::exception &e) {
     std::cout << "Error: " << e.what() << std::endl;
     return 1;

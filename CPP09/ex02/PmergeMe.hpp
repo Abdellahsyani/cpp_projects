@@ -16,11 +16,16 @@
  **/
 struct Node {
   int winner;
-  std::vector<int> losers;
+  std::vector<int> index;
   int stray;
   bool has_stray;
 
   Node() : winner(0), stray(0), has_stray(false) {}
+  Node(int n) : winner(n), stray(0), has_stray(false) {}
+
+  bool operator<(const Node& other) const {
+        return this->winner < other.winner;
+    }
 };
 
 struct ComparisonCounter {
@@ -46,9 +51,9 @@ public:
   std::vector<int> MainChain;
   int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
   void SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
-  std::vector<Node> makePair(std::vector<Node>& pairs);
+  void makePair(std::vector<Node>& winners, std::vector<Node>& losers);
   void sortRecursion(std::vector<Node>& pairs);
-  void FordJohnson(std::vector<Node>& sortList);
+  void FordJohnson(std::vector<Node>& winners, std::vector<Node>& losers);
   void eraseNumber(int num);
   std::vector<int> getInsertionOrder(int totalpending);
   int getNextJacobsthal(int prev, int curr);
