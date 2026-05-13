@@ -44,6 +44,15 @@ void PmergeMe::makePair(std::vector<Node> &pairs, std::vector<Node> &losers) {
 
 int PmergeMe::getNextJacobsthal(int prev, int curr) { return curr + 2 * prev; }
 
+void print(std::vector<Node> &winner) {
+    std::cout <<  "-----------------" << std::endl;
+  for (size_t i = 0; i < winner.size(); ++i) {
+    std::cout << winner[i].winner << " ";
+  }
+  std::cout << std::endl;
+  std::cout <<  "-----------------" << std::endl;
+}
+
 /***/
 std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
   std::vector<int> order;
@@ -63,17 +72,15 @@ std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
     prevJacob     = currJacob;
     currJacob     = nextJacob;
   }
+
+  std::cout << "################ Insertion Order: #############\n";
+  for (size_t i = 0; i < order.size(); ++i) {
+    std::cout << order[i] << " ";
+  }
+  std::cout << "\n###############################################\n";
   return order;
 }
 
-void print(std::vector<Node> &winner) {
-    std::cout <<  "-----------------" << std::endl;
-  for (size_t i = 0; i < winner.size(); ++i) {
-    std::cout << winner[i].winner << " ";
-  }
-  std::cout << std::endl;
-  std::cout <<  "-----------------" << std::endl;
-}
 
 /***/
 void PmergeMe::sortRecursion(std::vector<Node> &winners) {
@@ -84,16 +91,28 @@ void PmergeMe::sortRecursion(std::vector<Node> &winners) {
   std::vector<Node> losers;
   makePair(winners, losers);
   for (size_t i = 0; i < winners.size(); ++i) {
+    std::cout << "winners[i]: " << winners[i].winner << " " << "Index: " << i << std::endl;
     winners[i].index.push_back(i);
   }
+  std::cout << "\n******************************************\n";
   for (size_t i = 0; i < losers.size(); ++i) {
+    std::cout << "losers[i]: " << losers[i].winner << " " << "Index: " << i << std::endl;
     losers[i].index.push_back(i);
   }
-  std::cout << "\n===== Winners: ===\n";
-  print(winners);
-  std::cout << "\n===== losers: ===\n";
-  print(losers);
+  // std::cout << "\n===== Winners: ===\n";
+  // print(winners);
+  // std::cout << "\n===== losers: ===\n";
+  // print(losers);
   sortRecursion(winners);
+
+  std::cout << "\n```````````````````***`````````````````````\n";
+  for (size_t i = 0; i < winners.size(); ++i) {
+    std::cout << "winners[i]: " << winners[i].winner << " " << "Index: " << winners[i].index[i] << std::endl;
+  }
+  std::cout << "\n******************************************\n";
+  for (size_t i = 0; i < losers.size(); ++i) {
+    std::cout << "losers[i]: " << losers[i].winner << " " << "Index: " << losers[i].index[i] << std::endl;
+  }
   FordJohnson(winners, losers);
 
 }
@@ -103,28 +122,30 @@ void PmergeMe::sortRecursion(std::vector<Node> &winners) {
 void PmergeMe::FordJohnson(std::vector<Node> &winners, std::vector<Node> &losers) {
   std::vector<Node> MainChain;
   std::vector<Node> collection;
+
+  // std::cout << "===== Winners: ===\n";
+  // print(winners);
+  // std::cout << "===== losers: ===\n";
+  // print(losers);
+
   
   for (size_t i = 0; i < winners.size(); ++i) {
     int idx = winners[i].index.back();
-    std::cout << "idx: =====[ " << i << " ]=======> " << losers[idx].winner << std::endl;
+    // std::cout << "idx: =====[ " << winners[i].index.back() << " ]=======> " << losers[idx].winner << std::endl;
     collection.push_back(losers[idx]);
   }
-  std::cout << "Collection: \n";
-  print(winners);
-  std::cout << "===== Winners: ===\n";
-  print(winners);
-  std::cout << "===== losers: ===\n";
-  print(collection);
 
-  std::cout << "Loser[0]: " << losers[0].index[0] << std::endl;
-  MainChain.push_back(losers[0]);
+  // std::cout << "Collection: \n";
+  // print(collection);
+  // std::cout << "===== Winners: ===\n";
+  // print(winners);
+  // std::cout << "===== losers: ===\n";
+  // print(losers);
+  //
+  // std::cout << "Loser[0]: " << losers[0].winner << std::endl;
+  // std::cout << "Collection: " << collection[0].winner << std::endl;
+  MainChain.push_back(collection[0]);
   std::vector<int> insertionOrder = getInsertionOrder(losers.size() - 1);
-  std::cout << "\n*********************\n";
-  std::cout << "instertion: ";
-  for (size_t i = 0; i < insertionOrder.size(); ++i) {
-    std::cout << insertionOrder[i] << " ";
-  }
-  std::cout << "\n*********************\n";
 
   size_t currJacob = 0;
   size_t prevJacob = 0;
