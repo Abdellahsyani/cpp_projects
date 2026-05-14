@@ -94,11 +94,11 @@ void PmergeMe::sortRecursion(std::vector<Node> &winners) {
     std::cout << "winners[i]: " << winners[i].winner << " " << "Index: " << i << std::endl;
     winners[i].index.push_back(i);
   }
-  std::cout << "\n******************************************\n";
-  for (size_t i = 0; i < losers.size(); ++i) {
-    std::cout << "losers[i]: " << losers[i].winner << " " << "Index: " << i << std::endl;
-    losers[i].index.push_back(i);
-  }
+  // std::cout << "\n******************************************\n";
+  // for (size_t i = 0; i < losers.size(); ++i) {
+  //   std::cout << "losers[i]: " << losers[i].winner << " " << "Index: " << i << std::endl;
+  //   losers[i].index.push_back(i);
+  // }
   // std::cout << "\n===== Winners: ===\n";
   // print(winners);
   // std::cout << "\n===== losers: ===\n";
@@ -122,6 +122,7 @@ void PmergeMe::sortRecursion(std::vector<Node> &winners) {
 void PmergeMe::FordJohnson(std::vector<Node> &winners, std::vector<Node> &losers) {
   std::vector<Node> MainChain;
   std::vector<Node> collection;
+  std::vector<Node> restore;
 
   // std::cout << "===== Winners: ===\n";
   // print(winners);
@@ -135,12 +136,12 @@ void PmergeMe::FordJohnson(std::vector<Node> &winners, std::vector<Node> &losers
     collection.push_back(losers[idx]);
   }
 
-  // std::cout << "Collection: \n";
-  // print(collection);
-  // std::cout << "===== Winners: ===\n";
-  // print(winners);
-  // std::cout << "===== losers: ===\n";
-  // print(losers);
+  std::cout << "=======> Collection: \n";
+  print(collection);
+  std::cout << "===== Winners: ===\n";
+  print(winners);
+  std::cout << "===== losers: ===\n";
+  print(losers);
   //
   // std::cout << "Loser[0]: " << losers[0].winner << std::endl;
   // std::cout << "Collection: " << collection[0].winner << std::endl;
