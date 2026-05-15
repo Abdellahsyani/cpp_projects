@@ -100,7 +100,6 @@ void GeneralTest(int numberOfItems, int numberOfTests = 1000000, int skip = 0)
         struct timeval tv, tv2;
         
         // Reset counters before sorting
-        Node::counter = 0;
         obj.comparison = 0; 
 
         gettimeofday(&tv, NULL);
@@ -114,7 +113,7 @@ void GeneralTest(int numberOfItems, int numberOfTests = 1000000, int skip = 0)
         long mcs2 = (long)tv2.tv_sec * 1000000 + tv2.tv_usec;
         long time = mcs2 - mcs1;
 
-        int NumberOfComparisons = Node::counter;
+        int NumberOfComparisons = obj.comparison;
         int maxNumberOfComparisons = computeSum(numberOfItems);
 
         std::cout << "Test: " << i + 1 << '\n';
@@ -213,7 +212,7 @@ int main(int argc, char const *argv[])
         // Optionally run GeneralTest if no arguments are provided to see the algorithm work natively
         try {
             std::cout << "Running automated GeneralTest for n=21...\n";
-            GeneralTest(21, 10000, 0); // Reduced iterations for quick default test
+            GeneralTest(21, 1000000, 0); // Reduced iterations for quick default test
         } catch(const std::exception& e) {
             std::cerr << "Error:\n" << e.what() << std::endl;
         }
