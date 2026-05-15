@@ -3,17 +3,11 @@
 PmergeMe::PmergeMe() : comparison(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe &other) {
-  this->comparison  = other.comparison;
-  this->pendingList = other.pendingList;
-  this->MainChain   = other.MainChain;
+  *this = other;
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
-  if (this != &other) {
-    this->comparison  = other.comparison;
-    this->pendingList = other.pendingList;
-    this->MainChain   = other.MainChain;
-  }
+  (void)other;
   return *this;
 }
 
@@ -33,12 +27,10 @@ void PmergeMe::makePair(std::vector<Node> &pairs, std::vector<Node> &losers) {
       losers.push_back(pairs[i]);
     }
   }
+  if (pairs.size() % 2 != 0)
+    losers.push_back(pairs.back());
 
   pairs = paired;
-  // if (pairs.size() % 2 != 0 && !paired.empty()) {
-  //   paired.back().has_stray = true;
-  //   paired.back().stray     = pairs[pairs.size() - 1].winner;
-  // }
 }
 
 
@@ -72,15 +64,8 @@ std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
     prevJacob     = currJacob;
     currJacob     = nextJacob;
   }
-
-  std::cout << "################ Insertion Order: #############\n";
-  for (size_t i = 0; i < order.size(); ++i) {
-    std::cout << order[i] << " ";
-  }
-  std::cout << "\n###############################################\n";
-  return order;
+   return order;
 }
-
 
 /***/
 void PmergeMe::sortRecursion(std::vector<Node> &winners) {
@@ -91,30 +76,14 @@ void PmergeMe::sortRecursion(std::vector<Node> &winners) {
   std::vector<Node> losers;
   makePair(winners, losers);
   for (size_t i = 0; i < winners.size(); ++i) {
-    std::cout << "winners[i]: " << winners[i].winner << " " << "Index: " << i << std::endl;
     winners[i].index.push_back(i);
   }
-  // std::cout << "\n******************************************\n";
-  // for (size_t i = 0; i < losers.size(); ++i) {
-  //   std::cout << "losers[i]: " << losers[i].winner << " " << "Index: " << i << std::endl;
-  //   losers[i].index.push_back(i);
-  // }
-  // std::cout << "\n===== Winners: ===\n";
-  // print(winners);
-  // std::cout << "\n===== losers: ===\n";
-  // print(losers);
+  for (size_t i = 0; i < losers.size(); ++i) {
+    losers[i].index.push_back(i);
+  }
   sortRecursion(winners);
 
-  std::cout << "\n```````````````````***`````````````````````\n";
-  for (size_t i = 0; i < winners.size(); ++i) {
-    std::cout << "winners[i]: " << winners[i].winner << " " << "Index: " << winners[i].index[i] << std::endl;
-  }
-  std::cout << "\n******************************************\n";
-  for (size_t i = 0; i < losers.size(); ++i) {
-    std::cout << "losers[i]: " << losers[i].winner << " " << "Index: " << losers[i].index[i] << std::endl;
-  }
   FordJohnson(winners, losers);
-
 }
 
 
@@ -122,63 +91,51 @@ void PmergeMe::sortRecursion(std::vector<Node> &winners) {
 void PmergeMe::FordJohnson(std::vector<Node> &winners, std::vector<Node> &losers) {
   std::vector<Node> MainChain;
   std::vector<Node> collection;
-  std::vector<Node> restore;
 
-  // std::cout << "===== Winners: ===\n";
-  // print(winners);
-  // std::cout << "===== losers: ===\n";
-  // print(losers);
-
-  
   for (size_t i = 0; i < winners.size(); ++i) {
     int idx = winners[i].index.back();
-    // std::cout << "idx: =====[ " << winners[i].index.back() << " ]=======> " << losers[idx].winner << std::endl;
     collection.push_back(losers[idx]);
   }
 
-  std::cout << "=======> Collection: \n";
-  print(collection);
-  std::cout << "===== Winners: ===\n";
-  print(winners);
-  std::cout << "===== losers: ===\n";
-  print(losers);
-  //
-  // std::cout << "Loser[0]: " << losers[0].winner << std::endl;
-  // std::cout << "Collection: " << collection[0].winner << std::endl;
-  MainChain.push_back(collection[0]);
-  std::vector<int> insertionOrder = getInsertionOrder(losers.size() - 1);
-
-  size_t currJacob = 0;
-  size_t prevJacob = 0;
-
-  for (size_t i = 0; i < insertionOrder.size(); i++) {
-    currJacob = insertionOrder[i];
-    if (currJacob >= losers.size()) {
-      currJacob = losers.size() - 1;
-    }
-    for (size_t j = prevJacob; j < currJacob; j++) {
-      MainChain.push_back(winners[j]);
-    }
-    for (size_t k = currJacob; k > prevJacob; k--) {
-      std::vector<Node>::iterator it = std::lower_bound(MainChain.begin(), MainChain.end(), losers[k]);
-      // std::cout << "iterator: " << it->winner << " ";
-      // std::cout << "loserK: " << losers[k].winner << " ";
-      MainChain.insert(it, losers[k]);
-    }
-    prevJacob = currJacob;
+  if (losers.size() > winners.size()) {
+    collection.push_back(losers.back()); 
   }
-  for (size_t i = prevJacob; i < winners.size(); i++) {
+  MainChain.push_back(collection[0]);
+  for (size_t i = 0; i < winners.size(); ++i) {
     MainChain.push_back(winners[i]);
   }
+
+  std::vector<int> insertionOrder = getInsertionOrder(collection.size() - 1);
+
+  for (size_t i = 0; i < insertionOrder.size(); i++) {
+    int k = insertionOrder[i];
+
+    if (k >= (int)collection.size()) {
+      continue; 
+    }
+
+    std::vector<Node>::iterator it_end = MainChain.end();
+
+    if (k < (int)winners.size()) {
+      for (std::vector<Node>::iterator it = MainChain.begin(); it != MainChain.end(); ++it) {
+        if (it->winner == winners[k].winner) {
+          it_end = it;
+          break;
+        }
+      }
+    }
+    ComparisonCounter spy(this->comparison);
+
+    std::vector<Node>::iterator insert_pos = std::lower_bound(MainChain.begin(), it_end, collection[k], spy);
+    MainChain.insert(insert_pos, collection[k]);
+  }
+
   winners = MainChain;
   for (size_t i = 0; i < winners.size(); ++i) {
-    winners[i].index.pop_back();
+    if (!winners[i].index.empty()) {
+      winners[i].index.pop_back();
+    }
   }
-  // std::cout << std::endl;
-  // std::cout << "MainChain: ";
-  // for (size_t i = 0; i < winners.size(); ++i) {
-  //   std::cout << winners[i].winner << " ";
-  // }
 }
 
 void PmergeMe::VectorTest(std::vector<Node> &pairs) {

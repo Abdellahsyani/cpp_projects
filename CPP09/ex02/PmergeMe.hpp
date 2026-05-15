@@ -32,7 +32,7 @@ struct ComparisonCounter {
     size_t& count;
     ComparisonCounter(size_t& c) : count(c) {}
 
-    bool operator()(int a, int b) const {
+    bool operator()(const Node& a, const Node& b) const {
         count++; // Increment your class variable
         return a < b;
     }
@@ -47,8 +47,6 @@ public:
 
 
   size_t comparison;
-  std::vector<int> pendingList;
-  std::vector<int> MainChain;
   int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
   void SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
   void makePair(std::vector<Node>& winners, std::vector<Node>& losers);
