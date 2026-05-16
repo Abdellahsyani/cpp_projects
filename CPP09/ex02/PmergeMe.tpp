@@ -99,11 +99,9 @@ void PmergeMe::FordJohnson(Container &winners, Container &losers) {
 
 template<typename Container>
 void PmergeMe::print(Container &winner) {
-    std::cout <<  "-----------------" << std::endl;
   for (size_t i = 0; i < winner.size(); ++i) {
     std::cout << winner[i].winner << " ";
   }
   std::cout << std::endl;
-  std::cout <<  "-----------------" << std::endl;
 }
 #endif

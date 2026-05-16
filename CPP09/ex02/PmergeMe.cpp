@@ -44,14 +44,7 @@ void PmergeMe::sortDeque(std::deque<Node> &pairs) {
     return;
 
   this->comparison = 0;
-  std::cout << "===========Input In Deque ========= \n";
-  print(pairs);
-  std::cout << "==================== \n";
   sortRecursion(pairs);
-  std::cout << "=========Result In Deque=========== \n";
-  print(pairs);
-  std::cout << "Comparison In Deque: " << comparison << std::endl;
-  std::cout << "==================== \n";
 }
 
 /***/
@@ -60,13 +53,12 @@ void PmergeMe::sortVector(std::vector<Node> &pairs) {
     return;
 
   this->comparison = 0;
-  std::cout << "===========Input In Vector ========= \n";
+  std::cout << "Before: ";
   print(pairs);
-  std::cout << "==================== \n";
   sortRecursion(pairs);
-  std::cout << "=========Result In Vector =========== \n";
+  std::cout << "After: ";
   print(pairs);
-  std::cout << "Comparison In Vector: " << comparison << std::endl;
-  std::cout << "==================== \n";
+  // std::cout << "Comparison In Vector: " << comparison << std::endl;
+  // std::cout << "==================== \n";
 }
 

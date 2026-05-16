@@ -7,6 +7,7 @@
 #include <vector>
 #include <deque>
 #include <climits>
+#include <sys/time.h>
 
 /**
  * Node: a struct to make pairs without using make_pair() function
@@ -47,11 +48,13 @@ class PmergeMe {
 
 
     size_t comparison;
+    struct timeval start, end;
 
     std::vector<int> getInsertionOrder(int totalpending);
     int getNextJacobsthal(int prev, int curr);
     void sortVector(std::vector<Node>& pairs);
     void sortDeque(std::deque<Node>& pairs);
+    double getTime();
 
     // ==========================================
     // TEMPLATE DECLARATIONS
