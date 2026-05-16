@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <deque>
 #include <climits>
 
 /**
@@ -17,46 +18,62 @@
 struct Node {
   int winner;
   std::vector<int> index;
-  int stray;
   bool has_stray;
 
-  Node() : winner(0), stray(0), has_stray(false) {}
-  Node(int n) : winner(n), stray(0), has_stray(false) {}
+  Node() : winner(0), has_stray(false) {}
+  Node(int n) : winner(n), has_stray(false) {}
 
   bool operator<(const Node& other) const {
-        return this->winner < other.winner;
-    }
+    return this->winner < other.winner;
+  }
 };
 
 struct ComparisonCounter {
-    size_t& count;
-    ComparisonCounter(size_t& c) : count(c) {}
+  size_t& count;
+  ComparisonCounter(size_t& c) : count(c) {}
 
-    bool operator()(const Node& a, const Node& b) const {
-        count++; // Increment your class variable
-        return a < b;
-    }
+  bool operator()(const Node& a, const Node& b) const {
+    count++; // Increment your class variable
+    return a < b;
+  }
 };
 
 class PmergeMe {
-public:
-  PmergeMe();
-  PmergeMe(const PmergeMe& other);
-  PmergeMe& operator=(const PmergeMe& other);
-  ~PmergeMe();
+  public:
+    PmergeMe();
+    PmergeMe(const PmergeMe& other);
+    PmergeMe& operator=(const PmergeMe& other);
+    ~PmergeMe();
 
 
-  size_t comparison;
-  int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
-  void SortNumbers(std::vector<Node>& sortedNodes, std::vector<Node>& pairs);
-  void makePair(std::vector<Node>& winners, std::vector<Node>& losers);
-  void sortRecursion(std::vector<Node>& pairs);
-  void FordJohnson(std::vector<Node>& winners, std::vector<Node>& losers);
-  void eraseNumber(int num);
-  std::vector<int> getInsertionOrder(int totalpending);
-  int getNextJacobsthal(int prev, int curr);
-  void VectorTest(std::vector<Node>& pairs);
-  
+    size_t comparison;
+    // int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
+    // void makePair(std::vector<Node>& winners, std::vector<Node>& losers);
+    // void sortRecursion(std::vector<Node>& pairs);
+    // void FordJohnson(std::vector<Node>& winners, std::vector<Node>& losers);
+
+    std::vector<int> getInsertionOrder(int totalpending);
+    int getNextJacobsthal(int prev, int curr);
+    void sortVector(std::vector<Node>& pairs);
+    void sortDeque(std::deque<Node>& pairs);
+
+    // ==========================================
+    // TEMPLATE DECLARATIONS
+    // ==========================================
+    template <typename Container>
+      void makePair(Container& pairs, Container& losers);
+
+    template <typename Container>
+    void print(Container &winner);
+
+    template <typename Container>
+      void FordJohnson(Container& winners, Container& losers);
+
+    template <typename Container>
+      void sortRecursion(Container& winners);
+
 };
+
+#include "PmergeMe.tpp"
 
 #endif // !PMERGEME_HPP
