@@ -47,10 +47,6 @@ class PmergeMe {
 
 
     size_t comparison;
-    // int BinarySearch(std::vector<int>& MainChain, int loser, int winner);
-    // void makePair(std::vector<Node>& winners, std::vector<Node>& losers);
-    // void sortRecursion(std::vector<Node>& pairs);
-    // void FordJohnson(std::vector<Node>& winners, std::vector<Node>& losers);
 
     std::vector<int> getInsertionOrder(int totalpending);
     int getNextJacobsthal(int prev, int curr);

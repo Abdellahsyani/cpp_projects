@@ -76,7 +76,7 @@ void PmergeMe::FordJohnson(Container &winners, Container &losers) {
 
     if (k < (int)winners.size()) {
       for (typename Container::iterator it = MainChain.begin(); it != MainChain.end(); ++it) {
-        if (&(*it) == &winners[k]) {
+        if (it->winner == winners[k].winner) {
           it_end = it;
           break;
         }
