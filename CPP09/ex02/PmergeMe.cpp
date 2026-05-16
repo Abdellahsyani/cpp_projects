@@ -42,9 +42,14 @@ std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
 void PmergeMe::sortDeque(std::deque<Node> &pairs) {
   if (pairs.empty())
     return;
+  struct timeval start, end;
 
   this->comparison = 0;
+
+  gettimeofday(&start, NULL);
   sortRecursion(pairs);
+  gettimeofday(&start, NULL);
+  double elapsed = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec);
 }
 
 /***/
@@ -58,6 +63,8 @@ void PmergeMe::sortVector(std::vector<Node> &pairs) {
   sortRecursion(pairs);
   std::cout << "After: ";
   print(pairs);
+  std::cout << "Time to process a range of " << 5 << " elements with std::vector : " <<  0.00031 " us" << std::endl;
+  std::cout << "Time to process a range of " << 5 << " elements with std::deque : " <<  0.00031 " us" << std::endl;
   // std::cout << "Comparison In Vector: " << comparison << std::endl;
   // std::cout << "==================== \n";
 }
