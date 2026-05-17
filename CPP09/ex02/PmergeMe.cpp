@@ -39,6 +39,18 @@ std::vector<int> PmergeMe::getInsertionOrder(int totalpending) {
 }
 
 /***/
+void checkSort(std::vector<Node> numbers) {
+  for (size_t i = 0; i < numbers.size() - 1; i++) {
+    if (numbers[i] < numbers[i+1] || numbers[i].winner == numbers[i+1].winner)
+      continue;
+    else {
+      std::cout << "Numbers aren't sorted: " << numbers[i].winner << std::endl;
+      exit(0);
+    }
+  }
+}
+
+/***/
 void PmergeMe::sortDeque(std::deque<Node> &pairs) {
   if (pairs.empty())
     return;
@@ -71,6 +83,7 @@ void PmergeMe::sortVector(std::vector<Node> &pairs) {
 
   std::cout << "After: ";
   print(pairs);
+  checkSort(pairs);
   std::cout << "Time to process a range of " << pairs.size() << " elements with std::vector : " <<  this->vectorTime << " us" << std::endl;
   // std::cout << "Comparison In Vector: " << comparison << std::endl;
   // std::cout << "==================== \n";
