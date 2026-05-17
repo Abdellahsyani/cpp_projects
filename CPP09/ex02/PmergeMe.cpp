@@ -60,7 +60,6 @@ void PmergeMe::sortVector(std::vector<Node> &pairs) {
 
   struct timeval start, end;
   this->comparison = 0;
-  int size = pairs.size();
 
   std::cout << "Before: ";
   print(pairs);
@@ -72,7 +71,7 @@ void PmergeMe::sortVector(std::vector<Node> &pairs) {
 
   std::cout << "After: ";
   print(pairs);
-  std::cout << "Time to process a range of " << size << " elements with std::vector : " <<  this->vectorTime << " us" << std::endl;
+  std::cout << "Time to process a range of " << pairs.size() << " elements with std::vector : " <<  this->vectorTime << " us" << std::endl;
   // std::cout << "Comparison In Vector: " << comparison << std::endl;
   // std::cout << "==================== \n";
 }
