@@ -40,6 +40,9 @@ struct ComparisonCounter {
 };
 
 class PmergeMe {
+  private:
+    double vectorTime;
+    double dequeTime;
   public:
     PmergeMe();
     PmergeMe(const PmergeMe& other);
@@ -48,7 +51,6 @@ class PmergeMe {
 
 
     size_t comparison;
-    struct timeval start, end;
 
     std::vector<int> getInsertionOrder(int totalpending);
     int getNextJacobsthal(int prev, int curr);
