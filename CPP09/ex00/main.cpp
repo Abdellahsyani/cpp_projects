@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include <sstream>
 
 int main(int ac, char *av[]) {
 
@@ -16,7 +17,17 @@ int main(int ac, char *av[]) {
 
   std::string line;
   if (std::getline(file, line)) {
-    if (line.find("data") != std::string::npos) {};
+    std::stringstream ss(line);
+    std::string data;
+    ss >> data;
+    std::string pipe; 
+    ss >> pipe;
+    std::string value;
+    ss >> value;
+    if (data != "date" || pipe != "|" || value != "value") {
+      std::cerr << "Missing header!" << std::endl;
+      return 1;
+    }
   }
   while (std::getline(file, line))
   {
