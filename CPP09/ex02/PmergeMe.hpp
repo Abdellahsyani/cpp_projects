@@ -14,7 +14,6 @@
  * @param winner: The winner pair 
  * @param losers: a vector of the losers that lose against winner
  * @param stray: the strugle number from pairs
- * @param has_stray:  a boolean to check if a level of pairs has a stray
  **/
 struct Node {
   int winner;
@@ -29,6 +28,13 @@ struct Node {
   }
 };
 
+/**
+ * ComparisonCounter: A struct to count comparisons
+ *  count: reference to the count variable in PmergeMe class 
+  *  operator(): overload the function call operator to compare two Node objects and increment the count 
+  *  This struct allows you to keep track of the number of comparisons made during sorting by incrementing the count variable each time a comparison is made.
+  *  You can use this struct as a comparison function in sorting algorithms, and it will automatically update the count variable with the number of comparisons performed.
+  *  */
 struct ComparisonCounter {
   size_t& count;
   ComparisonCounter(size_t& c) : count(c) {}
@@ -39,6 +45,7 @@ struct ComparisonCounter {
   }
 };
 
+/***/
 class PmergeMe {
   private:
     double vectorTime;
