@@ -115,7 +115,7 @@ void PmergeMe::sortVector(std::vector<Node> &pairs) {
   print(pairs);
   checkSort(pairs);
   std::cout << "Time to process a range of " << pairs.size() << " elements with std::vector : " <<  this->vectorTime << " us" << std::endl;
-  // std::cout << "Comparison In Vector: " << comparison << std::endl;
-  // std::cout << "==================== \n";
+  std::cout << "Comparison In Vector: " << comparison << std::endl;
+  std::cout << "==================== \n";
 }
 
