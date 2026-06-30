@@ -77,14 +77,6 @@ void fillMap(std::map<std::string, double> &Map) {
  * validateCurrency: a function to validate 
  * */
 bool validateCurrency(std::string& line) {
-  int year = 0;
-  int month = 0;
-  int day = 0;
-  char Hyphen1 = 0;
-  char Hyphen2 = 0;
-  char pipe = 0;
-  double value = 0.0;
-  std::stringstream ss(line);
   std::string date = line.substr(0,10);
   std::map<std::string, double> Map;
   fillMap(Map);
@@ -92,25 +84,39 @@ bool validateCurrency(std::string& line) {
 
   if (line.empty())
     return false;
-  if (!(ss >> year >> Hyphen1 >> month >> Hyphen2 >> day >> pipe >> value)) {
+
+  size_t delimiterPos = line.find(" | ");
+  if (delimiterPos == std::string::npos) {
     std::cout << "Error: bad input => " << line << std::endl;
     return false;
   }
-  char extra;
-  if (ss >> extra) {
-    std::cout << "Error: bad input => " << extra << std::endl;
+  std::string dateStr = line.substr(0, delimiterPos);
+  std::string valueStr = line.substr(delimiterPos + 3);
+
+  if (dateStr.length() != 10 || dateStr[4] != '-' || dateStr[7] != '-') {
+    std::cout << "Error: bad input => " << line << std::endl;
     return false;
   }
+
   try {
+    int year, month, day;
+    char Hyphen1, Hyphen2;
+    std::stringstream dateStream(dateStr);
+    dateStream >> year >> Hyphen1 >> month >> Hyphen2 >> day;
+
     checkYear(year);
-    if (Hyphen1 != '-' || Hyphen2 != '-') {
-      throw std::string("Invalid hyphen");
-    }
     checkMonth(month);
     checkDay(day, month);
-    if (pipe != '|') {
-      throw std::string("Invalid format");
-    }
+
+    double value;
+    std::stringstream valueStream(valueStr);
+    if (!(valueStream >> value))
+      throw std::string("bad input => " + line);
+
+    std::string extra;
+    if (valueStream >> extra)
+      throw std::string("bad input => " + line);
+
     checkValue(value);
     if (it == Map.begin())
       throw std::string("Date too old");
@@ -121,7 +127,7 @@ bool validateCurrency(std::string& line) {
       std::cout << year << Hyphen1 << month << Hyphen2 << day << " => " << value << " = " << value * it->second << std::endl;
     }
   } catch (std::string& e) {
-      std::cout << "Error: " << e << std::endl;
+    std::cout << "Error: " << e << std::endl;
   }
   return true;
 }
