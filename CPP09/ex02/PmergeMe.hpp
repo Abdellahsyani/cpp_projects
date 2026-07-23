@@ -66,7 +66,7 @@ class PmergeMe {
     double getTime();
 
     // ==========================================
-    // TEMPLATE DECLARATIONS
+    // ||        TEMPLATE DECLARATIONS         ||
     // ==========================================
     template <typename Container>
       void makePair(Container& pairs, Container& losers);
