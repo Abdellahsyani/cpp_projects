@@ -64,10 +64,8 @@ void PmergeMe::FordJohnson(Container &winners, Container &losers) {
   }
 
   std::vector<int> insertionOrder = getInsertionOrder(collection.size() - 1);
-
   for (size_t i = 0; i < insertionOrder.size(); i++) {
     int k = insertionOrder[i];
-
     if (k >= (int)collection.size()) {
       continue; 
     }
